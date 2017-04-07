@@ -9,8 +9,7 @@
     "mongoose": "^4.9.2",
     "multer": "^1.3.0",
      "q": "^1.5.0",
-    "request": "^2.81.0",
-    "textangular": "^1.5.16"
+     "textangular": "^1.5.16"
   },
   "devDependencies": {},
   "scripts": {
