@@ -1,0 +1,388 @@
+<nav class="navbar  navbar-fixed-top bg-primary">
+    <div class="container-fluid" >
+        <div  class="navbar-text navbar-link pull-left">
+            <a href="#/user/{{model.ownerId}}">
+                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
+            </a>
+        </div>
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">New Restaurant </span>
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a ng-click="model.createRestaurant(model.restaurant)">
+                <span class="wbdv-text-clr-white" title="Save">Save Restaurant</span>
+            </a>
+        </div>
+
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+            <a ng-click="model.createRestaurant(model.restaurant)">
+                <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Save"></span>
+            </a>
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="container  pageBackground" >
+
+    <div class="container blackContainer">
+        <div ng-show="model.message" class="alert alert-success" role="alert" >
+            {{model.message}}
+        </div>
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            <div ng-repeat="e in model.error">
+                {{e}}
+            </div>
+        </div>
+
+        <div class="container  contentContainer">
+            <h2 class="pageHeading" >Register Restaurant</h2>
+
+            <form name="RestaurantProfile">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="rname"  class="wbdv-req-field">Restaurant Name:</label>
+                            <input ng-model="model.restaurant.name"
+                                   type="text" class="form-control"
+                                   id="rname"
+                                   name="rname"
+                                   placeholder="Restaurant Name"
+                                   required/>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="pin"  class="wbdv-req-field">PIN:</label>
+                            <input ng-model="model.restaurant.pin"
+                                   type="text" class="form-control"
+                                   id="pin"
+                                   name="pin"
+                                   placeholder="PIN"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="phone"  class="wbdv-req-field">Phone:</label>
+                            <input ng-model="model.restaurant.phone"
+                                   type="text" class="form-control"
+                                   id="phone"
+                                   name="phone"
+                                   pattern="[0-9]{10}"
+                                   placeholder="Phone"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <label for="address"  class="wbdv-req-field">Address:</label>
+                            <input    ng-model="model.restaurant.streetAddress"
+                                      ng-change="model.loadAddressFromAPI()"
+                                      type="text"
+                                      list="addressList"
+                                      class="form-control"
+                                      id="address"
+                                      name="address"
+                                      placeholder="Address"
+                                      ng-blur="model.populateCityAndStateIfDlSel()"
+                                      required>
+                            <datalist id="addressList">
+                                <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
+                            </datalist>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-8 col-xs-12">
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
+                                    <input id="city"
+                                           type="text"
+                                           name="city"
+                                           class="form-control"
+                                           placeholder="Restaurant City"
+                                           ng-model="model.restaurant.city"
+
+                                           required/>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                            <label for="state" class="wbdv-req-field" style="color: white;">State:</label>
+                            <select id="state"
+                                    name="state"
+                                    class="form-control"
+                                    ng-model="model.restaurant.state"
+                                    ng-init="model.restaurant.state = model.restaurant.state || model.states[0]"
+                                    ng-options="option for option in model.states">
+                            </select>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
+                                    <select ng-model="model.restaurant.country"
+                                            id="country"
+                                            name="country"
+                                            class="form-control"
+                                            ng-init="model.restaurant.country=model.restaurant.country||model.country[0]"
+                                            ng-options="option for option in model.country">
+
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                        <div class="col-xs-12 col-sm-4 pull-right">
+                            <div class="form-group">
+                                <label for="restURL">Restaurant URL</label>
+                                <input ng-model="model.restaurant.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12 ">
+                            <div class="form-group">
+                                <label for="del" class="wbdv-req-field" style="color: white;">Delivery Available</label>
+                                <select ng-model="model.restaurant.offersDelivery"
+                                        id="del"
+                                        name="del"
+                                        class="form-control"
+
+                                        ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
+                                        ng-options="option for option in model.booleanVal">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label for="del" class="wbdv-req-field" style="color: white;">Pickup Available</label>
+                                <select ng-model="model.restaurant.offersPickup"
+                                        id="pickup"
+                                        name="pickup"
+                                        class="form-control"
+
+                                        ng-init="model.restaurant.offersPickup=model.restaurant.offersPickup||model.booleanVal[0]"
+                                        ng-options="option for option in model.booleanVal">
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                <div class=" row">
+                    <div class="col-xs-12 col-sm-4 pull-left">
+                        <div class="form-group">
+                            <div ng-if="model.file">
+                                <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
+                            </div>
+                            <label for="uploadFile">Logo</label>
+
+                            <input
+                                    id="uploadFile"
+                                    type="file"
+                                    ngf-select
+                                    ng-model="model.file"
+                                    name="file"
+                                    ngf-pattern="'image/*'"
+                                    accept="image/*"
+                                    ngf-max-size="5MB"
+                                    class="form-control"/>
+                        </div>
+                        <div class="btn btn-primary btn-block" ng-click="model.uploadImage()">
+                            Upload Image
+                        </div>
+                    </div>
+                </div>
+
+
+                <div data-toggle="collapse" data-target="#workingDays">
+                    <div class="form-group">
+                        <label for="workingDays" class="wbdv-mar-top-15 " style="font-size: larger">
+                            <i><u>Click ME to update Working Days</u></i></label>
+                    </div>
+                </div>
+
+                <div class="wbdv-mar-top-5 collapse"  id="workingDays">
+                    <div class="form-group">
+                        <ul class="list-group" style="margin-right: 10px;">
+                            <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        Days
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Start
+                                            </div>
+                                            <div class="col-xs-6">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                Close
+                                            </div>
+                                            <div class="col-xs-6">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </li>
+
+
+
+
+                             <li class="list-group-item" ng-repeat="day in model.days" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                                 <div class="row">
+                                     <div class="col-xs-2" style="color: white">
+
+                                       <input ng-model="day.selected"   type="checkbox" name="day" value="{{day.key}}" checked>{{day.key}}<br>
+                                     </div>
+
+                                     <div class="col-xs-2">
+                                         <select ng-model="day.stH"
+                                                     id="stH"
+                                                     name="stH"
+                                                     style="display: block;padding-left: 10px; text-align-last: center; color: black"
+                                                    ng-init="day.stH = day.stH||model.hours[0]"
+                                                    ng-options="option for option in model.hours">
+                                             </select>
+                                     </div>
+                                     <div class="col-xs-2">
+                                         <select
+                                                 id="stM"
+                                                 name="stM"
+                                                 ng-model="day.stM"
+                                                 style="display: block;padding-left: 10px; color: black"
+                                                 ng-init="day.stM = day.stM||model.mins[0]"
+                                                 ng-options="option for option in model.mins">
+                                         </select>
+
+                                     </div>
+                                     <div class="col-xs-2">
+                                         <select ng-model="day.etH"
+                                                 id="etH"
+                                                 name="etH"
+                                                 style="display: block;padding-left: 10px; margin-left:10px;color: black"
+                                                 ng-init="day.etH = day.etH||model.hours[0]"
+                                                 ng-options="option for option in model.hours">
+                                         </select>
+                                     </div>
+                                     <div class="col-xs-2">
+                                         <select
+                                                 id="etM"
+                                                 name="etM"
+                                                 ng-model="day.etM "
+                                                 style="display: block;padding-left: 10px;color: black; margin-left:10px;"
+                                                 ng-init="day.etM = day.etM||model.mins[0]"
+                                                 ng-options="option for option in model.mins">
+                                         </select>
+                                     </div>
+                                 </div>
+                             </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="row wbdv-mar-top-15" >
+
+                        <a  ng-click="model.addNewSpeciality()">
+                            <div  class=" col-sm-12 col-xs-12" style="color: white">
+                               <label for="specialities" class=" glyphicon glyphicon-remove-sign wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
+                                   <i class="glyphicon glyphicon-remove-sign">
+                                       <u>Click ME to Add your restaurant specialities</u></i>
+                               </label>
+                            </div>
+                        </a>
+
+
+                </div>
+
+                <div class="row" id="specialities">
+                    <div class="pull-left" style="margin-right:5px;" ng-repeat="special in model.speciality">
+                        <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px;text-align: center" ng-model="special.value" required/>
+                        <a ng-click="model.deleteSpeciality(special)">
+                            <span class="glyphicon glyphicon-remove-sign wbdv-speciality-remove" style="color: red"></span>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </form>
+            <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <a ng-click="model.createRestaurant(model.restaurant)" class="btn btn-success btn-block form-control">Create</a>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <a href="#/user/{{model.ownerId}}" class="btn btn-primary  btn-block">Cancel</a>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<nav class="navbar  navbar-fixed-bottom bg-primary" >
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xs-12" >
+                <a href="#/user/{{model.ownerId}}" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                </a>
+
+            </div>
+
+
+        </div>
+    </div>
+</nav>
