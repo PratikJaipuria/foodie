@@ -127,11 +127,6 @@
                 controllerAs: 'model'})
 
 
-            // .when("/register",{
-            //     templateUrl: "views/register.html"
-            //     // controller: "registerController"
-            // })
-
 
             .when("/register/:role",{
                 templateUrl: "views/users/templates/userRegister.html",
@@ -144,10 +139,6 @@
                 controller: "ownerRegisterController"
             })
 
-            // .when("/owner/:uid",{
-            //     templateUrl: "views/owner/templates/ownerProfile.html",
-            //     // controller: "ownerRegisterController"
-            // })
 
             .when("/user/:uid",{
                 templateUrl: "views/users/templates/userProfile.html",
