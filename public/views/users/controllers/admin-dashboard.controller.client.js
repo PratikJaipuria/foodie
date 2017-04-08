@@ -5,7 +5,8 @@
     function adminDashboardController (userService, restaurantService, orderTrackService) {
         var vm = this;
         vm.currActivePaneIfUser='';
-        vm.mode='All';
+        var test=10;
+        vm.mode='console';
         vm.findUsers=findUsers;
         vm.findRestaurants=findRestaurants;
         vm.findOrders=findOrders;
@@ -16,38 +17,11 @@
 
         function init() {
 
+
+            vm.mode = 'console';
             // adminDashBoard();
-            vm.mode = 'All';
 
 
-            window.onload = function () {
-                var chart = new CanvasJS.Chart("chartContainer",
-                    {
-                        title: {
-                            text: "Total Customers On Board"
-                        },
-                        legend: {
-                            maxWidth: 350,
-                            itemWidth: 120
-                        },
-                        data: [
-                            {
-                                type: "pie",
-                                showInLegend: true,
-                                legendText: "{indexLabel}",
-                                dataPoints: [
-                                    {y: 4181563, indexLabel: "Consumers"},
-                                    {y: 2175498, indexLabel: "Restaurant Owners"},
-                                    {y: 3125844, indexLabel: "Delivery Boys"}
-                                ]
-                            }
-                        ]
-                    });
-                console.log(chart.render());
-                chart.render();
-
-
-            }
         }init();
 
         var $li = $('#categories li').click(function() {
@@ -90,12 +64,12 @@
 
         function adminDashBoard() {
 
-            findUsers('ALLUSERS');
+           findUsers('ALLUSERS');
 
-            vm.mode='All';
+            vm.mode='console';
 
-
-            window.onload = function () {
+            console.log(vm.mode);
+            // window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer",
                 {
                     title: {
@@ -111,17 +85,19 @@
                             showInLegend: true,
                             legendText: "{indexLabel}",
                             dataPoints: [
-                                {y: 4181563, indexLabel: "Consumers"},
+                                {y: test, indexLabel: "Consumers"},
                                 {y: 2175498, indexLabel: "Restaurant Owners"},
                                 {y: 3125844, indexLabel: "Delivery Boys"}
                             ]
                         }
                     ]
                 });
-            console.log(  chart.render());
+
             chart.render();
 
-        }}
+
+        // }
+    }
 
         function deleteUser(userId) {
             var promise=userService.deleteUser(userId);

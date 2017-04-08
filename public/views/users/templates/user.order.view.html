@@ -61,15 +61,24 @@
                           style="background-color: black;" data-target="#{{'all'+order._id}}">
                         {{order.restName}}
 
-                        <div ng-if="order.delivered" class="pull-right">
+
+
+                        <!--<div  ng-if="order.delivered" class="pull-right" >-->
+                            <!--<span class="glyphicon glyphicon-remove-sign pull-right" style="color: red; font-size: 25px;"></span>-->
+                        <!--</div>-->
+
+                        <div ng-if="order.delivered" class="col-xs-6 pull-right">
                             <span class="glyphicon glyphicon-ok-circle pull-right" style="color: green; font-size: 25px;"></span>
+
                         </div>
 
-                        <div ng-if="order.delivered==false && order.scheduled==true" class="pull-right">
+
+
+                        <div ng-if="order.delivered==false && order.scheduled==true" class="col-xs-6 pull-right">
                             <span class="glyphicon glyphicon-send pull-right" style="color: red;font-size: 25px;"></span>
                         </div>
 
-                        <div ng-if="order.scheduled==false && order.delivered==false" class=" pull-right">
+                        <div ng-if="order.scheduled==false && order.delivered==false" class="col-xs-6 pull-right">
                             <span class="glyphicon glyphicon-hourglass pull-right"  style="color: whitesmoke;font-size: 25px;"></span>
                         </div>
                     </div>

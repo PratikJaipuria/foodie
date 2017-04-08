@@ -111,7 +111,11 @@
                 </div>
 
 
-                <div ng-if="model.mode=='ALL'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60"  id="chartContainer" style="height: 300px; width: 100%;">
+                <div ng-if="model.mode=='console'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60">
+                    <!--{{model.mode}}-->
+                    <!--<div id="chartContainer" style="height: 300px; width: 100%;">-->
+
+                    <!--</div>-->
 
                 </div>
                 <div ng-if="model.mode != 'ALL'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60" style="color: black;">
@@ -140,12 +144,6 @@
                                         {{u.username}}
                                     </div>
 
-
-                                    <!--<div class="col-xs-2">-->
-                                        <!--<a href="">-->
-                                            <!--<span class="glyphicon glyphicon-remove"></span>-->
-                                        <!--</a>-->
-                                    <!--</div>-->
                                     <div class="col-xs-3 pull-right">
                                         <a ng-click="model.deleteUser(u._id)">
                                             <span class="glyphicon glyphicon-cog pull-right"></span>
