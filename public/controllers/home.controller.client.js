@@ -2,7 +2,7 @@
     angular
         .module("ProjectMaker")
         .controller("homeController", homeController);
-    function homeController(SearchService, $location, $routeParams, addressAPISearchService){
+    function homeController(userService, SearchService, $location, $routeParams, addressAPISearchService){
 
 
         var vm = this;
@@ -12,6 +12,7 @@
 
         vm.findRestaurant=findRestaurant;
         vm.loadAddressFromAPI=loadAddressFromAPI;
+        vm.logout = logout;
 
         vm.userLoggedIn = false;
         vm.userLoggedOut = true;
@@ -51,6 +52,14 @@
         }
 
 
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/home');
+                });
+        }
 
 
         function findRestaurant (restaurant) {

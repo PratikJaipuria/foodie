@@ -6,11 +6,13 @@
         .module("ProjectMaker")
         .controller("restaurantListController", restaurantListController);
 
-    function restaurantListController($routeParams, restaurantService) {
+    function restaurantListController($location,$routeParams, restaurantService,userService) {
         var vm = this;
 
         var ownerId = $routeParams.uid;
         vm.ownerId = ownerId;
+
+        vm.logout = logout;
 
         function init() {
             restaurantService
@@ -21,6 +23,15 @@
                 })
         }
         init();
+
+        function logout() {
+
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/home');
+                });
+        }
 
     }
 })();

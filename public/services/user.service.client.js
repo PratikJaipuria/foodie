@@ -4,9 +4,13 @@
         .factory("userService",userService);
 
     function userService ($http) {
-
+    
 
         var api = {
+            "findCurrentUser":findCurrentUser,
+            "login" : login,
+            "loggedin": loggedin,
+            "logout":logout,
             "createUser": createUser,
             "findUserByID":findUserByID,
             "findUserByCredentials":findUserByCredentials,
@@ -24,6 +28,36 @@
         return api;
 
 
+        function findCurrentUser() {
+            return $http.get("/api/findCurrentUser");
+        }
+
+
+        function login(user) {
+
+            return $http.post('/api/login', user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+        function logout() {
+            return $http.post('/api/logout')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function loggedin() {
+            return $http.post('/api/loggedin')
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
+
         function updateAvailabiltyofDB(userId,user) {
             console.log("hello");
             console.log(userId);
@@ -39,7 +73,7 @@
 
 
         function createUser (user) {
-            return $http.post('/api/user/', user);
+            return $http.post('/api/user', user);
         }
         function findUserByID (userId) {
             return $http.get('/api/user/'+ userId);

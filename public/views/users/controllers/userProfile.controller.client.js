@@ -5,9 +5,10 @@
     function userProfileController ( $routeParams,addressAPISearchService , userService, $location, $timeout) {
 
         var vm = this;
-        var userId=$routeParams['uid'];
+        var userId;
+//        var userId=$routeParams['uid'];
         vm.countries=['United States'];
-        vm.userId=userId;
+//        vm.userId=userId;
 
         vm.updateUser=updateUser;
         vm.deleteUser=deleteUser;
@@ -20,9 +21,12 @@
         vm.removeAddFromDelAddressList=removeAddFromDelAddressList;
 
         function init () {
-            var promise=userService.findUserByID(userId);
+            var promise=userService.findCurrentUser();
             promise.success(function (user) {
                 vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+                console.log("INSIDE INIT PROFILE",user);
                 if(user.role=='DELIVERYBOY'){
 
                     currentAvailability();
@@ -46,7 +50,13 @@
                 var promise=userService.updateAvailabiltyofDB(userId,vm.user);
                 promise.success(function (response) {
                     // $('#delBoyAvail').bootstrapToggle('off');
-                    $location.url("/home");
+                    userService
+                        .logout()
+                        .then(function () {
+                            $location.url('/home');
+                        });
+
+                    // $location.url("/home");
                 }).error(function (err) {
                     // error="unable to update User";
                     // errors.push(error);
@@ -54,7 +64,11 @@
                 });
 
             }else{
-                $location.url("/home");
+                userService
+                    .logout()
+                    .then(function () {
+                        $location.url('/home');
+                    });
             }
         }
 

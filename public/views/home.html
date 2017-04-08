@@ -31,7 +31,7 @@
             <div ng-if="model.userLoggedIn">
 
                 <div class="navbar-text pull-right hidden-xs">
-                    <a href="#/home">
+                    <a ng-click="model.logout()">
                         <span id ="LogOut" class="glyphicon glyphicon-log-out wbdv-text-clr-white" ></span>
                     </a>
                 </div>

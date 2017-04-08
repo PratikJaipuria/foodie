@@ -143,8 +143,11 @@
 
             var promise=userService.createUser(user);
             promise.success(function (user) {
-                console.log(user);
-                $location.url('/user/'+user._id);
+                // console.log("RESPONSE while register",response.data);
+                // user = response.data;
+                // $rootScope.currentUser = user;
+
+                $location.url('/user');
             }).error(function (err) {
                    throwError('Either this username or email already taken.');
             })

@@ -1,5 +1,16 @@
 module.exports=function(app,model){
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/loggedin', loggedin);
+    app.post('/api/logout', logout);
+    // app.post('/api/register', createUser);
     app.post("/api/user", createUser);
     app.put("/api/user/:uid", updateUser);
     app.delete("/api/user/:uid", deleteUser);
@@ -10,12 +21,71 @@ module.exports=function(app,model){
     app.get("/api/users/activedelboys/:rst",findActiveDeliveryBoyByRestaurant);
     app.get( "/api/users/:uid/orders",getAllOrdersForThisDeliveryBoy);
     app.put("/api/user/:uid/deliveryAddress", updateDeliveryAddresses);
+    app.get("/api/findCurrentUser",findCurrentUser);
 
 
 
     var UserModel = model.UserModel;
     var RestaurantModel = model.RestaurantModel;
 
+
+
+    function localStrategy(username, password, done) {
+        UserModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (!user) {
+                        return done(null, false);
+                    }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+
+    // function isAdmin(req, res) {
+    //     res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
+    // }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.send(200);
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        UserModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+
+    function findCurrentUser(req,res) {
+        res.json(req.user);
+    }
 
     function updateAvailabiltyofDB(req,res) {
         var userId = req.params['uid'];
@@ -109,8 +179,16 @@ module.exports=function(app,model){
                     UserModel.findUserByUsername(reponse.username)
                         .then(function (user) {
 
+                            req.login(user, function(err) {
+                                if(err) {
+                                    res.status(400).send(err);
+                                } else {
+                                    console.log("AFTER req LOGIN",user);
+                                    res.json(user);
+                                }
+                            });
 
-                            res.json(user);
+                            // res.json(user);
                         }, function (err) {
 
                             res.sendStatus(err.code);

@@ -10,6 +10,8 @@
 
         vm.refresh=refresh;
 
+        vm.logout = logout;
+
         function init () {
             vm.orders=[];
 
@@ -24,6 +26,13 @@
             })
         } init();
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/home');
+                });
+        }
         function filterDeliveredandUnDeliverdOrders(orders) {
             var deliveredOrders=[];
             var notDelivered=[];

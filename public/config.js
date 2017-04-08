@@ -47,29 +47,29 @@
             .when("/user/:uid/searchResult/name/:rn/address/:add",{
                 templateUrl: "views/users/templates/user.search.result.html",
                 controller: "searchResultController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
             .when("/user/:uid/searchResult/address/:add",{
                 templateUrl: "views/users/templates/user.search.result.html",
                 controller: "searchResultController",
-                controllerAs: "model"})
-
-
-
-
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
             .when("/user/:uid/searchResult",{
                 templateUrl: "views/home.html",
                 controller: "homeController",
-                controllerAs: "model"})
-
-
-
-
-
-
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
+            })
 
 
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
@@ -87,13 +87,19 @@
             .when("/user/:uid/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl: "views/restaurant/templates/user.restaurant.menu.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
             .when("/user/:uid/searchResult/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
 
@@ -111,12 +117,18 @@
             .when("/user/:uid/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
             .when("/user/:uid/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
             // '/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey
@@ -124,7 +136,10 @@
                 .when("/user/:uid/restaurant/:rst/order",{
                 templateUrl: "views/order/templates/resturant.order.tracking.html",
                 controller: 'restaurantOrderTrackController',
-                controllerAs: 'model'})
+                controllerAs: 'model',
+                    resolve: {
+                        currentUser: checkLogin
+                    }})
 
 
 
@@ -140,35 +155,47 @@
             })
 
 
-            .when("/user/:uid",{
+            .when("/user",{
                 templateUrl: "views/users/templates/userProfile.html",
                 controller: "userProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant",{
                 templateUrl: "views/restaurant/templates/restaurantList.html",
                 controller: "restaurantListController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/new",{
                 templateUrl: "views/restaurant/templates/newRestaurant.html",
                 controller: "restaurantNewController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
 
             // .when("/user/:uid/restaurant/:rst/menu",{
             //     templateUrl: "views/restaurant/templates/restaurantMenu.html",
             //     controller: "restaurantMenuController",
-            //     controllerAs: "model"
+            //     contollerAs: "model"
             // })
 
             .when("/user/:uid/restaurant/:rst",{
                 templateUrl: "views/restaurant/templates/restaurantEdit.html",
                 controller: "restaurantEditController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
             // .when("/user/:uid/restaurant/:rst/menu/cart/:cat",{
             //     templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
@@ -177,37 +204,55 @@
             .when("/user/:uid/restaurant/:rst/menu/:mid/item",{
                 templateUrl: "views/restaurant/templates/menuItemEdit.html",
                 controller: "editMenuController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/:rst/menu/category/:catname",{
                 templateUrl: "views/restaurant/templates/menuCategoryEdit.html",
                 controller: "editMenuController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/:rst/menu",{
                 templateUrl: "views/restaurant/templates/restaurantMenu.html",
                 controller: "restaurantMenuController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/:rst/menu/new",{
                 templateUrl: "views/restaurant/templates/newMenu.html",
                 controller: "newMenuController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/:rst/db",{
                 templateUrl: "views/users/templates/deliveryPersonnalList.html",
                 controller: "deliveryBoyListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/restaurant/:rst/db/:role",{
                 templateUrl: "views/users/templates/userRegister.html",
                 controller: "deliveryBoyRegisterController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
            })
 
             //change this to profile standard path
@@ -215,14 +260,20 @@
                 ///deliveryPersonnal/:db
                 templateUrl: "views/users/templates/dbProfileforOwner.html",
                 controller: "deliveryBoyProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
             .when("/user/:uid/orders",{
 
                 templateUrl: "views/users/templates/user.order.view.html",
                 controller: "userOrderController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             })
 
 
@@ -231,8 +282,28 @@
                 ///deliveryPersonnal/:db
                 templateUrl: "views/order/templates/deliveryPersonnalOrder.html",
                 controller: "deliveryPersonnalOrderController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
             });
 
 
-    }})();
+    }
+
+    function checkLogin($q, userService, $location) {
+        var deffered = $q.defer();
+        userService
+            .loggedin()
+            .then(function (user) {
+                if(user == '0') {
+                    deffered.reject();
+                    $location.url('/login')
+                } else {
+                    deffered.resolve(user);
+                }
+            });
+        return deffered.promise;
+    }
+
+})();

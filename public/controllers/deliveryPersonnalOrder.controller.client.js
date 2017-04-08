@@ -14,6 +14,7 @@
         vm.refresh=refresh;
         vm.userId = userId;
 
+        vm.logout = logout;
 
 
         function init() {
@@ -47,6 +48,40 @@
             });
         }
         init();
+
+        function logout() {
+            // user.db_avail=0;
+            // user.userId = userId;
+
+            var promise=userService.findUserByID(userId);
+            promise.success(function (user) {
+                user.db_avail=0;
+                user.userId = userId;
+
+
+                var promise=userService.updateAvailabiltyofDB(userId,user);
+                promise.success(function (response) {
+                    // $('#delBoyAvail').bootstrapToggle('off');
+                    userService
+                        .logout()
+                        .then(function () {
+                            $location.url('/home');
+                        });
+
+                    // $location.url("/home");
+                }).error(function (err) {
+                    // error="unable to update User";
+                    // errors.push(error);
+                    // outputMsg("ERROR",errors);
+                });
+
+            }).error(function (err) {
+
+            })
+
+        }
+
+
 
         function enableButton (orderId,order, prefixToID) {
 

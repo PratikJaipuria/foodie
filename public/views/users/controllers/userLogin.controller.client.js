@@ -34,29 +34,46 @@
                     errors.push(error);
                 }
 
-                if(errors.length == 0){
-                    var promise=userService.findUserByCredentials(user.username, user.password);
-                    promise.success(function (user) {
-                        if(user.role=='USER'){
-                            $location.url("/user/" +user._id+"/searchResult");
-                        }else if(user.role=='OWNER'){
-                            $location.url("/user/" +user._id+"/restaurant");
-                        }else if(user.role=='DELIVERYBOY'){
-                            $location.url("/user/"+user._id);
-                        }
+                if(errors.length == 0) {
+                    userService
+                        .login(user)
+                        .then(function (user) {
+                            if (user) {
+                                // $location.url('/user/' + user._id);
+                                if(user.role=='USER'){
+                                    $location.url("/user/" +user._id+"/searchResult");
+                                }else if(user.role=='OWNER'){
+                                    $location.url("/user/" +user._id+"/restaurant");
+                                }else if(user.role=='DELIVERYBOY'){
+                                    $location.url("/user/"+user._id);
+                                }
+                            }
+                        }, function (err) {
+                            vm.error = err;
+                        });
+                }
+                    // var promise=userService.findUserByCredentials(user.username, user.password);
+                    // promise.success(function (user) {
+                    //     if(user.role=='USER'){
+                    //         $location.url("/user/" +user._id+"/searchResult");
+                    //     }else if(user.role=='OWNER'){
+                    //         $location.url("/user/" +user._id+"/restaurant");
+                    //     }else if(user.role=='DELIVERYBOY'){
+                    //         $location.url("/user/"+user._id);
+                    //     }
 
 
                         // $location.url("/user/"+user._id);
-                    }).error(function (err) {
-                        error="Invalid username or password";
-                        errors.push(error);
-                        throwError(errors);
-                    })
-
-                }
-                else {
-                    throwError(errors);
-                }
+                //     }).error(function (err) {
+                //         error="Invalid username or password";
+                //         errors.push(error);
+                //         throwError(errors);
+                //     })
+                //
+                // }
+                // else {
+                //     throwError(errors);
+                // }
             }
 
 
