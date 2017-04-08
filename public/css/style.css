@@ -352,6 +352,18 @@ body {
     color: #ffffff;
 }
 
+.adminPageBackground{
+    background-color: black;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    margin-top: 50px;
+    color: #ffffff;
+
+}
+
 #homePage{
     background-image:url(../images/1.jpg);
     background-size: cover;
@@ -377,6 +389,10 @@ body {
     /*opacity: 0.8;*/
     margin-bottom: 20px;
 
+}
+
+.active{
+    color: white;
 }
 
 

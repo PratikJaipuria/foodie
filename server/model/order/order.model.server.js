@@ -12,6 +12,9 @@ module.exports=function () {
         markOrderDelivered: markOrderDelivered,
         getAllOrdersForThisCustomerId:getAllOrdersForThisCustomerId,
         updateOrderWithDB:updateOrderWithDB,
+        findOrders:findOrders,
+        deleteOrder:deleteOrder,
+        findOrder: findOrder,
 
 
     };
@@ -82,6 +85,46 @@ module.exports=function () {
     function getAllOrdersForThisCustomerId(uid) {
         var deferred = q.defer();
         OrderModel.find({userId: uid}).sort('-_id').exec(function (err, order) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(order)
+            }
+        });
+        return deferred.promise;
+    }
+
+
+    function findOrders() {
+        var deferred = q.defer();
+        OrderModel.find().sort('-_id').exec(function (err, order) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(order)
+            }
+        });
+        return deferred.promise;
+    }
+
+    function deleteOrder(orderId) {
+        var deferred = q.defer();
+        OrderModel.remove({_id: orderId},function (err, order) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(order)
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findOrder(orderId) {
+        var deferred = q.defer();
+        OrderModel.findOne({_id: orderId},function (err, order) {
             if (err) {
                 deferred.reject(err);
             }

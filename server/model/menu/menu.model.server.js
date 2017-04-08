@@ -25,7 +25,7 @@ module.exports = function () {
     function deleteMenuCategory(catname) {
 
 
-        console.log("model server ",catname);
+
         var deferred = q.defer();
         MenuModel
             // .remove({restaurantId:restaurantId , $in: {category:menu.catname}}
@@ -47,7 +47,7 @@ module.exports = function () {
         MenuModel
             .remove({_id:menuid},function (err,response) {
                 if (err){
-                    deferred.abort(err);
+                    deferred.reject(err);
                 }else {
                     deferred.resolve(response);
                 }});
@@ -91,7 +91,7 @@ module.exports = function () {
 
     function updateMenuCategory(restaurantId,menu) {
         var deferred = q.defer();
-        console.log("MENU MODEL",menu);
+
 
         MenuModel
             .find({category:menu.catname}, function (err, items) {

@@ -22,9 +22,9 @@ module.exports = function () {
         updateDBwithOrder:updateDBwithOrder,
         getOrders:getOrders,
         updateDeliveryAddresses:updateDeliveryAddresses,
-
-
-        findAllUsers:findAllUsers,
+        deleteOrderFromUser:deleteOrderFromUser,
+        removeRestaurentFromOwner:removeRestaurentFromOwner,
+        findUsers:findUsers,
 
 
 
@@ -267,19 +267,72 @@ module.exports = function () {
     }
 
 
-    function findAllUsers() {
+    function findUsers(role) {
         var deferred = q.defer();
 
-        UserModel.find({}).sort('-_id').exec(function (err, listUser) {
-            if (err){
+        if(role=='ALLUSERS'){
+            UserModel.find({}).sort('-_id').exec(function (err, listUser) {
+                if (err){
+                    deferred.reject();
+                }else{
+
+
+
+                    deferred.resolve(listUser);
+
+                }
+            });
+        }
+
+        else{
+            UserModel.find({role:role}).sort('-_id').exec(function (err, listUser) {
+                if (err){
+                    deferred.reject();
+                }else{
+
+
+
+                    deferred.resolve(listUser);
+
+                }
+            });
+        }
+
+
+
+        return deferred.promise;
+    }
+
+    function deleteOrderFromUser(oId, userId) {
+        var deferred=q.defer();
+        UserModel.update({_id: userId},{$pull: {OrderId: oId}}, function (err,res) {
+            if(err){
+
                 deferred.reject();
-            }else{
-                // console.log("MODEL delivery boy",listUser);
-                deferred.resolve(listUser);
+            }
+            else {
+
+                deferred.resolve(res);
 
             }
         });
+        return deferred.promise;
+    }
 
+
+    function removeRestaurentFromOwner(resId, ownerId) {
+        var deferred=q.defer();
+        UserModel.update({_id: ownerId},{$pull: {restaurantID: resId}}, function (err,res) {
+            if(err){
+
+                deferred.reject();
+            }
+            else {
+
+                deferred.resolve(res);
+
+            }
+        });
         return deferred.promise;
     }
 

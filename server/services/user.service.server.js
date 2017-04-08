@@ -22,6 +22,9 @@ module.exports=function(app,model){
     app.get( "/api/users/:uid/orders",getAllOrdersForThisDeliveryBoy);
     app.put("/api/user/:uid/deliveryAddress", updateDeliveryAddresses);
     app.get("/api/findCurrentUser",findCurrentUser);
+    app.get("/api/users", findUsers);
+    app.put("/api/user/:uid/removeRestaurant/:rid", removeRestaurentFromOwner);
+    // app.put("/api/user/:uid/restaurants/")
 
 
 
@@ -241,13 +244,95 @@ module.exports=function(app,model){
 
     function deleteUser (req, res) {
         var userId = req.params['uid'];
-        UserModel.deleteUser(userId)
-            .then(function (response) {
-                res.send(200);
+        UserModel.findUserById(userId)
+            .then(function (user) {
+
+                if(user.role=='OWNER'){
+                    var resturantList=user.restaurantID;
+
+                    resturantList.forEach(function (restId) {
+
+                        RestaurantModel.findRestaurantById(restId)
+                            .then(function (restaurantDetails) {
+                                var deliveryBoyIds=restaurantDetails.deliveryBoysId;
+                                var menuIds=restaurantDetails.menuId;
+                                var ownerId=restaurantDetails.ownerId;
+
+
+                                RestaurantModel
+                                    .deleteRestaurant(restId)
+                                    .then(function (response) {
+                                        deliveryBoyIds.forEach(function (deliveryBoy) {
+                                            UserModel.deleteUser(deliveryBoy)
+                                                .then(function (response) {
+
+                                                }, function (err) {
+                                                    res.sendStatus(404);
+                                                })
+                                        })
+
+                                        menuIds.forEach(function (m) {
+
+                                            MenuModel.deleteMenuById(m)
+                                                .then(function (response) {
+
+                                                }, function (err) {
+                                                    console.log(err);
+                                                    res.sendStatus(404);
+                                                })
+                                        })
+
+                                        UserModel.removeRestaurentFromOwner(restId, ownerId)
+                                            .then(function (response) {
+
+                                            },function (err) {
+                                                res.sendStatus(404);
+                                            })
+
+
+                                        res.sendStatus(200);
+
+                                    },function (err) {
+                                        res.sendStatus(err.code);
+
+                                    });
+                            }, function (err) {
+                                res.sendStatus(404);
+                            })
+
+
+                    })
+
+                }
+
+                if(user.role=='DELIVERYBOY'){
+                    var resturantId=user.restaurantID;
+                    RestaurantModel.removeDeliveryBoyFromRestaurant(user._id, restaurantId[0])
+                        .then(function (response) {
+
+                        }, function (err) {
+                            res.sendStatus(404);
+                        })
+
+                }
+
+
+                UserModel.deleteUser(userId)
+                    .then(function (response) {
+                        res.sendStatus(200);
+                    }, function (err) {
+                        res.sendStatus(err);
+                    })
+
+
             }, function (err) {
-                res.send(err);
+                res.sendStatus(404);
             })
+
+
     }
+
+
 
     function findActiveDeliveryBoyByRestaurant(req,res) {
         var restaurantID = req.params['rst'];
@@ -296,6 +381,42 @@ module.exports=function(app,model){
                         res.send(404);
                     })
             }
+
+        function findUsers(req, res) {
+            var role=req.query.role;
+
+            UserModel.findUsers(role)
+                .then(function (users) {
+
+                    res.json(users);
+                }, function (err) {
+                    res.send(404);
+                })
+        }
+
+        function deleteOrderFromUser(req, res) {
+            var userId=req.params['uid'];
+            var orderId=req.params['oid'];
+            UserModel.deleteOrderFromUser(orderId, userId)
+                .then(function (res) {
+
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.send(404);
+                })
+        }
+
+        function removeRestaurentFromOwner(req, res) {
+            var ownerId=req.params['uid'];
+            var resId=req.params['rid'];
+            UserModel.removeRestaurentFromOwner(resId, ownerId)
+                .then(function (res) {
+
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.send(404);
+                })
+        }
 
 
 

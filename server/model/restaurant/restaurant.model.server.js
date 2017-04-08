@@ -24,7 +24,11 @@ module.exports = function () {
         getOrdersForThisRestaurant:getOrdersForThisRestaurant,
         findAllPartnerResturantsInThisLocation:findAllPartnerResturantsInThisLocation,
         findAllPartnerResturantsInThisCity:findAllPartnerResturantsInThisCity,
-        findAllPartnerResturantsInThisCityAndState:findAllPartnerResturantsInThisCityAndState
+        findAllPartnerResturantsInThisCityAndState:findAllPartnerResturantsInThisCityAndState,
+        findRestaurants:findRestaurants,
+        deleteOrderFromResturant:deleteOrderFromResturant,
+        removeDeliveryBoyFromRestaurant:removeDeliveryBoyFromRestaurant,
+        // findDeliveryBoyForThisRestaurant:findDeliveryBoyForThisRestaurant
 
 
 
@@ -47,17 +51,17 @@ module.exports = function () {
     }
 
     function insertMenuId(menu) {
-        console.log("REST",menu);
+
         var deferred = q.defer();
         RestaurantModel
             .update({_id:menu[0].restaurantId},{
                 $push:{menuId:menu[0]._id}
             },function (err,rest) {
                 if(err){
-                    // console.log("rest error updates",err);
+
                     deferred.reject(err);
                 }else{
-                    // console.log("rest updates",rest);
+
                     deferred.resolve(rest);
                 }
             });
@@ -66,16 +70,16 @@ module.exports = function () {
 
     function addDeliveryBoy(user){
         var deferred = q.defer();
-        // console.log("REST MODEL USER",user.restaurantID[0]);
+
         RestaurantModel
             .update({_id: user.restaurantID[0]},{
                 $push: {deliveryBoysId:user._id}
             },function (err,restaurant) {
                 if(err){
-                    // console.log("err rest model add");
+
                     deferred.reject(err);
                 }else{
-                    // console.log("successrest model add",restaurant);
+
                     deferred.resolve(restaurant);
                 }
             });
@@ -86,6 +90,7 @@ module.exports = function () {
 
     function deleteRestaurant(restaurantId) {
         var deferred = q.defer();
+
         RestaurantModel
             .remove({_id:restaurantId},function (err,result) {
                 if(err){
@@ -99,8 +104,7 @@ module.exports = function () {
 
     function updateRestaurant(restaurantId,restaurant) {
         var deferred = q.defer();
-        // console.log(restaurantId);
-        // console.log(restaurant);
+
         RestaurantModel
             .update({_id:restaurantId},{
             $set: {
@@ -195,7 +199,7 @@ module.exports = function () {
     function addOrdertoRestaurant(resId, order) {
 
         var deferred=q.defer();
-        console.log(resId);
+
         RestaurantModel.update({_id: resId},{$set: { name: order.restName}, $push: {orderId: order._id}},{upsert: true},function (err, restaurant) {
                     if(err){
 
@@ -345,6 +349,60 @@ module.exports = function () {
 
             return deferred.promise;
         }
+
+        function findRestaurants() {
+            var deferred=q.defer();
+            RestaurantModel.find({}, function (err, restaurants) {
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(restaurants);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function deleteOrderFromResturant(orderId, resId) {
+            var deferred=q.defer();
+            RestaurantModel.update({_id: resId},{$pull: {orderId: orderId}}, function (err, response) {
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(response);
+                }
+            });
+            return deferred.promise;
+        }
+
+        function removeDeliveryBoyFromRestaurant(delBoyId, resId) {
+            var deferred=q.defer();
+            RestaurantModel.update({_id: resId},{$pull: {deliveryBoysId: delBoyId}}, function (err, response) {
+                if(err){
+                    deferred.reject(err);
+                }
+                else{
+                    deferred.resolve(response);
+                }
+            });
+            return deferred.promise;
+        }
+
+        // function findDeliveryBoyForThisRestaurant(resId) {
+        //     var deferred = q.defer();
+        //     RestaurantModel.find({_id: resId})
+        //         .populate('deliveryBoysId')
+        //         .exec(function (err, resturantDetails) {
+        //             if(err){
+        //                 deferred.reject(err);
+        //             }
+        //             else {
+        //                 deferred.resolve(resturantDetails);
+        //             }
+        //         })
+        //     return deferred.promise;
+        // }
 
 
     }

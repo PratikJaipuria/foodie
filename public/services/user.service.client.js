@@ -21,7 +21,8 @@
             "findActiveDeliveryBoyByRestaurant":findActiveDeliveryBoyByRestaurant,
             "getAllOrdersForThisDeliveryBoy":getAllOrdersForThisDeliveryBoy,
             "findAllOrdersForThisCustomer":findAllOrdersForThisCustomer,
-            "updateDeliveryAddresses":updateDeliveryAddresses
+            "updateDeliveryAddresses":updateDeliveryAddresses,
+            "findUsers":findUsers
         };
 
 
@@ -107,5 +108,9 @@
         function updateDeliveryAddresses(userId, deliveryAddressArray) {
             return $http.put("/api/user/"+userId+"/deliveryAddress", deliveryAddressArray);
         }
+        function findUsers(role) {
+            return $http.get("/api/users?role="+role);
+        }
+
     }
 })();

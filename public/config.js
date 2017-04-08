@@ -27,6 +27,13 @@
                 controllerAs:'model'
             })
 
+
+            .when("/admin",{
+                templateUrl: "views/users/templates/admin-dashboard.view.client.html",
+                controller:'adminDashboardController',
+                controllerAs:'model'
+            })
+
             .when("/login",{
                 templateUrl: "views/users/templates/login.html",
                 controller: "userLoginController",

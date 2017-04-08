@@ -84,7 +84,14 @@
 
 
                     <label for="address" style="color: white; padding-top: 5px;" class="">Street Address:</label>
-                    <input list="addressList" type=" " ng-model="model.search.address" ng-change="model.loadAddressFromAPI()" class="form-control" placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)" id="address" >
+                    <input list="addressList"
+                           type=" "
+                           ng-model="model.search.address"
+                           ng-change="model.loadAddressFromAPI()"
+                           class="form-control"
+                           placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
+                           id="address"
+                           ng-keyup="$event.keyCode == 13 ? model.findRestaurant(model.search) : null">
                     <datalist id="addressList">
                         <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
                     </datalist>

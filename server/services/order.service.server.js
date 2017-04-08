@@ -5,9 +5,8 @@ module.exports=function(app,model){
     app.put('/api/restaurant/:rst/orders/delivery', assignDelivery);
     app.put('/api/restaurant/:rst/orders/markdelivered', markOrderDelivered);
     app.get("/api/user/:uid/customerOrders", getCustomerOrders);
-    // app.delete("/api/user/:uid", deleteUser);
-    // app.get("/api/user/:uid", findUserById);
-    // app.get("/api/user",findUserByCredentials);
+    app.get('/api/orders', findOrders);
+    app.delete('/api/order/:oid', deleteOrder);
 
 
     var OrderModel = model.OrderModel;
@@ -117,6 +116,53 @@ module.exports=function(app,model){
                 res.json(orders);
             }, function (err) {
                 res.sendStatus(404);
+            })
+    }
+
+    function findOrders(req, res) {
+
+        OrderModel.findOrders()
+            .then(function (orders) {
+                res.json(orders);
+            }, function (err) {
+                res.sendStatus(404);
+            })
+    }
+
+
+    function deleteOrder(req, res) {
+        var orderId=req.params['oid'];
+        OrderModel.findOrder(orderId)
+            .then(function (order) {
+                var restaurantId=order.restaurantId;
+                var userId=order.userId;
+                var dbId=order.dbId;
+
+                OrderModel.deleteOrder(orderId)
+                    .then(function (response) {
+                        UserModel.deleteOrderFromUser(orderId, userId)
+                            .then(function (response) {
+                                UserModel.deleteOrderFromUser(orderId, dbId)
+                                    .then(function (response) {
+                                        RestaurantModel.deleteOrderFromResturant(orderId, restaurantId)
+                                            .then(function (response) {
+                                                res.sendStatus(200);
+                                            }, function (err) {
+                                                res.sendStatus(404);
+                                            })
+                                    }, function (err) {
+                                        res.sendStatus(404);
+                                    })
+                            }, function (err) {
+                                res.sendStatus(404);
+                            })
+                    }, function (err) {
+                        res.sendStatus(404);
+                    })
+
+
+
+
             })
     }
 

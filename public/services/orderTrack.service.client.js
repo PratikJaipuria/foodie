@@ -11,7 +11,9 @@
     var api={
         "findOrdersForThisRestaurant":findOrdersForThisRestaurant,
         "assignDelivery":assignDelivery,
-        "orderedDelivered":orderedDelivered
+        "orderedDelivered":orderedDelivered,
+        "findOrders":findOrders,
+        "deleteOrder":deleteOrder
     };
 
     return api;
@@ -28,8 +30,16 @@
         }
 
         function orderedDelivered (order) {
-            console.log("inside markorderdelivered CLIENT SERVICE");
+
             return $http.put('/api/restaurant/'+order.restaurantId+'/orders/markdelivered', order);
+        }
+
+        function findOrders() {
+            return $http.get('/api/orders');
+        }
+
+        function deleteOrder(orderId) {
+            return $http.delete('/api/order/'+orderId);
         }
 
     }

@@ -10,9 +10,17 @@ module.exports=function(app,model) {
     app.delete("/api/restaurant/:restaurantId",deleteRestaurant );
     app.post("/api/apiresturant/create", createAPIResturantIfNotExist);
     app.get("/api/partnerRestaurant",findAllPartnerResturantsInThisLocation);
+    app.get('/api/restaurants', findRestaurants);
+    app.put('/api/restaurants/:restaurantId/order/:oId',deleteOrderFromResturant);
+    app.get("/api/restaurant/:restaurantId/db" ,findDeliveryBoyForThisRestaurant);
+
+
+
+
 
     var RestaurantModel = model.RestaurantModel;
     var UserModel = model.UserModel;
+    var MenuModel=model.MenuModel;
     var restaurantState=[];
     var restaurantCity;
     var stateList=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
@@ -22,15 +30,54 @@ module.exports=function(app,model) {
 
     function deleteRestaurant(req,res) {
         var restaurantId = req.params.restaurantId;
+        RestaurantModel.findRestaurantById(restaurantId)
+            .then(function (restaurantDetails) {
+                var deliveryBoyIds=restaurantDetails.deliveryBoysId;
+                var menuIds=restaurantDetails.menuId;
+                var ownerId=restaurantDetails.ownerId;
 
-        RestaurantModel
-            .deleteRestaurant(restaurantId)
-            .then(function (response) {
-                res.json(200)
-            },function (err) {
-                res.sendStatus(err.code);
 
-            });
+                RestaurantModel
+                    .deleteRestaurant(restaurantId)
+                    .then(function (response) {
+                        deliveryBoyIds.forEach(function (deliveryBoy) {
+                            UserModel.deleteUser(deliveryBoy)
+                                .then(function (response) {
+
+                                }, function (err) {
+                                    res.sendStatus(404);
+                                })
+                        })
+
+                        menuIds.forEach(function (m) {
+
+                            MenuModel.deleteMenuById(m)
+                                .then(function (response) {
+
+                                }, function (err) {
+                                    console.log(err);
+                                    res.sendStatus(404);
+                                })
+                        })
+
+                        UserModel.removeRestaurentFromOwner(restaurantId, ownerId)
+                            .then(function (response) {
+
+                            },function (err) {
+                                res.sendStatus(404);
+                            })
+
+
+                        res.sendStatus(200);
+
+                    },function (err) {
+                        res.sendStatus(err.code);
+
+                    });
+            }, function (err) {
+                res.sendStatus(404);
+            })
+
     }
 
     function updateRestaurant(req,res) {
@@ -273,16 +320,6 @@ module.exports=function(app,model) {
                     res.sendStatus(404);
                 });
         }
-
-
-
-
-
-
-
-
-
-
     }
     
     function ifState(stateCandidate) {
@@ -292,6 +329,43 @@ module.exports=function(app,model) {
             }
         }
         return false;
+    }
+
+
+    function findRestaurants(req, res) {
+        RestaurantModel
+            .findRestaurants()
+            .then(function (restaurants) {
+                res.json(restaurants)
+            }, function (err) {
+                res.sendStatus(err.code);
+            });
+    }
+
+
+    function deleteOrderFromResturant(req, res) {
+        var orderId=req.params['oId'];
+        var resId=req.params['restuarantId'];
+        RestaurantModel
+            .deleteOrderFromResturant(orderId, resId)
+            .then(function (response) {
+                res.sendStatus(200)
+            }, function (err) {
+                res.sendStatus(404);
+            });
+    }
+
+
+    function findDeliveryBoyForThisRestaurant(req, res) {
+        var resId=req.params['restaurantId'];
+
+        RestaurantModel
+            .findDeliveryBoyForThisRestaurant(resId)
+            .then(function (deliveryBoys) {
+                res.json(deliveryBoys);
+            }, function (err) {
+                res.sendStatus(404);
+            });
     }
 
 
