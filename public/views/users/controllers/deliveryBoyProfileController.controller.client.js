@@ -8,7 +8,7 @@
     function deliveryBoyProfileController ($location, userService, $timeout, $routeParams, addressAPISearchService) {
 
         var vm = this;
-        var userId = $routeParams['uid'];
+        var userId; //= $routeParams['uid'];
         var restaurantId = $routeParams['rst'];
         var dbId = $routeParams['dbid'];
         vm.countries=['United States'];
@@ -23,14 +23,23 @@
         vm.deleteUser=deleteUser;
 
         function init () {
-            var promise=userService.findUserByID(dbId);
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+                var promise=userService.findUserByID(dbId);
             promise.success(function (dbUser) {
                 vm.user=dbUser;
 
 
             }).error(function (err) {
 
-            })
+            }).error(function (err) {
+
+            })});
         } init();
 
 
@@ -117,7 +126,7 @@
                 promise.success(function (user) {
                     vm.user=user;
                     outputMsg("SUCCESS","Profile updated successfully");
-                    $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/db");
+                    $location.url("/user/restaurant/"+restaurantId+"/db");
                 }).error(function (err) {
                     error="unable to update User";
                     errors.push(error);
@@ -134,7 +143,7 @@
         function deleteUser(dbId) {
             var promise=userService.deleteUser(dbId);
             promise.success(function (response) {
-                $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/db");
+                $location.url("/user/restaurant/"+restaurantId+"/db");
             }).error(function (err) {
                 vm.error("unable to delete User");
             })

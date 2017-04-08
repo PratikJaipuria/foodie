@@ -41,39 +41,18 @@
                             if (user) {
                                 // $location.url('/user/' + user._id);
                                 if(user.role=='USER'){
-                                    $location.url("/user/" +user._id+"/searchResult");
+                                    $location.url("/user/searchResult");
                                 }else if(user.role=='OWNER'){
-                                    $location.url("/user/" +user._id+"/restaurant");
+                                    $location.url("/user/restaurant");
                                 }else if(user.role=='DELIVERYBOY'){
-                                    $location.url("/user/"+user._id);
+                                    $location.url("/user/profile");
                                 }
                             }
                         }, function (err) {
                             vm.error = err;
                         });
                 }
-                    // var promise=userService.findUserByCredentials(user.username, user.password);
-                    // promise.success(function (user) {
-                    //     if(user.role=='USER'){
-                    //         $location.url("/user/" +user._id+"/searchResult");
-                    //     }else if(user.role=='OWNER'){
-                    //         $location.url("/user/" +user._id+"/restaurant");
-                    //     }else if(user.role=='DELIVERYBOY'){
-                    //         $location.url("/user/"+user._id);
-                    //     }
 
-
-                        // $location.url("/user/"+user._id);
-                //     }).error(function (err) {
-                //         error="Invalid username or password";
-                //         errors.push(error);
-                //         throwError(errors);
-                //     })
-                //
-                // }
-                // else {
-                //     throwError(errors);
-                // }
             }
 
 

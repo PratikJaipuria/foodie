@@ -6,16 +6,16 @@
         .module("ProjectMaker")
         .controller("editMenuController",editMenuController);
 
-    function editMenuController($routeParams,menuService, $location) {
+    function editMenuController($routeParams,menuService,userService, $location) {
                 var vm  = this;
 
-                var userId = $routeParams['uid'];
+                var userId //= $routeParams['uid'];
                 var restaurantId = $routeParams['rst'];
                 var menuid = $routeParams['mid'];
                 var catname = $routeParams['catname'];
                 vm.catname = catname;
 
-                vm.userId = userId;
+                // vm.userId = userId;
                 vm.restaurantId = restaurantId;
 
                 vm.updateMenuItem = updateMenuItem;
@@ -25,8 +25,15 @@
 
 
         function init(){
-            console.log(menuid);
-            if(menuid){
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+
+                if(menuid){
                 menuService
                     .findMenuById(menuid)
                     .success(function (menu) {
@@ -37,6 +44,7 @@
                     });
             }
 
+        });
         }
         init();
 
@@ -49,7 +57,7 @@
                     menuService
                         .updateMenuItem(menu,menuid)
                         .success(function (menuf) {
-                            $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/menu");
+                            $location.url("/user/restaurant/"+restaurantId+"/menu");
                         }).error(function (err) {
                         // throwError(errors);
                     });
@@ -61,7 +69,7 @@
                     menuService
                         .updateMenuCategory(menucat,restaurantId)
                         .success(function (reponse) {
-                            $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/menu");
+                            $location.url("/user/restaurant/"+restaurantId+"/menu");
                         }).error(function (err) {
                         // throwError(errors);
                     });
@@ -72,7 +80,7 @@
             menuService
                 .deleteMenuById(menuid)
                 .success(function (response) {
-                    $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/menu");
+                    $location.url("/user/restaurant/"+restaurantId+"/menu");
                 }).error(function (err) {
                 // throwError(errors);
             });
@@ -86,7 +94,7 @@
             menuService
                 .deleteMenuCategory(menu,restaurantId)
                 .success(function (response) {
-                    $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/menu");
+                    $location.url("/user/restaurant/"+restaurantId+"/menu");
                 }).error(function (err) {
                 // throwError(errors);
             });

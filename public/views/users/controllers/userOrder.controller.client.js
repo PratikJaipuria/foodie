@@ -5,9 +5,7 @@
     function userOrderController ( $routeParams, userService, $location) {
 
         var vm = this;
-        var userId=$routeParams['uid'];
-        vm.userId=userId;
-
+        var userId;
         vm.refresh=refresh;
 
         vm.logout = logout;
@@ -15,7 +13,15 @@
         function init () {
             vm.orders=[];
 
-            var promise=userService.findAllOrdersForThisCustomer(userId);
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+
+
+                var promise=userService.findAllOrdersForThisCustomer(userId);
             promise.success(function (orderList) {
                 vm.orders=orderList;
                 filterDeliveredandUnDeliverdOrders(vm.orders);
@@ -23,7 +29,11 @@
 
             }).error(function (err) {
                 throwError("Unable to fetch your orders");
-            })
+            })}).error(function (err) {
+
+            });
+
+
         } init();
 
         function logout() {

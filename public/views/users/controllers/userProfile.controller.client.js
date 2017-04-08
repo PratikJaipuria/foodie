@@ -26,7 +26,7 @@
                 vm.user=user;
                 vm.userId = user._id;
                 userId = user._id;
-                console.log("INSIDE INIT PROFILE",user);
+                // console.log("INSIDE INIT PROFILE",user);
                 if(user.role=='DELIVERYBOY'){
 
                     currentAvailability();

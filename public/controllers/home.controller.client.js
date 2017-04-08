@@ -7,8 +7,9 @@
 
         var vm = this;
 
-        var userId=$routeParams['uid'];
+        // var userId=$routeParams['uid'];
 
+        var userId;
 
         vm.findRestaurant=findRestaurant;
         vm.loadAddressFromAPI=loadAddressFromAPI;
@@ -17,10 +18,22 @@
         vm.userLoggedIn = false;
         vm.userLoggedOut = true;
         function init() {
-                vm.error="";
+            vm.error="";
+            CheckLoggedIn();
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
                 CheckLoggedIn();
+            }).error(function (err) {
+
+            });
+
+
 
         }
+
         init();
         //restaurant -> searchObject
 
@@ -68,25 +81,25 @@
 
                 if (userId && restaurant.name && restaurant.city && restaurant.address) {
                     restaurant.address += restaurant.city
-                    $location.url('/user/' + userId + '/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
+                    $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
                 }
 
                 else if (userId && restaurant.city && restaurant.name) {
-                    $location.url('/user/' + userId + '/searchResult/name/' + restaurant.name + '/address/' + restaurant.city);
+                    $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.city);
 
                 }
 
                 else if (userId && restaurant.city) {
 
-                    $location.url('/user/' + userId + '/searchResult/address/' + restaurant.city);
+                    $location.url('/user/searchResult/address/' + restaurant.city);
                 }
 
                 else if (userId && restaurant.address && restaurant.name) {
-                    $location.url('/user/' + userId + '/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
+                    $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
                 }
 
                 else if (userId && restaurant.address) {
-                    $location.url('/user/' + userId + '/searchResult/address/' + restaurant.address);
+                    $location.url('/user/searchResult/address/' + restaurant.address);
                 }
 
 

@@ -2,20 +2,20 @@
     angular
         .module("ProjectMaker")
         .controller("searchResultController", searchResultController);
-    function searchResultController(menuService, SearchService,restaurantService,addressAPISearchService, $location, $routeParams, $timeout, $filter){
+    function searchResultController(userService, menuService, SearchService,restaurantService,addressAPISearchService, $location, $routeParams, $timeout, $filter){
 
 
         var vm = this;
         var address=$routeParams['add'];
         var name= $routeParams['rn'];
-        var userId=$routeParams['uid'];
+        // var userId=$routeParams['uid'];
         var allResturants=[];
         var apiResturants=[];
         var backupRetrievedResturants=[];
         vm.restaurants=[];
         vm.restaurantFound=false;
 
-        vm.userId = userId;
+        // vm.userId = userId;
 
         vm.search={
             name: name,
@@ -35,6 +35,15 @@
         vm.loadAddressFromAPI=loadAddressFromAPI;
 
         function init() {
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+            }).error(function (err) {
+
+            });
 
 
             fetchPartnerResturants(vm.search);
@@ -204,10 +213,10 @@
 
             if(resturantObject.partner){
                 if(userId && name){
-                    $location.url('/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
+                    $location.url('/user/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
                 }
                 else if(userId){
-                    $location.url('/user/'+userId+'/searchResult/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
+                    $location.url('/user/searchResult/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
                 }
                 else if(name && address){
                     $location.url('/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
@@ -225,10 +234,10 @@
 
 
                     if(userId && name){
-                        $location.url('/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
+                        $location.url('/user/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
                     }
                     else if(userId){
-                        $location.url('/user/'+userId+'/searchResult/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
+                        $location.url('/user/searchResult/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
                     }
                     else if(name && address){
                         $location.url('/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
@@ -258,7 +267,7 @@
 
         function navigateToProfile() {
             if (userId){
-                $location.url("/user/"+userId);
+                $location.url("/user/profiel");
             }
             else{
                 $location.url("/login");

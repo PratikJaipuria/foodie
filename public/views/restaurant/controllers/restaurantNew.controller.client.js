@@ -3,7 +3,7 @@
         .module("ProjectMaker")
         .controller("restaurantNewController",restaurantNewController);
 
-    function restaurantNewController($routeParams, restaurantService,addressAPISearchService,$location, Upload, $timeout){
+    function restaurantNewController($routeParams,userService, restaurantService,addressAPISearchService,$location, Upload, $timeout){
         var vm = this;
         vm.url='';
 
@@ -15,8 +15,8 @@
         vm.country=["United States"];
         vm.booleanVal=['Yes','No'];
         vm.speciality=[];
-        var ownerId = $routeParams.uid;
-        vm.ownerId = ownerId;
+        var ownerId //= $routeParams.uid;
+        // vm.ownerId = ownerId;
         vm.createRestaurant = createRestaurant;
         vm.addNewSpeciality=addNewSpeciality;
         vm.deleteSpeciality=deleteSpeciality;
@@ -30,7 +30,7 @@
 
 
         function init(){
-            var dayContainer=[]
+            var dayContainer=[];
               for (var w in day){
                 var temp={
                     key:day[w],
@@ -47,7 +47,19 @@
 
             vm.days=dayContainer;
 
-        }
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                ownerId = user._id;
+                vm.ownerId = ownerId;
+            }).error(function (err) {
+
+            });
+
+
+            }
         init();
 
 
@@ -147,7 +159,7 @@
                     restaurantService
                         .createRestaurant(ownerId,restaurant)
                         .success(function (restaurant) {
-                            $location.url("/user/"+ownerId+"/restaurant");
+                            $location.url("/user/restaurant");
                         }).error(function (err) {
 
                     });

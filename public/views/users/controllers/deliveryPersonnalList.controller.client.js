@@ -7,13 +7,20 @@
 
     function deliveryBoyListController ($location, userService, $timeout, $routeParams) {
         var vm = this;
-        var userId = $routeParams.uid;
+        var userId //= $routeParams.uid;
         var restaurantId = $routeParams.rst;
-        vm.userId = userId;
+        // vm.userId = userId;
         vm.restaurantId = restaurantId;
 
         function init() {
-            userService
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+                userService
                 .findDeliveryBoyByRestaurant(restaurantId)
                 .success(function (dbs) {
 
@@ -21,7 +28,7 @@
                     vm.dbs = dbs;
 
                 })
-        }
+        })}
         init();
 
 

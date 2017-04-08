@@ -147,7 +147,7 @@
                 // user = response.data;
                 // $rootScope.currentUser = user;
 
-                $location.url('/user');
+                $location.url('/user/profile');
             }).error(function (err) {
                    throwError('Either this username or email already taken.');
             })

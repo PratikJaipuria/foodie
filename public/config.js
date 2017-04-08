@@ -44,7 +44,7 @@
                 controllerAs: "model"})
 
 
-            .when("/user/:uid/searchResult/name/:rn/address/:add",{
+            .when("/user/searchResult/name/:rn/address/:add",{
                 templateUrl: "views/users/templates/user.search.result.html",
                 controller: "searchResultController",
                 controllerAs: "model",
@@ -53,7 +53,7 @@
                 }})
 
 
-            .when("/user/:uid/searchResult/address/:add",{
+            .when("/user/searchResult/address/:add",{
                 templateUrl: "views/users/templates/user.search.result.html",
                 controller: "searchResultController",
                 controllerAs: "model",
@@ -62,7 +62,7 @@
                 }})
 
 
-            .when("/user/:uid/searchResult",{
+            .when("/user/searchResult",{
                 templateUrl: "views/home.html",
                 controller: "homeController",
                 controllerAs: "model",
@@ -84,7 +84,7 @@
                 controllerAs: "model"})
 
 
-            .when("/user/:uid/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
+            .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl: "views/restaurant/templates/user.restaurant.menu.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model",
@@ -93,7 +93,7 @@
                 }})
 
 
-            .when("/user/:uid/searchResult/address/:add/restaurant/:rid/:rname/menu",{
+            .when("/user/searchResult/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model",
@@ -114,7 +114,7 @@
                 controllerAs: "model"})
 
 
-            .when("/user/:uid/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
+            .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
                 controllerAs: "model",
@@ -122,7 +122,7 @@
                     currentUser: checkLogin
                 }})
 
-            .when("/user/:uid/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
+            .when("/user/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
                 templateUrl:"views/order/templates/user.checkout.html",
                 controller: "checkOutController",
                 controllerAs: "model",
@@ -133,7 +133,7 @@
 
             // '/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey
 
-                .when("/user/:uid/restaurant/:rst/order",{
+                .when("/user/restaurant/:rst/order",{
                 templateUrl: "views/order/templates/resturant.order.tracking.html",
                 controller: 'restaurantOrderTrackController',
                 controllerAs: 'model',
@@ -155,7 +155,7 @@
             })
 
 
-            .when("/user",{
+            .when("/user/profile",{
                 templateUrl: "views/users/templates/userProfile.html",
                 controller: "userProfileController",
                 controllerAs: "model",
@@ -164,7 +164,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant",{
+            .when("/user/restaurant",{
                 templateUrl: "views/restaurant/templates/restaurantList.html",
                 controller: "restaurantListController",
                 controllerAs:"model",
@@ -173,7 +173,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/new",{
+            .when("/user/restaurant/new",{
                 templateUrl: "views/restaurant/templates/newRestaurant.html",
                 controller: "restaurantNewController",
                 controllerAs:"model",
@@ -189,7 +189,7 @@
             //     contollerAs: "model"
             // })
 
-            .when("/user/:uid/restaurant/:rst",{
+            .when("/user/restaurant/:rst",{
                 templateUrl: "views/restaurant/templates/restaurantEdit.html",
                 controller: "restaurantEditController",
                 controllerAs: "model",
@@ -201,7 +201,7 @@
             //     templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
             // })
 
-            .when("/user/:uid/restaurant/:rst/menu/:mid/item",{
+            .when("/user/restaurant/:rst/menu/:mid/item",{
                 templateUrl: "views/restaurant/templates/menuItemEdit.html",
                 controller: "editMenuController",
                 controllerAs: "model",
@@ -210,7 +210,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/:rst/menu/category/:catname",{
+            .when("/user/restaurant/:rst/menu/category/:catname",{
                 templateUrl: "views/restaurant/templates/menuCategoryEdit.html",
                 controller: "editMenuController",
                 controllerAs: "model",
@@ -219,7 +219,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/:rst/menu",{
+            .when("/user/restaurant/:rst/menu",{
                 templateUrl: "views/restaurant/templates/restaurantMenu.html",
                 controller: "restaurantMenuController",
                 controllerAs: "model",
@@ -228,7 +228,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/:rst/menu/new",{
+            .when("/user/restaurant/:rst/menu/new",{
                 templateUrl: "views/restaurant/templates/newMenu.html",
                 controller: "newMenuController",
                 controllerAs: "model",
@@ -237,7 +237,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/:rst/db",{
+            .when("/user/restaurant/:rst/db",{
                 templateUrl: "views/users/templates/deliveryPersonnalList.html",
                 controller: "deliveryBoyListController",
                 controllerAs: "model",
@@ -246,7 +246,7 @@
                 }
             })
 
-            .when("/user/:uid/restaurant/:rst/db/:role",{
+            .when("/user/restaurant/:rst/db/:role",{
                 templateUrl: "views/users/templates/userRegister.html",
                 controller: "deliveryBoyRegisterController",
                 controllerAs: "model",
@@ -256,7 +256,7 @@
            })
 
             //change this to profile standard path
-            .when("/user/:uid/restaurant/:rst/editdb/:dbid",{
+            .when("/user/restaurant/:rst/editdb/:dbid",{
                 ///deliveryPersonnal/:db
                 templateUrl: "views/users/templates/dbProfileforOwner.html",
                 controller: "deliveryBoyProfileController",
@@ -266,7 +266,7 @@
                 }
             })
 
-            .when("/user/:uid/orders",{
+            .when("/user/orders",{
 
                 templateUrl: "views/users/templates/user.order.view.html",
                 controller: "userOrderController",
@@ -278,7 +278,7 @@
 
 
 
-            .when("/user/:uid/dborders",{
+            .when("/user/dborders",{
                 ///deliveryPersonnal/:db
                 templateUrl: "views/order/templates/deliveryPersonnalOrder.html",
                 controller: "deliveryPersonnalOrderController",
@@ -305,5 +305,21 @@
             });
         return deffered.promise;
     }
+
+
+    // function checkRestaurant($q, restaurantService, $location) {
+    //     var deffered = $q.defer();
+    //     restaurantService
+    //         .loggedin()
+    //         .then(function (user) {
+    //             if(user == '0') {
+    //                 deffered.reject();
+    //                 $location.url('/login')
+    //             } else {
+    //                 deffered.resolve(user);
+    //             }
+    //         });
+    //     return deffered.promise;
+    // }
 
 })();

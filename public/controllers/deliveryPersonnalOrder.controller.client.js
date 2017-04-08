@@ -5,14 +5,14 @@
     
     function deliveryPersonnalOrderController (orderTrackService,userService, $location, $routeParams, $timeout) {
         var vm = this;
-        var userId=$routeParams['uid'];
+        var userId;//=$routeParams['uid'];
         var deliveredOrders=[];
         var unDeliveredOrders=[];
 
         vm.orderDelivered=orderDelivered;
         vm.enableButton=enableButton;
         vm.refresh=refresh;
-        vm.userId = userId;
+        // vm.userId = userId;
 
         vm.logout = logout;
 
@@ -24,7 +24,13 @@
             deliveredOrders=[];
             unDeliveredOrders=[];
 
-           var promise= userService.getAllOrdersForThisDeliveryBoy(userId);
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+                var promise= userService.getAllOrdersForThisDeliveryBoy(userId);
             promise.success(function (userAndorders) {
                     vm.orders=userAndorders.OrderId;
 					vm.orders=vm.orders.reverse();
@@ -45,7 +51,10 @@
 
             }).error(function (err) {
                 throwError("Unable to fetch your orders");
+            }).error(function (err) {
+
             });
+            })
         }
         init();
 

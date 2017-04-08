@@ -12,7 +12,7 @@
         var restaurantId=$routeParams['rid'];
         var restaurantName=$routeParams['rname'];
         vm.backPath='';
-        vm.userId=$routeParams['uid'];
+        // vm.userId=$routeParams['uid'];
         vm.restaurantName=restaurantName;
         vm.countries=['United States'];
         vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
@@ -47,29 +47,37 @@
         vm.purchase=purchase;
 
 
-
+        var userId;
 
         function init() {
-
-            checkOutDetails=sessionHolderService.getCart();
-            calculatedBasket=checkOutService.calculateTotalCost(checkOutDetails);
-            vm.cart=calculatedBasket;
-            vm.cart.userId=vm.userId;
-            var promise=userService.findUserByID( vm.userId);
-            promise.success(function (userObj) {
-                vm.deliveryAddresses=userObj.deliverAddress;
-                vm.deliveryAddresses.splice(0,0,userObj.address+' '+userObj.city+' '+userObj.state);
-                vm.selectedAddress=userObj.address+' '+userObj.city+' '+userObj.state;
-                vm.user=userObj;
-
-            }, function (err) {
-                outputMsg("ERROR","Unable to fetch your Details");
-                navigateToUserOrderPage();
-            })
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user = user;
+                vm.userId = user._id;
+                userId = user._id;
 
 
+                checkOutDetails = sessionHolderService.getCart();
+                calculatedBasket = checkOutService.calculateTotalCost(checkOutDetails);
+                vm.cart = calculatedBasket;
+                vm.cart.userId = vm.userId;
+                var promise = userService.findUserByID(vm.userId);
+                promise.success(function (userObj) {
+                    vm.deliveryAddresses = userObj.deliverAddress;
+                    vm.deliveryAddresses.splice(0, 0, userObj.address + ' ' + userObj.city + ' ' + userObj.state);
+                    vm.selectedAddress = userObj.address + ' ' + userObj.city + ' ' + userObj.state;
+                    vm.user = userObj;
 
-        }
+                }, function (err) {
+                    outputMsg("ERROR", "Unable to fetch your Details");
+                    navigateToUserOrderPage();
+                }).error(function (err) {
+
+                });
+
+
+
+        });}
         init();
 
         function loadAddressFromAPI() {
@@ -156,10 +164,10 @@
 
         function navigateToUserOrderPage() {
             if (name && address){
-                $location.url("/user/"+vm.userId+"/orders");
+                $location.url("/user/orders");
             }
             else {
-                $location.url("/user/"+vm.userId+"/orders");
+                $location.url("/user/orders");
             }
         }
 

@@ -147,11 +147,11 @@
 
             var promise=userService.createUser(user);
             promise.success(function (user) {
-                 console.log("CREATE DELI BOY",user);
+                 // console.log("CREATE DELI BOY",user);
                 if(user.role='DELIVERYBOY'){
-                    $location.url('/user/'+user._id+'/restaurant/'+restaurantId+'/db');
+                    $location.url('/user/restaurant/'+restaurantId+'/db');
                 }else{
-                    $location.url('/user/'+user._id);
+                    $location.url('/user/profile');
                 }
 
             }).error(function (err) {

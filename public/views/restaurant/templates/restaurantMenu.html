@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="navbar-text pull-right visible-xs">
-            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/new">
+            <a href="#/user/restaurant/{{model.restaurantId}}/menu/new">
                 <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add new menu"></span>
             </a>
         </div>
@@ -10,14 +10,14 @@
 
 
         <div class="navbar-text pull-right hidden-xs">
-            <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/new">
+            <a href="#/user/restaurant/{{model.restaurantId}}/menu/new">
                 <span class="wbdv-text-clr-white" title="Add new menu">Add Item</span>
             </a>
         </div>
 
 
         <div class="navbar-text pull-left wbdv-mar-left-0">
-            <a href="#/user/{{model.userId}}/restaurant">
+            <a href="#/user/restaurant">
                     <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
             </a>
         </div>
@@ -57,7 +57,7 @@
                                     {{category.entry.length}}
                                 </div>
                                 <div class="col-xs-3 pull-right">
-                                    <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/category/{{category.group}}">
+                                    <a href="#/user/restaurant/{{model.restaurantId}}/menu/category/{{category.group}}">
                                         <span class="glyphicon glyphicon-folder-open wbdv-text-clr-white pull-right "></span>
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                                                 <span>{{entries[1]}}</span>
                                             </div>
                                             <div class="col-xs-3">
-                                                <a href="#/user/{{model.userId}}/restaurant/{{model.restaurantId}}/menu/{{entries[2]}}/item">
+                                                <a href="#/user/restaurant/{{model.restaurantId}}/menu/{{entries[2]}}/item">
                                                     <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
                                                 </a>
                                             </div>
@@ -103,7 +103,7 @@
 <nav class="navbar navbar-fixed-bottom bg-primary">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}">
+            <a href="#/user/profile">
                 <span class="glyphicon glyphicon-user wbdv-text-clr-white"></span>
             </a>
         </div>

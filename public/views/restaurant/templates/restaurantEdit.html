@@ -1,7 +1,7 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
         <div  class="navbar-text navbar-link pull-left">
-            <a href="#/user/{{model.ownerId}}/restaurant">
+            <a href="#/user/restaurant">
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>
             </a>
         </div>
@@ -12,26 +12,26 @@
 
 
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/user/{{model.ownerId}}/restaurant">
+            <a href="#/user/restaurant">
                 <span class="wbdv-text-clr-white" title="Save">Update Restaurant</span>
             </a>
         </div>
 
         <div class="navbar-text pull-right hidden-xs">
-            <a href="#/user/{{model.ownerId}}/restaurant/{{model.restaurantId}}/db">
+            <a href="#/user/restaurant/{{model.restaurantId}}/db">
                 <span class="wbdv-text-clr-white" title="Manage delivery personnal" style="padding-right: 25px;">Delivery Personnals</span>
             </a>
         </div>
 
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a href="#/user/{{model.ownerId}}/restaurant">
+            <a href="#/user/restaurant">
                 <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Restaurant"></span>
             </a>
         </div>
 
         <div class="navbar-text pull-right visible-xs">
-            <a href="#/user/{{model.ownerId}}/restaurant/{{model.restaurantId}}/db">
+            <a href="#/user/restaurant/{{model.restaurantId}}/db">
                 <span class="glyphicon glyphicon-plane wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Personnals"></span>
             </a>
         </div>
@@ -390,7 +390,7 @@
                         <a ng-click="model.updateRestaurant(model.restaurant)" class="btn btn-success btn-block form-control">Update</a>
                     </div>
                     <div class="col-sm-4 col-xs-12">
-                        <a href="#/user/{{model.ownerId}}" class="btn btn-primary  btn-block">Cancel</a>
+                        <a href="#/user/restaurant" class="btn btn-primary  btn-block">Cancel</a>
                     </div>
                     <div class="col-sm-4 col-xs-12">
                         <a ng-click="model.deleteRestaurant()" class="btn btn-danger  btn-block">Delete</a>
@@ -414,7 +414,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-xs-12" >
-                <a href="#/user/{{model.ownerId}}" class="wbdv-mar-right-5 pull-right">
+                <a href="#/user/profile" class="wbdv-mar-right-5 pull-right">
                         <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
                         </span>
                 </a>

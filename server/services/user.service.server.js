@@ -161,16 +161,21 @@ module.exports=function(app,model){
                             RestaurantModel
                                 .addDeliveryBoy(user)
                                 .then(function (response1) {
-                                    res.json(user);
+                                    // res.json(user);
+                                    req.login(user, function(err) {
+                                        if(err) {
+                                            res.status(400).send(err);
+                                        } else {
+                                            // console.log("AFTER req LOGIN",user);
+                                            res.json(user);
+                                        }
                                 });
-
                         }, function (err) {
-
                             res.sendStatus(err.code);
                         })
                 }, function (err) {
                     res.sendStatus(404).send(err);
-                })
+                })});
 
         }else{
             UserModel
@@ -183,7 +188,7 @@ module.exports=function(app,model){
                                 if(err) {
                                     res.status(400).send(err);
                                 } else {
-                                    console.log("AFTER req LOGIN",user);
+                                    // console.log("AFTER req LOGIN",user);
                                     res.json(user);
                                 }
                             });

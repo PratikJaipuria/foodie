@@ -3,10 +3,10 @@
         .module("ProjectMaker")
         .controller("restaurantEditController",restaurantEditController);
 
-    function restaurantEditController($routeParams, $location, addressAPISearchService , restaurantService, Upload, $timeout){
+    function restaurantEditController($routeParams, $location, userService,addressAPISearchService , restaurantService, Upload, $timeout){
         var vm = this;
-        var ownerId = $routeParams.uid;
-        vm.ownerId=ownerId;
+        var ownerId //= $routeParams.uid;
+        // vm.ownerId=ownerId;
         var restaurantId = $routeParams.rst;
         vm.restaurantId=restaurantId;
         var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -38,7 +38,16 @@
         function init() {
 
 
-            restaurantService
+
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                ownerId = user._id;
+                vm.ownerId = ownerId;
+
+
+                restaurantService
                 .findRestaurantById(restaurantId)
                 .success(function (restaurant) {
                     vm.restaurant = restaurant;
@@ -61,10 +70,11 @@
                     // setModelWorkingHours();
 
 
-
                 }).error(function (err) {
                 throwError('Unable to fetch restaurant Information');
-            })
+            }).error(function (err) {
+
+                });});
         }
         init();
 

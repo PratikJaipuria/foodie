@@ -9,18 +9,27 @@
     function restaurantListController($location,$routeParams, restaurantService,userService) {
         var vm = this;
 
-        var ownerId = $routeParams.uid;
-        vm.ownerId = ownerId;
+         var ownerId; //= $routeParams.uid;
+        // vm.ownerId = ownerId;
 
         vm.logout = logout;
 
         function init() {
-            restaurantService
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                ownerId = user._id;
+
+
+                restaurantService
                 .findRestaurantByOwner(ownerId)
                 .success(function (restaurants) {
                     vm.restaurants = restaurants;
 
-                })
+                })}).error(function (err) {
+
+            });
         }
         init();
 

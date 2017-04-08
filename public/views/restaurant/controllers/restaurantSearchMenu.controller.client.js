@@ -2,13 +2,13 @@
     angular
         .module("ProjectMaker")
         .controller("restaurantSearchMenuController", restaurantSearchMenuController);
-    function restaurantSearchMenuController(restaurantService,restaurantSearchMenuService, menuService, sessionHolderService,$location, $routeParams, $timeout){
+    function restaurantSearchMenuController(userService,restaurantService,restaurantSearchMenuService, menuService, sessionHolderService,$location, $routeParams, $timeout){
 
 
         var vm = this;
         var address=$routeParams['add'];
         var name= $routeParams['rn'];
-        var userId=$routeParams['uid'];
+        // var userId=$routeParams['uid'];
         var restaurantId=$routeParams['rid'];
         var restaurantName=$routeParams['rname'];
         var cart=[];
@@ -16,6 +16,7 @@
         var offerPickup;
         var offerDelivery;
         vm.restaurantName=restaurantName;
+        var userId;
 
         vm.increaseItemCount=increaseItemCount;
         vm.decreaseItemCount=decreaseItemCount;
@@ -25,10 +26,18 @@
 
         function init() {
 
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
 
-            var promise=restaurantService.findRestaurantById(restaurantId);
+
+
+                var promise=restaurantService.findRestaurantById(restaurantId);
             promise.success(function (restDetails) {
-                console.log(restDetails);
+                // console.log(restDetails);
+
 
                 vm.logoUrl=restDetails.logoUrl;
                 vm.address=restDetails.streetAddress+' '+restDetails.city+' '+restDetails.state;
@@ -58,7 +67,7 @@
 
                             vm.result = myArray;
 
-                            console.log("MY ARRAY",myArray);
+                            // console.log("MY ARRAY",myArray);
                             vm.menu = menu;
 
                         }).error(function (err) {
@@ -76,6 +85,11 @@
                 vm.error="Unable to load menu for this restaurant";
                 $timeout(clearError, 3000);
             })
+            }).error(function (err) {
+
+            });
+
+
 
 
 
@@ -91,7 +105,7 @@
             var promise = restaurantSearchMenuService.searchMenu(restaurantId);
             promise
                 .success(function (response) {
-                    console.log(response);
+                    // console.log(response);
                     vm.menu=response;
 
                 }).error(function (err) {
@@ -210,10 +224,10 @@
             if(userId){
 
                 if(name){
-                    return ('/user/'+userId+'/searchResult/name/'+name+'/address/'+address);
+                    return ('/user/searchResult/name/'+name+'/address/'+address);
                 }
                 else{
-                    return ('/user/'+userId+'/searchResult/address/'+address);
+                    return ('/user/searchResult/address/'+address);
                 }
 
             }else{

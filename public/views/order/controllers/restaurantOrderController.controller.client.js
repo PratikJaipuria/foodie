@@ -5,7 +5,7 @@
 
     function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
         var vm =this;
-        var userId = $routeParams['uid'];
+        var userId //= $routeParams['uid'];
         var restaurantId=$routeParams['rst'];
         var scheduledOrder=[];
         var notScheduled=[];
@@ -20,7 +20,7 @@
         vm.refresh=refresh;
         vm.assignDelivery=assignDelivery;
 
-        vm.userId = userId;
+        // vm.userId = userId;
         vm.restaurantId = restaurantId;
         function init() {
 
@@ -38,8 +38,17 @@
             dbNameAvail=[];
 
 
-            var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
-            promise.success(function (restOrders) {
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;
+
+
+
+
+                var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
+                promise.success(function (restOrders) {
                 if (restOrders.length>0){
                     console.log(restOrders);
                     vm.orders=restOrders[0].orderId;
@@ -98,7 +107,9 @@
 
             }).error(function (err) {
                 throwError("Unable to find orders");
-            })
+            }).error(function (err) {
+
+            })})
           }init();
 
 

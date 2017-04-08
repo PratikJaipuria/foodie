@@ -3,14 +3,14 @@
         .module("ProjectMaker")
         .controller("newMenuController",newMenuController);
 
-    function newMenuController($routeParams,menuService, $location){
+    function newMenuController($routeParams,menuService,userService, $location){
         var vm = this;
-        var userId = $routeParams['uid'];
+        var userId //= $routeParams['uid'];
         var restaurantId = $routeParams['rst'];
         var menu;
         vm.menu='';
 
-        vm.userId = userId;
+        // vm.userId = userId;
         vm.restaurantId = restaurantId;
 
 
@@ -18,18 +18,28 @@
 
         function init() {
 
-            console.log(restaurantId);
-        }
+            // console.log(restaurantId);
+            var promise=userService.findCurrentUser();
+            promise.success(function (user) {
+                vm.user=user;
+                vm.userId = user._id;
+                userId = user._id;}).error(function () {
+
+            });
+
+
+
+            }
         init();
 
         function createMenu(menu) {
             menu.restaurantId = restaurantId;
-            console.log(menu);
+            // console.log(menu);
             menu.restaurantId = restaurantId;
             menuService
                 .createMenu(menu)
                 .success(function (res) {
-                    $location.url("/user/"+userId+"/restaurant/"+restaurantId+"/menu");
+                    $location.url("/user/restaurant/"+restaurantId+"/menu");
                 }).error(function (err) {
                 // throwError(errors);
             });
