@@ -18,7 +18,7 @@ module.exports = function(app)
     require("./services/user.service.server")(app, model);
     require('./services/restaurant.service.server.js')(app, model);
     require('./services/order.service.server.js')(app, model);
-    require("./services/imageupload.service.server.js")(app);
+    require("./services/imageUpload.service.server.js")(app);
     require("./services/menu.service.server.js")(app, model);
 
     // require('./services/page.service.server.js')(app, model);
