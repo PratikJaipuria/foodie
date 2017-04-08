@@ -30,6 +30,7 @@ module.exports=function(app,model){
 
     var UserModel = model.UserModel;
     var RestaurantModel = model.RestaurantModel;
+    var MenuModel=model.MenuModel;
 
 
 

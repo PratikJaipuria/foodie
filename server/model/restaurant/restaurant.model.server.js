@@ -139,7 +139,7 @@ module.exports = function () {
             .findOne({_id:restaurantId},function (err,restaurant) {
                 if (err) {
 
-                    deferred.reject();
+                    deferred.reject(err);
                 }else{
 
                     deferred.resolve(restaurant);
