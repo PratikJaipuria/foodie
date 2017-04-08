@@ -33,6 +33,8 @@
         vm.searchRestaurantsOfferingDelivery=searchRestaurantsOfferingDelivery;
         vm.fetchPartnerResturants=fetchPartnerResturants;
         vm.loadAddressFromAPI=loadAddressFromAPI;
+        vm.autocompleteSearchRestaurants=autocompleteSearchRestaurants;
+        vm.displaySearchedRestaurantFromAutoCompleteList=displaySearchedRestaurantFromAutoCompleteList;
 
         function init() {
 
@@ -317,6 +319,23 @@
             else{
                 vm.restaurantFound=true;
             }
+        }
+
+
+
+        function autocompleteSearchRestaurants() {
+            vm.restaurants=backupRetrievedResturants;
+            var availableRestaurants = vm.restaurants.map(function(obj) {return obj.name;});
+            $( "#restaurantsAutoComplete" ).autocomplete({
+                source: availableRestaurants
+            });
+        }
+
+
+        function displaySearchedRestaurantFromAutoCompleteList(restObj){
+            vm.restaurants=backupRetrievedResturants;
+            vm.restaurants=$filter('filter')(vm.restaurants, {name: restObj});
+            restaurantsFoundInSearch();
         }
 
 
