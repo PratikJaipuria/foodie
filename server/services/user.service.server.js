@@ -165,17 +165,7 @@ module.exports=function(app,model){
                             RestaurantModel
                                 .addDeliveryBoy(user)
                                 .then(function (response1) {
-                                    // res.json(user);
-                                    req.login(user, function(err) {
-                                        if(err) {
-                                            res.status(400).send(err);
-                                        } else {
-                                            // console.log("AFTER req LOGIN",user);
-                                            res.json(user);
-                                        }
-                                });
-                        }, function (err) {
-                            res.sendStatus(err.code);
+                                    res.json(user);
                         })
                 }, function (err) {
                     res.sendStatus(404).send(err);
@@ -307,7 +297,7 @@ module.exports=function(app,model){
                 }
 
                 if(user.role=='DELIVERYBOY'){
-                    var resturantId=user.restaurantID;
+                    var restaurantId=user.restaurantID;
                     RestaurantModel.removeDeliveryBoyFromRestaurant(user._id, restaurantId[0])
                         .then(function (response) {
 
