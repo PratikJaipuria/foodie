@@ -14,13 +14,24 @@
         vm.countries=['United States'];
         vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
 
-
+        var userId;
 
 
         vm.loadAddressFromAPI=loadAddressFromAPI;
         vm.populateCityAndStateIfDlSel=populateCityAndStateIfDlSel;
         vm.createUser=createUser;
         function init() {
+
+            //
+            // var promise=userService.findCurrentUser();
+            // promise.success(function (user) {
+            //     vm.user = user;
+            //     vm.userId = user._id;
+            //     userId = user._id;
+            // }).error(function () {
+            //
+            // });
+
         }init();
 
 
@@ -149,7 +160,7 @@
             promise.success(function (user) {
                  // console.log("CREATE DELI BOY",user);
                 if(user.role='DELIVERYBOY'){
-                    $location.url('/user/restaurant/'+restaurantId+'/db');
+                    $location.url('/user/restaurant');
                 }else{
                     $location.url('/user/profile');
                 }
