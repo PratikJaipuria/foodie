@@ -78,11 +78,11 @@
                             <span>{{restaurant.name}}</span>
                         </div>
                     </a>
-
+                    <!--href="#/user/restaurant/edit-->
                     <div class="col-xs-6 pull-left ">
                         <div class="row">
                             <div class="col-xs-6 col-sm-3 pull-right ">
-                                <a href="#/user/restaurant/{{restaurant._id}}">
+                                <a ng-click="model.gotoEdit(restaurant._id)">
                                     <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
                                 </a>
                             </div>

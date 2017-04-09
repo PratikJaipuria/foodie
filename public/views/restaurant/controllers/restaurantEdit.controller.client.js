@@ -5,10 +5,10 @@
 
     function restaurantEditController($routeParams, $location, userService,addressAPISearchService , restaurantService, Upload, $timeout){
         var vm = this;
-        var ownerId //= $routeParams.uid;
+        var ownerId; //= $routeParams.uid;
         // vm.ownerId=ownerId;
-        var restaurantId = $routeParams.rst;
-        vm.restaurantId=restaurantId;
+        var restaurantId; //= $routeParams.rst;
+        // vm.restaurantId=restaurantId;
         var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
         vm.hours=["HH","00","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20", "21", "22","23"];
         vm.mins=["MM","00","15","30","45"];
@@ -37,6 +37,8 @@
 
         function init() {
 
+            // console.log("REST ID from client userservice",userService.getRestaurantId());
+
 
 
             var promise=userService.findCurrentUser();
@@ -46,10 +48,17 @@
                 ownerId = user._id;
                 vm.ownerId = ownerId;
 
+                userService
+                    .getRestaurantId()
+                    .success(function (restaurantId) {
+                        vm.restaurantId = restaurantId;
+                        restaurantId=restaurantId.replace(/"/g,'');
 
+                    console.log("REST ID from getter",restaurantId);
                 restaurantService
                 .findRestaurantById(restaurantId)
                 .success(function (restaurant) {
+                    console.log("REsponse...",restaurant);
                     vm.restaurant = restaurant;
 
                     console.log("Initial Result:",vm.restaurant);
@@ -75,7 +84,7 @@
             }).error(function (err) {
 
                 });});
-        }
+        })}
         init();
 
 
@@ -198,7 +207,7 @@
                     restaurantService
                         .updateRestaurant(restaurantId,restaurant)
                         .success(function (restaurant) {
-                           $location.url("/user/"+ownerId+"/restaurant")
+                           $location.url("/user/restaurant")
 
                         })
                 }
@@ -228,7 +237,7 @@
                     restaurantService
                         .deleteRestaurant(restaurantId)
                         .success(function (response) {
-                            $location.url("/user/"+ownerId+"/restaurant");
+                            $location.url("/user/restaurant");
                         }).error(function (err) {
                         throwError("unable to delete the restaurant");
                     });

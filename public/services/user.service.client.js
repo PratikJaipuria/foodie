@@ -4,7 +4,10 @@
         .factory("userService",userService);
 
     function userService ($http) {
-    
+
+        // var vm = this;
+
+
 
         var api = {
             "findCurrentUser":findCurrentUser,
@@ -22,12 +25,28 @@
             "getAllOrdersForThisDeliveryBoy":getAllOrdersForThisDeliveryBoy,
             "findAllOrdersForThisCustomer":findAllOrdersForThisCustomer,
             "updateDeliveryAddresses":updateDeliveryAddresses,
-            "findUsers":findUsers
+            "findUsers":findUsers,
+            "setRestaurantId" : setRestaurantId,
+            "getRestaurantId" : getRestaurantId
+            // restaurantId : String
         };
 
 
         return api;
 
+
+
+        function setRestaurantId(restId) {
+            console.log(restId);
+            return $http.put('/api/setrest/'+restId);
+            // userService.restaurantId = restId;
+
+            // console.log("CLient rest IID",vm.restId);
+        }
+        function getRestaurantId() {
+            // return vm.restId;
+            return $http.get('/api/getrest');
+        }
 
         function findCurrentUser() {
             return $http.get("/api/findCurrentUser");

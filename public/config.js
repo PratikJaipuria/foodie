@@ -155,7 +155,7 @@
                 }})
 
 
-            .when("/user/restaurant/:rst/order",{
+                            .when("/user/restaurant/:rst/order",{
                 templateUrl: "views/order/templates/resturant.order.tracking.html",
                 controller: 'restaurantOrderTrackController',
                 controllerAs: 'model',
@@ -203,12 +203,13 @@
                 }
             })
 
-            .when("/user/restaurant/:rst",{
+            .when("/user/restaurant/edit",{
                 templateUrl: "views/restaurant/templates/restaurantEdit.html",
                 controller: "restaurantEditController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                    // currentRestaurant:checkRestaurant
                 }
             })
 
@@ -315,6 +316,37 @@
             });
         return deffered.promise;
     }
+
+    function checkRestaurant($q,userService,restaurantService,$location) {
+        var deferred = $q.defer();
+        // userService
+        var restaurantId = this.location.href.split('/')[this.location.href.split('/').length -1];
+        // var restaurantId = $routeParams['rst'];
+        // console.log("REST ID in config",restaurantId);
+        // console.log("USER ID in config",user);
+        restaurantService
+                .findRestaurantById(restaurantId)
+                .success(function (restaurant) {
+                    // console.log("REST obje ct",restaurant);
+                    userService
+                        .loggedin()
+                        .then(function (user) {
+                            // console.log("USER object",user);
+                            if(user._id == restaurant.ownerId) {
+                                deferred.resolve();
+
+                            } else {
+                                // deferred.resolve(restaurant);
+                                deferred.reject();
+                                $location.url('/login');
+                                // $location.url('/user/restaurant/'+restaurantId);
+
+                            }
+                        });
+                    return deferred.promise;
+        })
+    }
+
 
 
 })();

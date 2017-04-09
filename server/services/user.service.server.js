@@ -24,6 +24,8 @@ module.exports=function(app,model){
     app.get("/api/findCurrentUser",findCurrentUser);
     app.get("/api/users", findUsers);
     app.put("/api/user/:uid/removeRestaurant/:rid", removeRestaurentFromOwner);
+    app.put("/api/setrest/:rid", setRestaurantId);
+    app.get("/api/getrest", getRestaurantId);
     // app.put("/api/user/:uid/restaurants/")
 
 
@@ -50,7 +52,17 @@ module.exports=function(app,model){
             );
     }
 
+    var restId;
+    function setRestaurantId(req,res) {
+        restId = req.params['rid'];
+        console.log("SERVER",restId);
+        res.json(restId);
+    }
 
+    function getRestaurantId(req,res) {
+        console.log("RESPONSE",restId);
+        res.json(restId);
+    }
     // function isAdmin(req, res) {
     //     res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
     // }

@@ -8,11 +8,14 @@
 
     function restaurantListController($location,$routeParams, restaurantService,userService) {
         var vm = this;
+        vm.gotoEdit =gotoEdit;
 
          var ownerId; //= $routeParams.uid;
         // vm.ownerId = ownerId;
 
         vm.logout = logout;
+        // vm.editRestaurant = editRestaurant;
+
 
         function init() {
             var promise=userService.findCurrentUser();
@@ -32,6 +35,30 @@
             });
         }
         init();
+
+        function gotoEdit(restId) {
+
+            userService
+                .setRestaurantId(restId)
+                .then(function () {
+                    $location.url('/user/restaurant/edit');
+                })
+
+
+
+
+        }
+        //
+        // function editRestaurant(restId) {
+        //     userService
+        //         .findRestaurantById(restId)
+        //         .success(function (restaurant) {
+        //             if(ownerId == restaurant.ownerId) {
+        //                 $location.url('/user/restaurant/edit');
+        //             }
+        //
+        //         })
+        // }
 
         function logout() {
 
