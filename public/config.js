@@ -31,8 +31,25 @@
             .when("/admin",{
                 templateUrl: "views/users/templates/admin-dashboard.view.client.html",
                 controller:'adminDashboardController',
-                controllerAs:'model'
+                controllerAs:'model',
+                resolve: {
+                    currentUser: checkLogin
+                }
+
             })
+
+
+            .when("/admin/edit/:uid",{
+
+                templateUrl: "views/users/templates/admin-edit-user.view.client.html",
+                controller: "adminEditController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLogin
+                }
+            })
+
+
 
             .when("/login",{
                 templateUrl: "views/users/templates/login.html",
@@ -138,16 +155,13 @@
                 }})
 
 
-            // '/user/'+userId+'/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey
-
-                .when("/user/restaurant/:rst/order",{
+            .when("/user/restaurant/:rst/order",{
                 templateUrl: "views/order/templates/resturant.order.tracking.html",
                 controller: 'restaurantOrderTrackController',
                 controllerAs: 'model',
                     resolve: {
                         currentUser: checkLogin
                     }})
-
 
 
             .when("/register/:role",{
@@ -189,13 +203,6 @@
                 }
             })
 
-
-            // .when("/user/:uid/restaurant/:rst/menu",{
-            //     templateUrl: "views/restaurant/templates/restaurantMenu.html",
-            //     controller: "restaurantMenuController",
-            //     contollerAs: "model"
-            // })
-
             .when("/user/restaurant/:rst",{
                 templateUrl: "views/restaurant/templates/restaurantEdit.html",
                 controller: "restaurantEditController",
@@ -204,9 +211,6 @@
                     currentUser: checkLogin
                 }
             })
-            // .when("/user/:uid/restaurant/:rst/menu/cart/:cat",{
-            //     templateUrl: "views/restaurant/templates/menuCategoryEdit.html"
-            // })
 
             .when("/user/restaurant/:rst/menu/:mid/item",{
                 templateUrl: "views/restaurant/templates/menuItemEdit.html",
@@ -286,7 +290,7 @@
 
 
             .when("/user/dborders",{
-                ///deliveryPersonnal/:db
+
                 templateUrl: "views/order/templates/deliveryPersonnalOrder.html",
                 controller: "deliveryPersonnalOrderController",
                 controllerAs: "model",
@@ -294,7 +298,6 @@
                     currentUser: checkLogin
                 }
             });
-
 
     }
 
@@ -313,20 +316,5 @@
         return deffered.promise;
     }
 
-
-    // function checkRestaurant($q, restaurantService, $location) {
-    //     var deffered = $q.defer();
-    //     restaurantService
-    //         .loggedin()
-    //         .then(function (user) {
-    //             if(user == '0') {
-    //                 deffered.reject();
-    //                 $location.url('/login')
-    //             } else {
-    //                 deffered.resolve(user);
-    //             }
-    //         });
-    //     return deffered.promise;
-    // }
 
 })();

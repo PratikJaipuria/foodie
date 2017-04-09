@@ -47,6 +47,9 @@
                                 }else if(user.role=='DELIVERYBOY'){
                                     $location.url("/user/profile");
                                 }
+                                else if(user.role=='ADMIN'){
+                                    $location.url("/admin");
+                                }
                             }
                         }, function (err) {
                             vm.error = err;

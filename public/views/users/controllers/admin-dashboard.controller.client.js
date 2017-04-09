@@ -2,7 +2,7 @@
     angular.module('ProjectMaker')
         .controller('adminDashboardController', adminDashboardController);
 
-    function adminDashboardController (userService, restaurantService, orderTrackService) {
+    function adminDashboardController ($location, userService, restaurantService, orderTrackService) {
         var vm = this;
         vm.currActivePaneIfUser='';
         var test=10;
@@ -14,6 +14,8 @@
         vm.deleteOrder=deleteOrder;
         vm.deleteRestaurant=deleteRestaurant;
         vm.deleteUser=deleteUser;
+        vm.updateUser = updateUser;
+        vm.logout = logout;
 
         function init() {
 
@@ -24,6 +26,13 @@
 
         }init();
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/home');
+                });
+        }
         var $li = $('#categories li').click(function() {
             $li.removeClass('active');
             $(this).addClass('active');
@@ -35,11 +44,14 @@
             vm.currActivePaneIfUser=role;
             var promise=userService.findUsers(role);
             promise.success(function (users) {
+
                 vm.data=users;
             }).error(function (err) {
                 console.log(err);
             })
         }
+
+
 
         function findRestaurants() {
             vm.mode='restaurants';
@@ -98,6 +110,12 @@
 
         // }
     }
+
+
+        function updateUser(userId){
+            console.log(userId);
+            $location.url("/admin/edit/"+userId);
+        }
 
         function deleteUser(userId) {
             var promise=userService.deleteUser(userId);

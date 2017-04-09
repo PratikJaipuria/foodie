@@ -145,7 +145,7 @@ module.exports = function () {
         var deferred=q.defer();
         UserModel.update({_id: userId},{$set: {password:user.password, firstName:user.firstName, lastName:user.lastName,
                                                 email:user.email, phone: user.phone, address: user.address, deliverAddress:user.deliverAddress,
-                                                city: user.city, country: user.country, pin: user.pin }},function (err, response) {
+                                                city: user.city, country: user.country, pin: user.pin, role:user.role }},function (err, response) {
                 if(err){
 
                     deferred.reject(err);
