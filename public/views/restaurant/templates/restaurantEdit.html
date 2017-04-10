@@ -280,53 +280,40 @@
 
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </li>
 
-
-
-
-                            <li class="list-group-item" ng-repeat="(key, day) in model.restaurant.hours" style="padding-right: 0px; padding-left: 2px; background-color: black">
-
+                            <li ng-repeat="(key, d) in model.restaurant.hours">
+                                <div style="color: white;">{{key}}</div>
                                 <div class="row">
-                                    <div class="col-xs-2" style="color: white">
-
-                                        <input ng-model="day.selected" ng-checked="day[5]" type="checkbox" ng-true-value="1" name="day" value="{{key}}" checked>{{key}}<br>
-
-                                    </div>
-
 
                                     <div class="col-xs-2">
-                                        <select ng-model="day.stH"
+                                        <select ng-model="d.stH"
                                                 id="stH"
                                                 name="stH"
                                                 style="display: block;padding-left: 10px; text-align-last: center; color: black"
-                                                ng-init="day.stH = day[1]||model.hours[0]"
+                                                ng-init="d.stH = d[1]||model.hours[0]"
                                                 ng-options="option for option in model.hours">
                                         </select>
-
                                     </div>
                                     <div class="col-xs-2">
                                         <select
                                                 id="stM"
                                                 name="stM"
-                                                ng-model="day.stM"
+                                                ng-model="d.stM"
                                                 style="display: block;padding-left: 10px; color: black"
-                                                ng-init="day.stM = day[2]||model.mins[0]"
+                                                ng-init="d.stM = d[2]||model.mins[0]"
                                                 ng-options="option for option in model.mins">
                                         </select>
 
                                     </div>
                                     <div class="col-xs-2">
-                                        <select ng-model="day.etH"
+                                        <select ng-model="d.etH"
                                                 id="etH"
                                                 name="etH"
                                                 style="display: block;padding-left: 10px; margin-left:10px;color: black"
-                                                ng-init="day.etH =day[3]||model.hours[0]"
+                                                ng-init="d.etH = d[3]||model.hours[0]"
                                                 ng-options="option for option in model.hours">
                                         </select>
                                     </div>
@@ -334,13 +321,12 @@
                                         <select
                                                 id="etM"
                                                 name="etM"
-                                                ng-model="day.etM "
+                                                ng-model="d.etM "
                                                 style="display: block;padding-left: 10px;color: black; margin-left:10px;"
-                                                ng-init="day.etM = day[4]||model.mins[0]"
+                                                ng-init="d.etM = d[4]||model.mins[0]"
                                                 ng-options="option for option in model.mins">
                                         </select>
                                     </div>
-                                    <!--{{key[4]}}-->
                                 </div>
                             </li>
                         </ul>

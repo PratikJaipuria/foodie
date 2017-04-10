@@ -30,6 +30,13 @@ module.exports=function(){
             "Saturday":[String],
             "Sunday":[String]
         },
+        // Monday:[String],
+        // Tuesday:[String],
+        // Wednesday:[String],
+        // Thursday:[String],
+        // Friday:[String],
+        // Saturday:[String],
+        // Sunday:[String],
         foodTypes:[String],
         cuisine: String,
         offersDelivery:Boolean,

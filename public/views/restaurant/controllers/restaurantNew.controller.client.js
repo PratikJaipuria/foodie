@@ -7,16 +7,68 @@
         var vm = this;
         vm.url='';
 
-        var day=['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday'];
+        var Monday={
+            day:'Monday',
+            formattedTime:'',
+        stH:'',
+        stM:'',
+        etH:'',
+        etM:''};
+
+        var Tuesday={ day:'Tuesday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+        var Wednesday={day:'Wednesday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+
+        var Thursday={day:'Thursday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+
+        var Friday={day:'Friday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+        var Saturday={day:'Saturday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+        var Sunday={day:'Sunday',
+            formattedTime:'',
+            stH:'',
+            stM:'',
+            etH:'',
+            etM:''};
+
+        vm.days=[Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday];
+
         vm.count=0;
         vm.hours=["HH","00","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20", "21", "22","23"];
         vm.mins=["MM","00","15","30","45"];
-        vm.days=[];
+
         vm.country=["United States"];
         vm.booleanVal=['Yes','No'];
         vm.speciality=[];
-        var ownerId //= $routeParams.uid;
-        // vm.ownerId = ownerId;
+        var ownerId ;
         vm.createRestaurant = createRestaurant;
         vm.addNewSpeciality=addNewSpeciality;
         vm.deleteSpeciality=deleteSpeciality;
@@ -30,22 +82,7 @@
 
 
         function init(){
-            var dayContainer=[];
-              for (var w in day){
-                var temp={
-                    key:day[w],
-                    stH:'',
-                    stM:'',
-                    etH:'',
-                    etM:'',
-                    bool:''
-                };
-                  dayContainer.push(temp);
 
-
-            }
-
-            vm.days=dayContainer;
 
 
             var promise=userService.findCurrentUser();
@@ -104,6 +141,8 @@
             var errors=[];
             var error='';
 
+
+
             if(newRestaurant){
 
                 restaurant=formatTiming(newRestaurant);
@@ -151,7 +190,7 @@
 
 
                 if(errors.length==0){
-                    console.log(restaurant.streetAddress);
+
                     restaurant.name=restaurant.name.toUpperCase();
                     restaurant.streetAddress=restaurant.streetAddress.toUpperCase();
                     restaurant.city=restaurant.city.toUpperCase();
@@ -181,6 +220,7 @@
 
 
         function formatTiming(restaurant) {
+
             restaurant.hours={
                 "Monday":[],
                 "Tuesday":[],
@@ -192,121 +232,124 @@
 
             };
 
-            for(var i in vm.days){
-                if(vm.days[i].selected && vm.days[i].stH !== 'HH' && vm.days[i].stM !== 'MM' && vm.days[i].etH !== 'HH' && vm.days[i].etM !== 'MM' ){
-                    var formattedTime='';
-                    var unit='';
-                    if(vm.days[i].stH > 12){
-                           formattedTime='0';
-                           formattedTime+=vm.days[i].stH-12;
-                           unit='PM';
+                for(var i in vm.days){
+
+                    if(vm.days[i].stH !== 'HH' && vm.days[i].stM !== 'MM' && vm.days[i].etH !== 'HH' && vm.days[i].etM !== 'MM' ){
+                        var formattedTime='';
+                        var unit='';
+                        if(vm.days[i].stH > 12){
+                            formattedTime='0';
+                            formattedTime+=vm.days[i].stH-12;
+                            unit='PM';
+                        }
+                        else if(vm.days[i].stH == 0){
+                            formattedTime=12;
+                            unit='AM';
+                        }
+                        else{
+                            formattedTime=vm.days[i].stH ;
+                            unit='AM';
+                        }
+                        formattedTime+=':'+vm.days[i].stM+' '+unit+' - ' ;
+
+                        if(vm.days[i].etH > 12){
+                            formattedTime+='0';
+                            formattedTime+=vm.days[i].etH-12;
+                            unit='PM';
+                        }
+                        else if(vm.days[i].etH == 0){
+                            formattedTime+=12;
+                            unit='AM';
+                        }
+                        else{
+                            formattedTime+=vm.days[i].etH ;
+                            unit='AM';
+                        }
+                        formattedTime+=':'+vm.days[i].etM+' '+unit;
+
+                        if(vm.days[i].day == 'Monday'){
+                            restaurant.hours.Monday=[];
+                            restaurant.hours.Monday.push(formattedTime);
+                            restaurant.hours.Monday.push(vm.days[i].stH);
+                            restaurant.hours.Monday.push(vm.days[i].stM);
+                            restaurant.hours.Monday.push(vm.days[i].etH);
+                            restaurant.hours.Monday.push(vm.days[i].etM);
+
+
+
+                        }
+                        if(vm.days[i].day == 'Tuesday'){
+                            restaurant.hours.Tuesday=[];
+                            restaurant.hours.Tuesday.push(formattedTime);
+                            restaurant.hours.Tuesday.push(vm.days[i].stH);
+                            restaurant.hours.Tuesday.push(vm.days[i].stM);
+                            restaurant.hours.Tuesday.push(vm.days[i].etH);
+                            restaurant.hours.Tuesday.push(vm.days[i].etM);
+
+
+
+                        }
+                        if(vm.days[i].day == 'Wednesday'){
+                            restaurant.hours.Wednesday=[];
+                            restaurant.hours.Wednesday.push(formattedTime);
+                            restaurant.hours.Wednesday.push(vm.days[i].stH);
+                            restaurant.hours.Wednesday.push(vm.days[i].stM);
+                            restaurant.hours.Wednesday.push(vm.days[i].etH);
+                            restaurant.hours.Wednesday.push(vm.days[i].etM);
+
+
+
+
+                        }
+                        if(vm.days[i].day == 'Thursday'){
+                            restaurant.hours.Thursday=[];
+                            restaurant.hours.Thursday.push(formattedTime);
+                            restaurant.hours.Thursday.push(vm.days[i].stH);
+                            restaurant.hours.Thursday.push(vm.days[i].stM);
+                            restaurant.hours.Thursday.push(vm.days[i].etH);
+                            restaurant.hours.Thursday.push(vm.days[i].etM);
+
+
+
+                        }
+                        if(vm.days[i].day == 'Friday'){
+                            restaurant.hours.Friday=[];
+                            restaurant.hours.Friday.push(formattedTime);
+                            restaurant.hours.Friday.push(vm.days[i].stH);
+                            restaurant.hours.Friday.push(vm.days[i].stM);
+                            restaurant.hours.Friday.push(vm.days[i].etH);
+                            restaurant.hours.Friday.push(vm.days[i].etM);
+
+                        }
+                        if(vm.days[i].day == 'Saturday'){
+                            restaurant.hours.Saturday=[];
+                            restaurant.hours.Saturday.push(formattedTime);
+                            restaurant.hours.Saturday.push(vm.days[i].stH);
+                            restaurant.hours.Saturday.push(vm.days[i].stM);
+                            restaurant.hours.Saturday.push(vm.days[i].etH);
+                            restaurant.hours.Saturday.push(vm.days[i].etM);
+
+
+                        }
+                        if(vm.days[i].day == 'Sunday'){
+                            restaurant.hours.Sunday=[];
+                            restaurant.hours.Sunday.push(formattedTime);
+                            restaurant.hours.Sunday.push(vm.days[i].stH);
+                            restaurant.hours.Sunday.push(vm.days[i].stM);
+                            restaurant.hours.Sunday.push(vm.days[i].etH);
+                            restaurant.hours.Sunday.push(vm.days[i].etM);
+
+
+
+                        }
+
                     }
-                    else if(vm.days[i].stH == 0){
-                        formattedTime=12;
-                        unit='AM';
-                    }
-                    else{
-                        formattedTime=vm.days[i].stH ;
-                        unit='AM';
-                    }
-                    formattedTime+=':'+vm.days[i].stM+' '+unit+' - ' ;
-
-                    if(vm.days[i].etH > 12){
-                        formattedTime+='0';
-                        formattedTime+=vm.days[i].etH-12;
-                        unit='PM';
-                    }
-                    else if(vm.days[i].etH == 0){
-                        formattedTime+=12;
-                        unit='AM';
-                    }
-                    else{
-                        formattedTime+=vm.days[i].etH ;
-                        unit='AM';
-                    }
-                    formattedTime+=':'+vm.days[i].etM+' '+unit;
-
-                    if(vm.days[i].key == 'Monday'){
-                        restaurant.hours.Monday=[];
-                        restaurant.hours.Monday.push(formattedTime);
-                        restaurant.hours.Monday.push(vm.days[i].stH);
-                        restaurant.hours.Monday.push(vm.days[i].stM);
-                        restaurant.hours.Monday.push(vm.days[i].etH);
-                        restaurant.hours.Monday.push(vm.days[i].etM);
-                        restaurant.hours.Monday.push("true");
-
-
-                    }
-                    if(vm.days[i].key == 'Tuesday'){
-                        restaurant.hours.Tuesday=[];
-                        restaurant.hours.Tuesday.push(formattedTime);
-                        restaurant.hours.Tuesday.push(vm.days[i].stH);
-                        restaurant.hours.Tuesday.push(vm.days[i].stM);
-                        restaurant.hours.Tuesday.push(vm.days[i].etH);
-                        restaurant.hours.Tuesday.push(vm.days[i].etM);
-                        restaurant.hours.Tuesday.push("true");
-
-
-                    }
-                    if(vm.days[i].key == 'Wednesday'){
-                        restaurant.hours.Wednesday=[];
-                        restaurant.hours.Wednesday.push(formattedTime);
-                        restaurant.hours.Wednesday.push(vm.days[i].stH);
-                        restaurant.hours.Wednesday.push(vm.days[i].stM);
-                        restaurant.hours.Wednesday.push(vm.days[i].etH);
-                        restaurant.hours.Wednesday.push(vm.days[i].etM);
-                        restaurant.hours.Wednesday.push("true");
-
-
-
-                    }
-                    if(vm.days[i].key == 'Thursday'){
-                        restaurant.hours.Thursday=[];
-                        restaurant.hours.Thursday.push(formattedTime);
-                        restaurant.hours.Thursday.push(vm.days[i].stH);
-                        restaurant.hours.Thursday.push(vm.days[i].stM);
-                        restaurant.hours.Thursday.push(vm.days[i].etH);
-                        restaurant.hours.Thursday.push(vm.days[i].etM);
-                        restaurant.hours.Thursday.push("true");
-
-
-                    }
-                    if(vm.days[i].key == 'Friday'){
-                        restaurant.hours.Friday=[];
-                        restaurant.hours.Friday.push(formattedTime);
-                        restaurant.hours.Friday.push(vm.days[i].stH);
-                        restaurant.hours.Friday.push(vm.days[i].stM);
-                        restaurant.hours.Friday.push(vm.days[i].etH);
-                        restaurant.hours.Friday.push(vm.days[i].etM);
-                        restaurant.hours.Friday.push("true");
-                        restaurant.hours.Friday.push("1");
-                    }
-                    if(vm.days[i].key == 'Saturday'){
-                        restaurant.hours.Saturday=[];
-                        restaurant.hours.Saturday.push(formattedTime);
-                        restaurant.hours.Saturday.push(vm.days[i].stH);
-                        restaurant.hours.Saturday.push(vm.days[i].stM);
-                        restaurant.hours.Saturday.push(vm.days[i].etH);
-                        restaurant.hours.Saturday.push(vm.days[i].etM);
-                        restaurant.hours.Saturday.push("true");
-
-                    }
-                    if(vm.days[i].key == 'Sunday'){
-                        restaurant.hours.Sunday=[];
-                        restaurant.hours.Sunday.push(formattedTime);
-                        restaurant.hours.Sunday.push(vm.days[i].stH);
-                        restaurant.hours.Sunday.push(vm.days[i].stM);
-                        restaurant.hours.Sunday.push(vm.days[i].etH);
-                        restaurant.hours.Sunday.push(vm.days[i].etM);
-                        restaurant.hours.Sunday.push("true");
-
-
-                    }
-
                 }
 
-            }
-            console.log(restaurant);
+
+
+
+
             return restaurant;
         }
 
@@ -360,9 +403,6 @@
                     vm.error="";
                     vm.success = 'Image successfully uploaded.';
                     vm.url = resp.data.fileUrl;
-                    // console.log(vm.logoUrl);
-                    // console.log(vm.url);
-
 
                 } else {
                     vm.message="";
