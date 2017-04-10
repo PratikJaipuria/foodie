@@ -126,11 +126,22 @@
 
 
         function fetchPartnerResturants(search) {
+            var display=false;
 
             var promise=restaurantService.findAllPartnerResturantsInThisLocation(search);
             promise.success(function (partnerResturantsList) {
 
                 allResturants=partnerResturantsList;
+                // for (var p in partnerResturantsList){
+                //     for (var key in partnerResturantsList.hours){
+                //         console.log(key);
+                //         console.log(partnerResturantsList.hours);
+                //         if(partnerResturantsList[key].length > 0){
+                //             display=true;
+                //             console.log(display);
+                //         }
+                //     }
+                // }
 
 
 

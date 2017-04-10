@@ -166,7 +166,7 @@
                                         <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
                                     </div>
 
-                                    <div class="row" data-toggle="collapse" data-target="#{{'hours-'+ restaurant.apiKey}}">
+                                    <div class="row" data-toggle="collapse"   data-target="#{{'hours-'+ restaurant.apiKey}}">
 
                                         <span class="leftinfotext col-xs-3 wbdv-pad-left-30" >HOURS:</span>
 
@@ -177,7 +177,8 @@
 
                                         <span class="col-xs-9 rightinfotext collapse"  id="{{'hours-'+ restaurant.apiKey}}">
                                     <div ng-repeat="(key, time) in restaurant.hours">
-                                        <div class="row">
+                                        <div class="row" ng-if="time.length > 0">
+
                                             <div class=" col-xs-4 pull-left wbdv-pad-left-24">{{key}}</div>
                                             <div class=" col-xs-8 pull-left">{{time[0]}}</div>
                                         </div>

@@ -265,57 +265,52 @@
                                 </div>
                             </li>
 
+                            <li ng-repeat="d in model.days">
+                                <div style="color: white;">{{d.day}}</div>
+                                <div class="row">
 
+                                <div class="col-xs-2">
+                                <select ng-model="d.stH"
+                                id="stH"
+                                name="stH"
+                                style="display: block;padding-left: 10px; text-align-last: center; color: black"
+                                ng-init="d.stH = d.stH||model.hours[0]"
+                                ng-options="option for option in model.hours">
+                                </select>
+                                </div>
+                                <div class="col-xs-2">
+                                <select
+                                id="stM"
+                                name="stM"
+                                ng-model="d.stM"
+                                style="display: block;padding-left: 10px; color: black"
+                                ng-init="d.stM = d.stM||model.mins[0]"
+                                ng-options="option for option in model.mins">
+                                </select>
 
+                                </div>
+                                <div class="col-xs-2">
+                                <select ng-model="d.etH"
+                                id="etH"
+                                name="etH"
+                                style="display: block;padding-left: 10px; margin-left:10px;color: black"
+                                ng-init="d.etH = d.etH||model.hours[0]"
+                                ng-options="option for option in model.hours">
+                                </select>
+                                </div>
+                                <div class="col-xs-2">
+                                <select
+                                id="etM"
+                                name="etM"
+                                ng-model="d.etM "
+                                style="display: block;padding-left: 10px;color: black; margin-left:10px;"
+                                ng-init="d.etM = d.etM||model.mins[0]"
+                                ng-options="option for option in model.mins">
+                                </select>
+                                </div>
+                                </div>
+                            </li>
 
-                             <li class="list-group-item" ng-repeat="day in model.days" style="padding-right: 0px; padding-left: 2px; background-color: black">
-                                 <div class="row">
-                                     <div class="col-xs-2" style="color: white">
-
-                                       <input ng-model="day.selected"   type="checkbox" name="day" value="{{day.key}}" checked>{{day.key}}<br>
-                                     </div>
-
-                                     <div class="col-xs-2">
-                                         <select ng-model="day.stH"
-                                                     id="stH"
-                                                     name="stH"
-                                                     style="display: block;padding-left: 10px; text-align-last: center; color: black"
-                                                    ng-init="day.stH = day.stH||model.hours[0]"
-                                                    ng-options="option for option in model.hours">
-                                             </select>
-                                     </div>
-                                     <div class="col-xs-2">
-                                         <select
-                                                 id="stM"
-                                                 name="stM"
-                                                 ng-model="day.stM"
-                                                 style="display: block;padding-left: 10px; color: black"
-                                                 ng-init="day.stM = day.stM||model.mins[0]"
-                                                 ng-options="option for option in model.mins">
-                                         </select>
-
-                                     </div>
-                                     <div class="col-xs-2">
-                                         <select ng-model="day.etH"
-                                                 id="etH"
-                                                 name="etH"
-                                                 style="display: block;padding-left: 10px; margin-left:10px;color: black"
-                                                 ng-init="day.etH = day.etH||model.hours[0]"
-                                                 ng-options="option for option in model.hours">
-                                         </select>
-                                     </div>
-                                     <div class="col-xs-2">
-                                         <select
-                                                 id="etM"
-                                                 name="etM"
-                                                 ng-model="day.etM "
-                                                 style="display: block;padding-left: 10px;color: black; margin-left:10px;"
-                                                 ng-init="day.etM = day.etM||model.mins[0]"
-                                                 ng-options="option for option in model.mins">
-                                         </select>
-                                     </div>
-                                 </div>
-                             </li>
                         </ul>
                     </div>
                 </div>
@@ -351,7 +346,7 @@
             <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
-                        <a ng-click="model.createRestaurant(model.restaurant)" class="btn btn-success btn-block form-control">Create</a>
+                        <a ng-click="model.createRestaurant(model.restaurant, model.days)" class="btn btn-success btn-block form-control">Create</a>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <a href="#/user/restaurant" class="btn btn-primary  btn-block">Cancel</a>

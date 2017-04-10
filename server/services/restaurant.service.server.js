@@ -55,7 +55,7 @@ module.exports=function(app,model) {
                                 .then(function (response) {
 
                                 }, function (err) {
-                                    console.log(err);
+
                                     res.sendStatus(404);
                                 })
                         })
@@ -81,11 +81,13 @@ module.exports=function(app,model) {
     }
 
     function updateRestaurant(req,res) {
-        var restaurantId = req.params.restaurantId;
+        // var restaurantId = req.params.restaurantId;
         var restaurant = req.body;
+        // console.log(restaurant.hours[Monday]);
+        // console.log(restaurant.hours.Monday);
 
         RestaurantModel
-            .updateRestaurant(restaurantId,restaurant)
+            .updateRestaurant(restaurant)
             .then(function (response) {
                 res.json(response)
             }, function (err) {

@@ -102,11 +102,22 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function updateRestaurant(restaurantId,restaurant) {
+    function updateRestaurant(restaurant) {
         var deferred = q.defer();
 
+        console.log(
+            restaurant.hours.Monday,
+               restaurant.hours.Tuesday,
+                restaurant.hours.Wednesday,
+                restaurant.hours.Thursday,
+                 restaurant.hours.Friday,
+               restaurant.hours.Saturday,
+                restaurant.hours.Sunday
+
+        );
+
         RestaurantModel
-            .update({_id:restaurantId},{
+            .update({_id:restaurant._id},{
             $set: {
                 name:  restaurant.name,
                 phone: restaurant.phone,
@@ -119,7 +130,18 @@ module.exports = function () {
                 foodTypes: restaurant.foodTypes,
                 offersDelivery: restaurant.offersDelivery,
                 offersPickup: restaurant.offersPickup,
-                state:restaurant.state
+                state:restaurant.state,
+                hours:{
+                    Monday: restaurant.hours.Monday,
+                    Tuesday: restaurant.hours.Tuesday,
+                    Wednesday: restaurant.hours.Wednesday,
+                    Thursday: restaurant.hours.Thursday,
+                    Friday: restaurant.hours.Friday,
+                    Saturday: restaurant.hours.Saturday,
+                    Sunday: restaurant.hours.Sunday
+
+                }
+
             }
             },function (err,rst) {
                 if(err){

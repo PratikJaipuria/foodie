@@ -52,7 +52,10 @@
                                 }
                             }
                         }, function (err) {
-                            vm.error = err;
+                           error="Unable to find user";
+                           errors.push(error);
+                           throwError(errors);
+
                         });
                 }
 
