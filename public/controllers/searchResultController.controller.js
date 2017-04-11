@@ -260,6 +260,8 @@
 
 
 
+
+
             if(resturantObject.partner){
                 if(userId && name){
                     $location.url('/user/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');

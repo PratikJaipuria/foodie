@@ -141,9 +141,9 @@
                                         <input  type="radio" ng-model="model.address" name="address" value="New"> New Delivery Address
                                     </div>
                                     <div class="row wbdv-mar-top-5"  ng-if="model.address=='New'">
-                                        <!--<div class="col-sm-6 col-xs-12 ">-->
-                                        <div class="row">
-                                            <div class="form-group col-sm-6 col-xs-12">
+                                        <div class="col-sm-6 col-xs-12 ">
+
+                                            <div class="form-group ">
                                                 <input    ng-model="model.newAddress"
                                                           ng-change="model.loadAddressFromAPI()"
                                                           type="text"
@@ -160,48 +160,44 @@
 
                                             </div>
 
-                                            <div class="form-group col-sm-6 col-xs-12">
-                                                <input ng-model="model.newCity"
-                                                       id="newCity"
-                                                       name="city"
-                                                       class="form-control" placeholder="City"
-                                                />
-                                            </div>
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <input ng-model="model.newCity"
+                                                   id="newCity"
+                                                   name="city"
+                                                   class="form-control" placeholder="City"
+                                            />
                                         </div>
 
-                                        <div class="row">
-                                            <div class="form-group col-sm-6 col-xs-12">
-                                                <select id="state"
-                                                        class="form-control"
-                                                        ng-model="model.newState"
-                                                        ng-init="model.newState = model.newState || model.states[0]"
-                                                        ng-options="option for option in model.states"
-                                                        style="text-align-last: center;">
+                                        <div class="form-group col-sm-6 col-xs-12 pull-left">
+                                            <select id="state"
+                                                    class="form-control"
+                                                    ng-model="model.newState"
+                                                    ng-init="model.newState = model.newState || model.states[0]"
+                                                    ng-options="option for option in model.states"
+                                                    style="text-align-last: center;">
 
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-sm-6 col-xs-12">
-                                                <select ng-model="model.newCountry"
-                                                        id="country"
-                                                        name="country"
-                                                        class="form-control"
-                                                        ng-init="model.newCountry = model.newCountry||model.countries[0]"
-                                                        ng-options="option for option in model.countries"
-                                                        style="text-align-last: center;">
-                                                </select>
-                                            </div>
+                                            </select>
                                         </div>
 
-
-
-                                        <!--</div>-->
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <select ng-model="model.newCountry"
+                                                    id="country"
+                                                    name="country"
+                                                    class="form-control"
+                                                    ng-init="model.newCountry = model.newCountry||model.countries[0]"
+                                                    ng-options="option for option in model.countries"
+                                                    style="text-align-last: center;>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                             </div>
+                                  </form>
                             </div>
-                        </form>
-                    </div>
 
+                </div>
+            </div>
+
+            </div>
 
 
 
@@ -215,28 +211,32 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
+                                    <!--</div>-->
+                                <!--</div>-->
 
 
-        <nav class="navbar  navbar-fixed-bottom bg-primary" >
-            <div class="container-fluid">
-                <div class="row ">
-                    <div class="col-xs-12" >
-                        <a href="#/user/profile" class="wbdv-mar-right-5 pull-right">
-                            <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
-                            </span>
-                        </a>
-                        <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
-                            <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
-                            </span>
-                        </a>
+
+                            <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+
+                <nav class="navbar  navbar-fixed-bottom bg-primary" >
+                    <div class="container-fluid">
+                        <div class="row ">
+                            <div class="col-xs-12" >
+                                <a href="#/user/profile" class="wbdv-mar-right-5 pull-right">
+                        <span class="glyphicon glyphicon-user wbdv-text-clr-white navbar-text">
+                        </span>
+                                </a>
+                                <a ng-click="model.deleteUserProfile(model.user)" class="wbdv-mar-left-5 pull-left">
+                        <span class="glyphicon glyphicon-trash wbdv-text-clr-white navbar-text">
+                        </span>
+                                </a>
+                            </div>
+
+
+                        </div>
                     </div>
-
-
-                </div>
-            </div>
-        </nav>
+                </nav>

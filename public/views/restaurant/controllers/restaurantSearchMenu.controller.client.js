@@ -15,7 +15,7 @@
         var selItems={};
         var offerPickup;
         var offerDelivery;
-        var open;
+
         vm.restaurantName=restaurantName;
         var userId;
 
@@ -45,7 +45,7 @@
                 vm.name=restDetails.name;
                 offerDelivery=restDetails.offersDelivery;
                 offerPickup=restDetails.offersPickup;
-                open=restDetails.open;
+
                 vm.partner=restDetails.partner;
 
                 if(restDetails.partner){
@@ -171,7 +171,7 @@
         function checkOut() {
 
 
-            if(userId && (offerPickup || offerDelivery) && open){
+            if(userId && (offerPickup || offerDelivery)){
                 if (cart.length > 0){
                     var cartDetails={
                         rId: restaurantId,
@@ -193,18 +193,17 @@
             }
 
             else{
-                if(userId && open){
+                if(userId){
                     vm.error="No Delivery or Pickup service available at this restaurant";
 
                 }
 
-                else if(open && (offerPickup || offerDelivery)){
+                else
+                    {
                     vm.error="Please Login to proceed with payment";
                 }
 
-                else{
-                    vm.error="Restaurant is closed now";
-                }
+
 
 
 
