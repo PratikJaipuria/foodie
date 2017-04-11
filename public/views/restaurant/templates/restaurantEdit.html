@@ -144,7 +144,8 @@
                                         class="form-control"
                                         ng-model="model.restaurant.state"
                                         ng-init="model.restaurant.state = model.restaurant.state || model.states[0]"
-                                        ng-options="option for option in model.states">
+                                        ng-options="option for option in model.states"
+                                        style="text-align-last: center">
                                 </select>
                             </div>
 
@@ -156,7 +157,8 @@
                                             name="country"
                                             class="form-control"
                                             ng-init="model.restaurant.country=model.restaurant.country||model.country[0]"
-                                            ng-options="option for option in model.country">
+                                            ng-options="option for option in model.country"
+                                            style="text-align-last: center">
 
 
 
@@ -180,7 +182,8 @@
                                         class="form-control"
                                         style="display: block;"
                                         ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
-                                        ng-options="option for option in model.booleanVal">
+                                        ng-options="option for option in model.booleanVal"
+                                        style="text-align-last: center">
 
                                 </select>
                             </div>
@@ -195,7 +198,8 @@
                                         class="form-control"
                                         style="display: block"
                                         ng-init="model.restaurant.offersPickup=model.restaurant.offersPickup||model.booleanVal[0]"
-                                        ng-options="option for option in model.booleanVal">
+                                        ng-options="option for option in model.booleanVal"
+                                        style="text-align-last: center">
                                 </select>
                             </div>
                         </div>
@@ -280,7 +284,8 @@
                                                 style="display: block;padding-left: 10px; text-align-last: center; color: black"
                                                 ng-init="d[1] = d[1]||model.hours[0]"
                                                 ng-options="option for option in model.hours"
-                                                class="form-control">
+                                                class="form-control"
+                                                style="text-align-last: center">
                                         </select>
                                     </div>
                                     <div class="col-sm-3 col-xs-6">
@@ -291,7 +296,8 @@
                                                 style="display: block;padding-left: 10px; color: black;text-align-last: center;"
                                                 ng-init="d[2]= d[2]||model.mins[0]"
                                                 ng-options="option for option in model.mins"
-                                                class="form-control">
+                                                class="form-control"
+                                                style="text-align-last: center">
                                         </select>
 
                                     </div>
@@ -302,7 +308,8 @@
                                                 style="display: block;padding-left: 10px; color: black;text-align-last: center;"
                                                 ng-init="d[3] = d[3]||model.hours[0]"
                                                 ng-options="option for option in model.hours"
-                                                class="form-control">
+                                                class="form-control"
+                                                style="text-align-last: center">
                                         </select>
                                     </div>
                                     <div class="col-sm-3 col-xs-6">
@@ -313,7 +320,8 @@
                                                 style="display: block;padding-left: 10px;color: black;text-align-last: center;"
                                                 ng-init="d[4] = d[4]||model.mins[0]"
                                                 ng-options="option for option in model.mins"
-                                                class="form-control">
+                                                class="form-control"
+                                                style="text-align-last: center">
                                         </select>
                                     </div>
                                 </div>
