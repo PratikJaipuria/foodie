@@ -8,14 +8,21 @@
         var vm = this;
         var address=$routeParams['add'];
         var name= $routeParams['rn'];
-        // var userId=$routeParams['uid'];
         var allResturants=[];
         var apiResturants=[];
         var backupRetrievedResturants=[];
         vm.restaurants=[];
         vm.restaurantFound=false;
 
-        // vm.userId = userId;
+        var weekday = new Array(7);
+        weekday[0] =  "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
 
         vm.search={
             name: name,
@@ -126,22 +133,51 @@
 
 
         function fetchPartnerResturants(search) {
-            var display=false;
 
             var promise=restaurantService.findAllPartnerResturantsInThisLocation(search);
             promise.success(function (partnerResturantsList) {
+                var todayDate=new Date();
+                var todayDay=weekday[todayDate.getDay()];
+
+
+                for (var r in partnerResturantsList){
+
+                    if (partnerResturantsList[r].hours[todayDay].length <= 0) {
+                        partnerResturantsList[r].open = false;
+
+                    } else {
+                        var data = partnerResturantsList[r].hours[todayDay];
+                        var startDateAndTime=new Date();
+                        startDateAndTime.setHours(data[1]);
+                        startDateAndTime.setMinutes(data[2]);
+                        startDateAndTime.setMilliseconds(0);
+
+                        var closeDateAndTime=new Date();
+                        closeDateAndTime.setHours(data[3]);
+                        closeDateAndTime.setMinutes(data[4]);
+                        closeDateAndTime.setMilliseconds(0);
+
+                        var currentDateAndTime=new Date();
+
+
+
+
+
+                        if (startDateAndTime.getTime() < currentDateAndTime.getTime() &&
+                        closeDateAndTime.getTime()>currentDateAndTime.getTime()) {
+                            partnerResturantsList[r].open = true;
+                        }
+                        else {
+                            partnerResturantsList[r].open = false;
+                        }
+                        partnerResturantsList[r].apiKey = '';
+                        partnerResturantsList[r].apiKey = partnerResturantsList[r]._id;
+
+
+                    }
+                }
 
                 allResturants=partnerResturantsList;
-                // for (var p in partnerResturantsList){
-                //     for (var key in partnerResturantsList.hours){
-                //         console.log(key);
-                //         console.log(partnerResturantsList.hours);
-                //         if(partnerResturantsList[key].length > 0){
-                //             display=true;
-                //             console.log(display);
-                //         }
-                //     }
-                // }
 
 
 
@@ -164,7 +200,6 @@
 
                     }).error(function (err) {
 
-                    // $location.url("/");
                 })
             }
             else{
@@ -218,7 +253,8 @@
                 state:resturantObject.state,
                 country:resturantObject.country,
                 offersDelivery: resturantObject.offersDelivery,
-                offersPickup:resturantObject.offersPickup
+                offersPickup:resturantObject.offersPickup,
+                open:resturantObject.open
 
             };
 

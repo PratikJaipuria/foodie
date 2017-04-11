@@ -66,7 +66,7 @@
         vm.mins=["MM","00","15","30","45"];
 
         vm.country=["United States"];
-        vm.booleanVal=['Yes','No'];
+        vm.booleanVal=['No','Yes'];
         vm.speciality=[];
         var ownerId ;
         vm.createRestaurant = createRestaurant;
@@ -238,7 +238,10 @@
                         var formattedTime='';
                         var unit='';
                         if(vm.days[i].stH > 12){
-                            formattedTime='0';
+                            if((vm.days[i].stH-12) < 10){
+                                formattedTime='0';
+                            }
+
                             formattedTime+=vm.days[i].stH-12;
                             unit='PM';
                         }
@@ -253,7 +256,9 @@
                         formattedTime+=':'+vm.days[i].stM+' '+unit+' - ' ;
 
                         if(vm.days[i].etH > 12){
-                            formattedTime+='0';
+                            if((vm.days[i].stH-12) < 10){
+                                formattedTime='0';
+                            }
                             formattedTime+=vm.days[i].etH-12;
                             unit='PM';
                         }
@@ -266,6 +271,17 @@
                             unit='AM';
                         }
                         formattedTime+=':'+vm.days[i].etM+' '+unit;
+                        var startTimeInDateFormat=new Date();
+                        console.log(startTimeInDateFormat);
+                        startTimeInDateFormat.setHours(parseInt(vm.days[i].stH));
+                        startTimeInDateFormat.setMinutes(parseInt(vm.days[i].stM));
+                        var endTimeInDateFormat=new Date();
+                        endTimeInDateFormat.setHours(parseInt(vm.days[i].etH));
+                        endTimeInDateFormat.setMinutes(parseInt(vm.days[i].etM));
+
+
+
+
 
                         if(vm.days[i].day == 'Monday'){
                             restaurant.hours.Monday=[];
@@ -274,7 +290,8 @@
                             restaurant.hours.Monday.push(vm.days[i].stM);
                             restaurant.hours.Monday.push(vm.days[i].etH);
                             restaurant.hours.Monday.push(vm.days[i].etM);
-
+                            restaurant.hours.Monday.push(startTimeInDateFormat);
+                            restaurant.hours.Monday.push(endTimeInDateFormat);
 
 
                         }
@@ -285,6 +302,8 @@
                             restaurant.hours.Tuesday.push(vm.days[i].stM);
                             restaurant.hours.Tuesday.push(vm.days[i].etH);
                             restaurant.hours.Tuesday.push(vm.days[i].etM);
+                            restaurant.hours.Tuesday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Tuesday.push(endTimeInDateFormat.toUTCString());
 
 
 
@@ -296,6 +315,8 @@
                             restaurant.hours.Wednesday.push(vm.days[i].stM);
                             restaurant.hours.Wednesday.push(vm.days[i].etH);
                             restaurant.hours.Wednesday.push(vm.days[i].etM);
+                            restaurant.hours.Wednesday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Wednesday.push(endTimeInDateFormat.toUTCString());
 
 
 
@@ -308,6 +329,8 @@
                             restaurant.hours.Thursday.push(vm.days[i].stM);
                             restaurant.hours.Thursday.push(vm.days[i].etH);
                             restaurant.hours.Thursday.push(vm.days[i].etM);
+                            restaurant.hours.Thursday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Thursday.push(endTimeInDateFormat.toUTCString());
 
 
 
@@ -319,6 +342,8 @@
                             restaurant.hours.Friday.push(vm.days[i].stM);
                             restaurant.hours.Friday.push(vm.days[i].etH);
                             restaurant.hours.Friday.push(vm.days[i].etM);
+                            restaurant.hours.Friday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Friday.push(endTimeInDateFormat.toUTCString());
 
                         }
                         if(vm.days[i].day == 'Saturday'){
@@ -328,6 +353,8 @@
                             restaurant.hours.Saturday.push(vm.days[i].stM);
                             restaurant.hours.Saturday.push(vm.days[i].etH);
                             restaurant.hours.Saturday.push(vm.days[i].etM);
+                            restaurant.hours.Saturday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Saturday.push(endTimeInDateFormat.toUTCString());
 
 
                         }
@@ -338,6 +365,8 @@
                             restaurant.hours.Sunday.push(vm.days[i].stM);
                             restaurant.hours.Sunday.push(vm.days[i].etH);
                             restaurant.hours.Sunday.push(vm.days[i].etM);
+                            restaurant.hours.Sunday.push(startTimeInDateFormat.toUTCString());
+                            restaurant.hours.Sunday.push(endTimeInDateFormat.toUTCString())
 
 
 

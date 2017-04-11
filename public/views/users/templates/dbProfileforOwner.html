@@ -157,7 +157,8 @@
                                     class="form-control"
                                     ng-model="model.user.state"
                                     ng-init="model.user.state = model.user.state || model.states[0]"
-                                    ng-options="option for option in model.states">
+                                    ng-options="option for option in model.states"
+                                    style="text-align-last: center;">
 
                             </select>
                         </div>
@@ -172,7 +173,8 @@
                                     name="country"
                                     class="form-control"
                                     ng-init="model.user.country = model.user.country||model.countries[0]"
-                                    ng-options="option for option in model.countries">
+                                    ng-options="option for option in model.countries"
+                                    style="text-align-last: center;">
                             </select>
                         </div>
 
