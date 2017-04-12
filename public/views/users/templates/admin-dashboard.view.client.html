@@ -23,33 +23,19 @@
                 <div class="col-sm-4 hidden-xs pull-left" id="categories">
                     <ul class="list-group" style="color: black;">
 
-                        <div>
-                            <li class="list-group-item active" >
-                                CONSOLE
-                                <a>
-                                    <span class="glyphicon glyphicon-menu-right pull-right"></span>
-                                </a>
-                            </li>
-                        </div>
 
                         <div>
-                            <li class="list-group-item " data-target="#usersContent" data-toggle="collapse"  >
-                                USERS
-                                <a>
-                                    <span class="glyphicon glyphicon-menu-down pull-right"></span>
-                                </a>
-                            </li>
-                            <!--<div  class=" list-group" >-->
+                            <div ng-click="model.findUsers('ALLUSERS')">
+                                <li class="list-group-item active" data-target="#usersContent" data-toggle="collapse"  >
+                                    ALL USERS
+                                    <a>
+                                        <span class="glyphicon glyphicon-menu-down pull-right" style="color: black"></span>
+                                    </a>
+                                </li>
+                            </div>
+
+
                                 <ul id="usersContent" class="list-group collapse" style="margin-bottom: 0">
-                                    <div ng-click="model.findUsers('ALLUSERS')">
-                                        <li class="list-group-item" style="color: black">
-                                            All Users
-                                            <a>
-                                                <span class="glyphicon glyphicon-menu-right pull-right"></span>
-                                            </a>
-                                        </li>
-                                    </div>
-
                                     <div ng-click="model.findUsers('USER')">
                                         <li class="list-group-item" style="color: black">
                                             Consumers
@@ -103,13 +89,13 @@
                 </div>
 
 
-                <div ng-if="model.mode=='console'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60">
-                    <!--{{model.mode}}-->
-                    <!--<div id="chartContainer" style="height: 300px; width: 100%;">-->
+                <!--<div ng-if="model.mode=='console'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60">-->
+                    <!--&lt;!&ndash;{{model.mode}}&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div id="chartContainer" style="height: 300px; width: 100%;">&ndash;&gt;-->
 
-                    <!--</div>-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-                </div>
+                <!--</div>-->
                 <div ng-if="model.mode != 'ALL'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60" style="color: black;">
                     <div ng-if="model.mode=='users'">
                         <ul class="list-group">
@@ -145,7 +131,7 @@
                                     </div>
 
 
-                                    <div class="col-xs-2 pull-right">
+                                    <div class="col-xs-2 pull-right" ng-if="u.role != 'ADMIN'">
                                         <a ng-click="model.deleteUser(u._id)">
                                             <span class="glyphicon glyphicon-remove-sign pull-right"></span>
                                         </a>

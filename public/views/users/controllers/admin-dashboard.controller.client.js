@@ -20,7 +20,7 @@
         function init() {
 
 
-            vm.mode = 'console';
+            findUsers('ALLUSERS');
             // adminDashBoard();
 
 

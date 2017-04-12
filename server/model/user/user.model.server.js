@@ -271,7 +271,7 @@ module.exports = function () {
         var deferred = q.defer();
 
         if(role=='ALLUSERS'){
-            UserModel.find({}).sort('-_id').exec(function (err, listUser) {
+            UserModel.find({}).sort('firstName').exec(function (err, listUser) {
                 if (err){
                     deferred.reject();
                 }else{
@@ -285,7 +285,7 @@ module.exports = function () {
         }
 
         else{
-            UserModel.find({role:role}).sort('-_id').exec(function (err, listUser) {
+            UserModel.find({role:role}).sort('firstName').exec(function (err, listUser) {
                 if (err){
                     deferred.reject();
                 }else{
