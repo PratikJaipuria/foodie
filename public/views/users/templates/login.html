@@ -6,6 +6,27 @@
                 <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
             </a>
         </div>
+
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+            <a ng-click="model.registerUser(0)">
+                <i class="fa fa-user-plus fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register User"></i>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a ng-click="model.registerUser(0)">
+                <span class=" wbdv-text-clr-white" title="Register User">Register User</span>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right visible-xs">
+            <a ng-click="model.registerUser(1)">
+                <i class="fa fa-registered fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register Owner"></i>
+            </a>
+        </div>
+        <div  class="navbar-text navbar-link pull-right hidden-xs">
+            <a ng-click="model.registerUser(1)">
+                <span class=" wbdv-text-clr-white" title="Register Owner">Register Owner</span>
+            </a>
+        </div>
     </div>
 </nav>
 
@@ -52,14 +73,6 @@
             </div>
 
 
-            <div class="row wbdv-mar-top-3 wbdv-mar-bottom-10">
-                <div class="col-xs-6" style="margin-bottom: 20px;">
-                    <a ng-click="model.registerUser(0)" class="btn btn-primary btn-block pull-right">Register User</a>
-                </div>
-                <div class="col-xs-6">
-                    <a ng-click="model.registerUser(1)" class="btn btn-danger btn-block pull-left">Register Owner</a>
-                </div>
-            </div>
 
         </div>
 

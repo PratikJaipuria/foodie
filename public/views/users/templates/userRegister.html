@@ -8,8 +8,12 @@
             </a>
         </div>
 
-        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0" ng-if="model.role==0">
             <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Register </span>
+        </div>
+
+        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0" ng-if="model.role==1">
+            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Register </span>
         </div>
 
     </div>

@@ -5,6 +5,7 @@
     function userRegisterController ($location, userService,addressAPISearchService, $timeout, $routeParams) {
         var vm = this;
          var role=$routeParams['role'];
+         vm.role=role;
 
         var restaurantId = $routeParams['rst'];
         vm.restaurantId = restaurantId;
