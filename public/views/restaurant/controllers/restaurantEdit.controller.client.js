@@ -318,7 +318,10 @@
                     var formattedTime='';
                     var unit='';
                     if(restaurant.hours[i][1] > 12){
-                        formattedTime='0';
+                        if(restaurant.hours[i][1]-12 <10){
+                            formattedTime='0';
+                        }
+
                         formattedTime+=restaurant.hours[i][1]-12;
                         unit='PM';
                     }
@@ -333,7 +336,10 @@
                     formattedTime+=':'+restaurant.hours[i][2]+' '+unit+' - ' ;
 
                     if(restaurant.hours[i][3] > 12){
-                        formattedTime+='0';
+                        if(restaurant.hours[i][3]-12 < 10){
+                            formattedTime+='0';
+                        }
+
                         formattedTime+=restaurant.hours[i][3]-12;
                         unit='PM';
                     }
