@@ -396,6 +396,11 @@ body {
 }
 
 
+select{
+    width: 100%;
+    max-width: 100%;
+}
+
 input[type="checkbox"]{
     width: 30px;
     height: 30px;
