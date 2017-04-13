@@ -136,15 +136,28 @@
             if(errors.length == 0){
                 var promise=userService.updateUser(dbId,user);
                 promise.success(function (user) {
-                    vm.user=user;
-                    outputMsg("SUCCESS","Profile updated successfully");
-                    $location.url("/user/restaurant/"+restaurantId+"/db");
+
+                    var promise=userService.findCurrentUser();
+                    promise.success(function (user1) {
+                        vm.user=user1;
+                        console.log(vm.user);
+                        userService
+                            .getRestaurantId()
+                            .success(function (restaurantId) {
+                                // vm.restaurantId = restaurantId;
+                                restaurantId = restaurantId.replace(/"/g, '');
+
+                                        $location.url('/user/restaurant');
+
+                                // vm.user=user;
+                      outputMsg("SUCCESS","Profile updated successfully");
+                        // $location.url("/user/restaurant/db");
                 }).error(function (err) {
                     error="unable to update User";
                     errors.push(error);
                     outputMsg("ERROR",errors);
                 })
-            }
+            })})}
             else {
                 outputMsg("ERROR",errors);
             }
@@ -155,7 +168,9 @@
         function deleteUser(dbId) {
             var promise=userService.deleteUser(dbId);
             promise.success(function (response) {
-                $location.url("/user/restaurant/"+restaurantId+"/db");
+
+
+                $location.url("/user/restaurant");
             }).error(function (err) {
                 vm.error("unable to delete User");
             })

@@ -27,12 +27,24 @@
             "updateDeliveryAddresses":updateDeliveryAddresses,
             "findUsers":findUsers,
             "setRestaurantId" : setRestaurantId,
-            "getRestaurantId" : getRestaurantId
+            "getRestaurantId" : getRestaurantId,
+            "setDBId" : setDBId,
+            "getDBId" : getDBId
+
             // restaurantId : String
         };
 
 
         return api;
+
+        function setDBId(dbId) {
+            return $http.put('/api/setdbid/'+dbId);
+
+        }
+
+        function getDBId() {
+            return $http.get('/api/getdbid');
+        }
 
 
 

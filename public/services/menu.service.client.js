@@ -17,7 +17,10 @@
             "findMenuById":findMenuById,
             // "deleteMenuItem":deleteMenuItem
             "deleteMenuById":deleteMenuById,
-            "deleteMenuCategory":deleteMenuCategory
+            "deleteMenuCategory":deleteMenuCategory,
+            "setMenuId" : setMenuId,
+            "getMenuId" : getMenuId
+
 
         };
 
@@ -57,6 +60,14 @@
         }
 
 
+
+        function setMenuId(menuId) {
+            return $http.put('/api/setmenu/'+menuId);
+        }
+        function getMenuId() {
+
+            return $http.get('/api/getmenu');
+        }
 
 
 
