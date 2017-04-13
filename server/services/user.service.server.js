@@ -1,5 +1,6 @@
 module.exports=function(app,model){
 
+    var bcrypt = require("bcrypt-nodejs");
     var passport = require('passport');
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var LocalStrategy = require('passport-local').Strategy;
@@ -46,14 +47,19 @@ module.exports=function(app,model){
 
 
     function localStrategy(username, password, done) {
+        // bcrypt.compareSync(password, user.password)
+        console.log("PASSWORD in LOCAL Strategy",password);
+        // password = bcrypt.hashSync(password);
+        // console.log("PASSWORD in LOCAL Strategy after encrpt",password);
         UserModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if (!user) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
                         return done(null, false);
                     }
-                    return done(null, user);
                 },
                 function(err) {
                     if (err) { return done(err); }
@@ -215,11 +221,12 @@ module.exports=function(app,model){
     function findUserByCredentials(req,res) {
         var username = req.query.username;
         var password = req.query.password;
+        console.log("PASSWORD server ",password);
 
         UserModel
             .findUserByCredentials(username,password)
             .then(function (user) {
-                if(user){
+                if(user  && bcrypt.compareSync(password, user.password)){
                     res.json(user);
                 }
                 else{
@@ -239,6 +246,9 @@ module.exports=function(app,model){
 
     function createUser(req, res){
         var user=req.body;
+        console.log("BEFORE encrpty",user.password);
+        user.password = bcrypt.hashSync(user.password);
+        // return userModel.createUser(user);
 
         if(user.role=="DELIVERYBOY"){
             UserModel

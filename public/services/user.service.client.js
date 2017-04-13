@@ -91,9 +91,6 @@
 
 
         function updateAvailabiltyofDB(userId,user) {
-            console.log("hello");
-            console.log(userId);
-            console.log(user);
             return $http.put('/api/users/'+userId,user);
         }
 

@@ -78,7 +78,6 @@ module.exports = function () {
     function findUserByCredentials(username,password) {
         var deferred=q.defer();
 
-
         UserModel
             .findOne({
                 username:username,
