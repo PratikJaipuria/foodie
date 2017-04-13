@@ -9,6 +9,9 @@
     function restaurantListController($location,$routeParams, restaurantService,userService) {
         var vm = this;
         vm.gotoEdit =gotoEdit;
+        vm.gotoOrder = gotoOrder;
+        vm.gotoMenu = gotoMenu;
+        vm.gotoDeliveryBoy = gotoDeliveryBoy;
 
          var ownerId; //= $routeParams.uid;
         // vm.ownerId = ownerId;
@@ -35,6 +38,33 @@
             });
         }
         init();
+        function gotoMenu(restId) {
+            userService
+                .setRestaurantId(restId)
+                .then(function () {
+                    $location.url('/user/restaurant/menu');
+                })
+
+
+        }
+        function gotoDeliveryBoy(restId) {
+            userService
+                .setRestaurantId(restId)
+                .then(function () {
+                    $location.url('/user/restaurant/db');
+                })
+
+        }
+
+        function gotoOrder(restId) {
+
+            userService
+                .setRestaurantId(restId)
+                .then(function () {
+                    $location.url('/user/restaurant/order');
+                })
+        }
+
 
         function gotoEdit(restId) {
 

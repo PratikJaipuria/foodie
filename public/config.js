@@ -155,13 +155,13 @@
                 }})
 
 
-                            .when("/user/restaurant/:rst/order",{
+            .when("/user/restaurant/order",{
                 templateUrl: "views/order/templates/resturant.order.tracking.html",
                 controller: 'restaurantOrderTrackController',
                 controllerAs: 'model',
-                    resolve: {
-                        currentUser: checkLogin
-                    }})
+                resolve: {
+                    currentUser: checkLogin
+                }})
 
 
             .when("/register/:role",{
@@ -213,7 +213,7 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/menu/:mid/item",{
+            .when("/user/restaurant/menu/item",{
                 templateUrl: "views/restaurant/templates/menuItemEdit.html",
                 controller: "editMenuController",
                 controllerAs: "model",
@@ -222,7 +222,7 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/menu/category/:catname",{
+            .when("/user/restaurant/menu/category/:catname",{
                 templateUrl: "views/restaurant/templates/menuCategoryEdit.html",
                 controller: "editMenuController",
                 controllerAs: "model",
@@ -231,7 +231,7 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/menu",{
+            .when("/user/restaurant/menu",{
                 templateUrl: "views/restaurant/templates/restaurantMenu.html",
                 controller: "restaurantMenuController",
                 controllerAs: "model",
@@ -240,7 +240,7 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/menu/new",{
+            .when("/user/restaurant/menu/new",{
                 templateUrl: "views/restaurant/templates/newMenu.html",
                 controller: "newMenuController",
                 controllerAs: "model",
@@ -249,7 +249,7 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/db",{
+            .when("/user/restaurant/db",{
                 templateUrl: "views/users/templates/deliveryPersonnalList.html",
                 controller: "deliveryBoyListController",
                 controllerAs: "model",
@@ -258,17 +258,17 @@
                 }
             })
 
-            .when("/user/restaurant/:rst/db/:role",{
+            .when("/user/restaurant/db/:role",{
                 templateUrl: "views/users/templates/userRegister.html",
                 controller: "deliveryBoyRegisterController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
                 }
-           })
+            })
 
             //change this to profile standard path
-            .when("/user/restaurant/:rst/editdb/:dbid",{
+            .when("/user/restaurant/editdb",{
                 ///deliveryPersonnal/:db
                 templateUrl: "views/users/templates/dbProfileforOwner.html",
                 controller: "deliveryBoyProfileController",
@@ -325,26 +325,26 @@
         // console.log("REST ID in config",restaurantId);
         // console.log("USER ID in config",user);
         restaurantService
-                .findRestaurantById(restaurantId)
-                .success(function (restaurant) {
-                    // console.log("REST obje ct",restaurant);
-                    userService
-                        .loggedin()
-                        .then(function (user) {
-                            // console.log("USER object",user);
-                            if(user._id == restaurant.ownerId) {
-                                deferred.resolve();
+            .findRestaurantById(restaurantId)
+            .success(function (restaurant) {
+                // console.log("REST obje ct",restaurant);
+                userService
+                    .loggedin()
+                    .then(function (user) {
+                        // console.log("USER object",user);
+                        if(user._id == restaurant.ownerId) {
+                            deferred.resolve();
 
-                            } else {
-                                // deferred.resolve(restaurant);
-                                deferred.reject();
-                                $location.url('/login');
-                                // $location.url('/user/restaurant/'+restaurantId);
+                        } else {
+                            // deferred.resolve(restaurant);
+                            deferred.reject();
+                            $location.url('/login');
+                            // $location.url('/user/restaurant/'+restaurantId);
 
-                            }
-                        });
-                    return deferred.promise;
-        })
+                        }
+                    });
+                return deferred.promise;
+            })
     }
 
 

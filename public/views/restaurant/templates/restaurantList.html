@@ -73,7 +73,7 @@
             </li>
             <li ng-repeat="restaurant in model.restaurants" class="list-group-item" style="background-color: black">
                 <div class="row">
-                    <a  href="#/user/restaurant/{{restaurant._id}}/order">
+                    <a ng-click="model.gotoOrder(restaurant._id)">
                         <div class="col-xs-6 pull-left prevent-overflow wbdv-text-clr-white">
                             <span>{{restaurant.name}}</span>
                         </div>
@@ -89,7 +89,7 @@
 
 
                             <div class="col-xs-1 col-sm-3 pull-left">
-                                <a  href="#/user/restaurant/{{restaurant._id}}/menu">
+                                <a  ng-click="model.gotoMenu(restaurant._id)">
                                     <span class="glyphicon glyphicon-pencil pull-right wbdv-text-clr-white" title="Customer Review"></span>
                                 </a>
                             </div>
@@ -97,7 +97,7 @@
 
 
                             <div class="col-xs-1 col-sm-2 pull-right">
-                                <a href="#/user/restaurant/{{restaurant._id}}/db">
+                                <a ng-click="model.gotoDeliveryBoy(restaurant._id)">
                                     <!--<span class="  pull-right wbdv-text-clr-white">-->
                                     <i class="fa fa-motorcycle wbdv-text-clr-white " style="padding-right: 25px;" title="Delivery Boys" aria-hidden="true"></i>
                                     <!--</span>-->

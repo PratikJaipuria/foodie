@@ -6,7 +6,7 @@
     function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
         var vm =this;
         var userId //= $routeParams['uid'];
-        var restaurantId=$routeParams['rst'];
+        // var restaurantId=$routeParams['rst'];
         var scheduledOrder=[];
         var notScheduled=[];
         var delivered=[];
@@ -19,9 +19,10 @@
         vm.getNotScheduled=getNotScheduled;
         vm.refresh=refresh;
         vm.assignDelivery=assignDelivery;
+        vm.gotoDeliveryBoy = gotoDeliveryBoy;
 
         // vm.userId = userId;
-        vm.restaurantId = restaurantId;
+        // vm.restaurantId = restaurantId;
         function init() {
 
             var dbNameAvail=[];
@@ -44,74 +45,86 @@
                 vm.userId = user._id;
                 userId = user._id;
 
-
-
-
-                var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
-                promise.success(function (restOrders) {
-                if (restOrders.length>0){
-                    console.log(restOrders);
-                    vm.orders=restOrders[0].orderId;
-
-
-
-
-                    for (var o in restOrders[0].orderId){
-                        if(restOrders[0].orderId[o].scheduled && restOrders[0].orderId[o].delivered==false ){
-                            // console.log(restOrders[0]);
-                            scheduledOrder.push(restOrders[0].orderId[o]);
-                        }
-                        if(restOrders[0].orderId[o].scheduled == false){
-                            notScheduled.push(restOrders[0].orderId[o]);
-                        }
-
-                        if(restOrders[0].orderId[o].delivered){
-                            delivered.push(restOrders[0].orderId[o]);
-
-                        }
+                userService
+                    .getRestaurantId()
+                    .success(function (restaurantId) {
+                        vm.restaurantId = restaurantId;
+                        restaurantId=restaurantId.replace(/"/g,'');
 
 
 
 
-                    }
-                    vm.scheduled=scheduledOrder;
-                    vm.notScheduled=notScheduled;
-                    vm.delivered=delivered;
+                        var promise=orderTrackService.findOrdersForThisRestaurant(restaurantId);
+                        promise.success(function (restOrders) {
+                            if (restOrders.length>0){
+                                console.log(restOrders);
+                                vm.orders=restOrders[0].orderId;
+
+
+
+
+                                for (var o in restOrders[0].orderId){
+                                    if(restOrders[0].orderId[o].scheduled && restOrders[0].orderId[o].delivered==false ){
+                                        // console.log(restOrders[0]);
+                                        scheduledOrder.push(restOrders[0].orderId[o]);
+                                    }
+                                    if(restOrders[0].orderId[o].scheduled == false){
+                                        notScheduled.push(restOrders[0].orderId[o]);
+                                    }
+
+                                    if(restOrders[0].orderId[o].delivered){
+                                        delivered.push(restOrders[0].orderId[o]);
+
+                                    }
+
+
+
+
+                                }
+                                vm.scheduled=scheduledOrder;
+                                vm.notScheduled=notScheduled;
+                                vm.delivered=delivered;
 
 
 
 
 
 
-                    var promise=userService.findActiveDeliveryBoyByRestaurant(restaurantId);
-                    promise.success(function (delBoys) {
+                                var promise=userService.findActiveDeliveryBoyByRestaurant(restaurantId);
+                                promise.success(function (delBoys) {
 
-                        for(var rec in delBoys){
+                                    for(var rec in delBoys){
 
-                            dbNameAvail.push(delBoys[rec].firstName+' '+delBoys[rec].lastName);
+                                        dbNameAvail.push(delBoys[rec].firstName+' '+delBoys[rec].lastName);
 
-                        }
-                        vm.delBoys=delBoys;
-                        vm.db=dbNameAvail;
+                                    }
+                                    vm.delBoys=delBoys;
+                                    vm.db=dbNameAvail;
 
-                    }).error(function (err) {
-                        throwError("Unable to fetch delivery Boys");
-                    })
+                                }).error(function (err) {
+                                    throwError("Unable to fetch delivery Boys");
+                                })
 
 
-                }
+                            }
 
-                else {
-                    vm.message='No orders till now'
-                }
+                            else {
+                                vm.message='No orders till now'
+                            }
 
-            }).error(function (err) {
-                throwError("Unable to find orders");
-            }).error(function (err) {
+                        }).error(function (err) {
+                            throwError("Unable to find orders");
+                        }).error(function (err) {
 
-            })})
-          }init();
+                        })})})
+        }init();
 
+        function gotoDeliveryBoy(restId) {
+
+            $location.url('/user/restaurant/db');
+
+
+        }
 
         function assignDelivery (order) {
 
@@ -125,7 +138,7 @@
 
                 var promise=orderTrackService.assignDelivery(order);
                 promise.success(function (res) {
-                  order.scheduled=true;
+                    order.scheduled=true;
                     refresh();
                 }).error(function (err) {
                     vm.error="Unable to assign "+order._id+" to "+order.dbName;

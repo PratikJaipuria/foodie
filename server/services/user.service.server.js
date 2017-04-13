@@ -26,6 +26,8 @@ module.exports=function(app,model){
     app.put("/api/user/:uid/removeRestaurant/:rid", removeRestaurentFromOwner);
     app.put("/api/setrest/:rid", setRestaurantId);
     app.get("/api/getrest", getRestaurantId);
+    app.put("/api/setdbid/:dbid",setDBId);
+    app.get("/api/getdbid",getDBId);
     // app.put("/api/user/:uid/restaurants/")
 
 
@@ -63,9 +65,24 @@ module.exports=function(app,model){
         console.log("RESPONSE",restId);
         res.json(restId);
     }
+
+    var dbId;
+    function setDBId(req,res) {
+        restId = req.params['dbid'];
+        res.json(restId);
+    }
+
+    function getDBId(req,res) {
+
+        res.json(restId);
+    }
+
     // function isAdmin(req, res) {
     //     res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
     // }
+
+
+
 
     function login(req, res) {
         var user = req.user;

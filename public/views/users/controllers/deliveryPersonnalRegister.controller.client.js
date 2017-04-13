@@ -8,9 +8,9 @@
     function deliveryBoyRegisterController ($location, userService, $timeout, $routeParams, addressAPISearchService) {
         var vm = this;
         var role=$routeParams['role'];
-        var restaurantId = $routeParams['rst'];
-        vm.restaurantId = restaurantId;
-        console.log("Restaurant ID:",vm.restaurantId);
+        var restaurantId;// = $routeParams['rst'];
+
+
         vm.countries=['United States'];
         vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
 
@@ -22,18 +22,14 @@
         vm.createUser=createUser;
         function init() {
 
-            //
-            // var promise=userService.findCurrentUser();
-            // promise.success(function (user) {
-            //     vm.user = user;
-            //     vm.userId = user._id;
-            //     userId = user._id;
-            // }).error(function () {
-            //
-            // });
+            userService
+                .getRestaurantId()
+                .success(function (restaurantId) {
+                    vm.restaurantId = restaurantId;
+                    restaurantId = restaurantId.replace(/"/g, '');
 
+                });
         }init();
-
 
 
 
@@ -141,34 +137,31 @@
         }
 
 
-
         function createNewUser(user) {
-            if(role==0){
-                user.role='USER';
-            }
-            else if(role==1) {
-                user.role = 'OWNER';
-            }else if(role==2){
-                user.role = 'DELIVERYBOY';
-                var restID = [];
-                restID[0] = restaurantId;
-                user.restaurantID = restID;
-                console.log(user);
-            }
 
-            var promise=userService.createUser(user);
-            promise.success(function (user) {
-                 // console.log("CREATE DELI BOY",user);
-                if(user.role='DELIVERYBOY'){
-                    $location.url('/user/restaurant');
-                }else{
-                    $location.url('/user/profile');
-                }
+            user.role = 'DELIVERYBOY';
+            // var restID = [];
+            // restID[0] = restaurantId;
+            userService
+                .getRestaurantId()
+                .success(function (restaurantId) {
+                    vm.restaurantId = restaurantId;
+                    restaurantId = restaurantId.replace(/"/g, '');
 
-            }).error(function (err) {
-                throwError('Either this username or email already taken.');
-            })
+
+                    user.restaurantID = restaurantId;
+                    console.log(user);
+
+                    var promise=userService.createUser(user);
+                    promise.success(function (user) {
+                        $location.url('/user/restaurant');
+
+                    }).error(function (err) {
+                        throwError('Either this username or email already taken.');
+                    })
+                })
         }
+
 
         function throwError(errorMsg){
             vm.error=errorMsg;

@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <div class="navbar-text pull-right visible-xs">
-            <a href="#/user/restaurant/{{model.restaurantId}}/menu/new">
+            <a href="#/user/restaurant/menu/new">
                 <span class="glyphicon glyphicon-plus wbdv-text-clr-white" title="Add new menu"></span>
             </a>
         </div>
@@ -10,7 +10,7 @@
 
 
         <div class="navbar-text pull-right hidden-xs">
-            <a href="#/user/restaurant/{{model.restaurantId}}/menu/new">
+            <a href="#/user/restaurant/menu/new">
                 <span class="wbdv-text-clr-white" title="Add new menu">Add Item</span>
             </a>
         </div>
@@ -57,7 +57,7 @@
                                     {{category.entry.length}}
                                 </div>
                                 <div class="col-xs-3 pull-right">
-                                    <a href="#/user/restaurant/{{model.restaurantId}}/menu/category/{{category.group}}">
+                                    <a href="#/user/restaurant//menu/category/{{category.group}}">
                                         <span class="glyphicon glyphicon-folder-open wbdv-text-clr-white pull-right "></span>
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                                                 <span>{{entries[1]}}</span>
                                             </div>
                                             <div class="col-xs-3">
-                                                <a href="#/user/restaurant/{{model.restaurantId}}/menu/{{entries[2]}}/item">
+                                                <a ng-click="model.gotoItemEdit(entries[2])">
                                                     <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
                                                 </a>
                                             </div>

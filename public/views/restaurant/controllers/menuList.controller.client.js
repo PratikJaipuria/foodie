@@ -5,19 +5,16 @@
 
     function restaurantMenuController($routeParams,menuService,userService, $location){
         var vm = this;
-        var ids = ["1","2","3"];
-        vm.id=ids;
 
-        var userId //= $routeParams['uid'];
-        var restaurantId = $routeParams['rst'];
+        var userId; //= $routeParams['uid'];
+        vm.gotoItemEdit = gotoItemEdit;
 
-        // vm.userId = userId;
-        vm.restaurantId = restaurantId;
         var category = [{cat: '', items:[]}];
         var eachCat = {itemName: '',
                             price:0};
 
         function init(){
+            var restaurantId;
 
             var promise=userService.findCurrentUser();
             promise.success(function (user) {
@@ -25,6 +22,12 @@
                 vm.userId = user._id;
                 userId = user._id;
 
+
+                userService
+                    .getRestaurantId()
+                    .success(function (restaurantId) {
+                        vm.restaurantId = restaurantId;
+                        restaurantId=restaurantId.replace(/"/g,'');
 
                 menuService
                     .findMenuByRestaurantId(restaurantId)
@@ -50,11 +53,19 @@
 
 
                     });
-            });
+            });})
         }
         init();
 
 
 
+        function gotoItemEdit(menuid) {
+            menuService
+                .setMenuId(menuid)
+                .then(function () {
+                    $location.url('/user/restaurant/menu/item');
+                })
+
+        }
     }
 })();

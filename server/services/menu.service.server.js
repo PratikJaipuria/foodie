@@ -9,9 +9,24 @@ module.exports=function(app,model){
     app.get("/api/menuid/:mid",findMenuById);
     app.delete('/api/menuid/:mid',deleteMenuById);
     app.delete('/api/menucategory/:cat',deleteMenuCategory);
+    app.put("/api/setmenu/:mid", setMenuId);
+    app.get("/api/getmenu", getMenuId);
+
 
     var MenuModel = model.MenuModel;
     var RestaurantModel = model.RestaurantModel;
+
+    var menuId;
+    function setMenuId(req,res) {
+        menuId = req.params['mid'];
+        res.json(menuId);
+    }
+
+    function getMenuId(req,res) {
+
+        res.json(menuId);
+    }
+
 
 
     function deleteMenuCategory(req,res) {

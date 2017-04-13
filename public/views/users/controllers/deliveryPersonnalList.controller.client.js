@@ -8,10 +8,8 @@
     function deliveryBoyListController ($location, userService, $timeout, $routeParams) {
         var vm = this;
         // var userId //= $routeParams.uid;
-        var restaurantId = $routeParams.rst;
-        // vm.userId = userId;
-        vm.restaurantId = restaurantId;
-
+        var restaurantId;// = $routeParams.rst;
+        vm.editdb = editdb;
         function init() {
 
             // var promise=userService.findCurrentUser();
@@ -21,16 +19,37 @@
             //     userId = user._id;
 
             userService
-                .findDeliveryBoyByRestaurant(restaurantId)
-                .success(function (dbs) {
+                .getRestaurantId()
+                .success(function (restaurantId) {
+                    vm.restaurantId = restaurantId;
+                    restaurantId = restaurantId.replace(/"/g, '');
 
-                    console.log("LIST of Delivery Boys Controller", dbs);
-                    vm.dbs = dbs;
 
+                    userService
+                        .findDeliveryBoyByRestaurant(restaurantId)
+                        .success(function (dbs) {
+
+                            console.log("LIST of Delivery Boys Controller", dbs);
+                            vm.dbs = dbs;
+
+                        })
                 })
+
+
+
         }
 
         init();
+
+        function editdb(dbid) {
+            userService
+                .setDBId(dbid)
+                .then(function () {
+                    $location.url('/user/restaurant/editdb');
+                })
+
+
+        }
 
     }
     }) ();

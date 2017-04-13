@@ -9,8 +9,8 @@
 
         var vm = this;
         var userId; //= $routeParams['uid'];
-        var restaurantId = $routeParams['rst'];
-        var dbId = $routeParams['dbid'];
+        var restaurantId;// = $routeParams['rst'];
+        var dbId;// = $routeParams['dbid'];
         vm.countries=['United States'];
         vm.states=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
 
@@ -30,16 +30,28 @@
                 vm.userId = user._id;
                 userId = user._id;
 
-                var promise=userService.findUserByID(dbId);
-            promise.success(function (dbUser) {
-                vm.user=dbUser;
+                userService
+                    .getRestaurantId()
+                    .success(function (restaurantId) {
+                        // vm.restaurantId = restaurantId;
+                        restaurantId = restaurantId.replace(/"/g, '');
 
 
-            }).error(function (err) {
 
-            }).error(function (err) {
+                        userService
+                            .getDBId()
+                            .success(function (dbId) {
+                                dbId = dbId.replace(/"/g, '');
+                                var promise=userService.findUserByID(dbId);
+                                promise.success(function (dbUser) {
+                                    vm.user=dbUser;
 
-            })});
+
+                                }).error(function (err) {
+
+                                }).error(function (err) {
+
+                                })});})});
         } init();
 
 
