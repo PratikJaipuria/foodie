@@ -25,6 +25,7 @@ module.exports = function () {
         deleteOrderFromUser:deleteOrderFromUser,
         removeRestaurentFromOwner:removeRestaurentFromOwner,
         findUsers:findUsers,
+        findUserByGoogleId: findUserByGoogleId
 
 
 
@@ -32,6 +33,10 @@ module.exports = function () {
     };
     return api;
 
+
+    function findUserByGoogleId(googleId) {
+        return UserModel.findOne({'google.id': googleId});
+    }
 
 
     function updateAvailabiltyofDB(userId,user) {

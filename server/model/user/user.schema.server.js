@@ -21,7 +21,11 @@ module.exports=function(){
         pin:String,
         OrderId: [{type: mongoose.Schema.Types.ObjectId, ref: 'OrderModel'}],
 
-        restaurantID: [{type: String}]
+        restaurantID: [{type: String}],
+        google: {
+            id: String,
+            token: String
+        }
 
 
     }, {collection: 'userdb'});

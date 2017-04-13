@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var passport      = require('passport');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 app.use(session({
     secret: 'this is the secret', // process.env.SESSION_SECRET
