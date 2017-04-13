@@ -136,48 +136,55 @@
 
             var promise=restaurantService.findAllPartnerResturantsInThisLocation(search);
             promise.success(function (partnerResturantsList) {
-                var todayDate=new Date();
-                var todayDay=weekday[todayDate.getDay()];
-
-
-                for (var r in partnerResturantsList){
-
-                    if (partnerResturantsList[r].hours[todayDay].length <= 0) {
-                        partnerResturantsList[r].open = false;
-
-                    } else {
-                        var data = partnerResturantsList[r].hours[todayDay];
-                        var startDateAndTime=new Date();
-                        startDateAndTime.setHours(data[1]);
-                        startDateAndTime.setMinutes(data[2]);
-                        startDateAndTime.setMilliseconds(0);
-
-                        var closeDateAndTime=new Date();
-                        closeDateAndTime.setHours(data[3]);
-                        closeDateAndTime.setMinutes(data[4]);
-                        closeDateAndTime.setMilliseconds(0);
-
-                        var currentDateAndTime=new Date();
 
 
 
+                    var todayDate=new Date();
+                    var todayDay=weekday[todayDate.getDay()];
 
 
-                        if (startDateAndTime.getTime() < currentDateAndTime.getTime() &&
-                        closeDateAndTime.getTime()>currentDateAndTime.getTime()) {
-                            partnerResturantsList[r].open = true;
-                        }
-                        else {
+                    for (var r in partnerResturantsList){
+
+                        if (partnerResturantsList[r].hours[todayDay].length <= 0) {
                             partnerResturantsList[r].open = false;
+
+                        } else {
+                            var data = partnerResturantsList[r].hours[todayDay];
+                            var startDateAndTime=new Date();
+                            startDateAndTime.setHours(data[1]);
+                            startDateAndTime.setMinutes(data[2]);
+                            startDateAndTime.setMilliseconds(0);
+
+                            var closeDateAndTime=new Date();
+                            closeDateAndTime.setHours(data[3]);
+                            closeDateAndTime.setMinutes(data[4]);
+                            closeDateAndTime.setMilliseconds(0);
+
+                            var currentDateAndTime=new Date();
+
+
+
+
+
+                            if (startDateAndTime.getTime() < currentDateAndTime.getTime() &&
+                                closeDateAndTime.getTime()>currentDateAndTime.getTime()) {
+                                partnerResturantsList[r].open = true;
+                            }
+                            else {
+                                partnerResturantsList[r].open = false;
+                            }
+
+
+
                         }
                         partnerResturantsList[r].apiKey = '';
                         partnerResturantsList[r].apiKey = partnerResturantsList[r]._id;
-
-
                     }
-                }
 
-                allResturants=partnerResturantsList;
+                    allResturants=partnerResturantsList;
+
+
+
 
 
 
@@ -299,6 +306,7 @@
                     }
 
                 }).error(function (err) {
+                    console.log(err);
 
                     throwError("We are unable to fetch Menu for this restaurant right now");
                 })

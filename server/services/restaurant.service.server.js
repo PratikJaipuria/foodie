@@ -171,12 +171,13 @@ module.exports=function(app,model) {
         RestaurantModel.findRestaurantById(resturantDetails._id)
             .then(function (resturantObj) {
                 if(resturantObj){
-                    RestaurantModel.updateRestaurant(resturantObj._id,resturantDetails)
-                        .then(function (response) {
-                            res.sendStatus(200);
-                        },function (err) {
-                            res.sendStatus(404);
-                        })
+                    // RestaurantModel.updateRestaurant(resturantObj._id,resturantDetails)
+                    //     .then(function (response) {
+                    //         res.sendStatus(200);
+                    //     },function (err) {
+                    //         res.sendStatus(404);
+                    //     })
+                    res.sendStatus(200);
                 }
                 else{
                     RestaurantModel.createRestaurant(resturantDetails)
