@@ -3,7 +3,7 @@
         .module("ProjectMaker")
         .controller("restaurantOrderTrackController", restaurantOrderTrackController);
 
-    function restaurantOrderTrackController(orderTrackService,userService,restaurantService, $location, $routeParams, $timeout, viewport){
+    function restaurantOrderTrackController(orderTrackService,userService,restaurantService, $location, $routeParams, $timeout){
         var state=0;
         var vm =this;
         var userId //= $routeParams['uid'];
