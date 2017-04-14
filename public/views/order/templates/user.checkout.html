@@ -59,7 +59,7 @@
                     </div>
 
                     <ul class="list-group wbdv-mar-top-15">
-                        <li class="list-group-item" style="color: black;">
+                        <li class="list-group-item" style="background-color:rgb(189, 195, 199);color: black;">
                             <div class="row">
                                 <div class="col-xs-5">
                                     <span>Items</span>
@@ -68,7 +68,7 @@
                                     <span>UnitPrice</span>
                                 </div>
                                 <div class="col-xs-2">
-                                    <span>Quantity</span>
+                                    <span>Qty</span>
                                 </div>
                                 <div class="col-xs-3">
                                     <span>Total ($)</span>
@@ -97,7 +97,7 @@
                     </ul>
 
 
-                    <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color:dimgray  ;height: 60px;">
+                    <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color:rgb(30, 139, 195);height: 60px;">
                         <span style="padding-top: 25px;margin-left: auto;  margin-right: auto;  display: table;">
                             <span>
                                <strong>Total:</strong>
@@ -120,10 +120,11 @@
                                                ng-model="model.address"
                                                name="address"
                                                value="Existing"
-                                               checked> Existing DeliveryAddress
+                                               checked
+                                        style="margin-left:15px;"> Existing Delivery Address
                                     </div>
                                     <div class="row " ng-if="model.address=='Existing'">
-                                        <div class="col-xs-6 pull-left">
+                                        <div class="col-xs-12">
                                             <select id="existingAddress"
                                                     class="form-control"
                                                     ng-model="model.selectedAddress"
@@ -138,7 +139,11 @@
 
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="wbdv-mar-top-10 row">
-                                        <input  type="radio" ng-model="model.address" name="address" value="New"> New Delivery Address
+                                        <input  type="radio"
+                                                ng-model="model.address"
+                                                name="address"
+                                                value="New"
+                                                style="margin-left:15px;"> New Delivery Address
                                     </div>
                                     <div class="row wbdv-mar-top-5"  ng-if="model.address=='New'">
                                         <!--<div class="col-sm-6 col-xs-12 ">-->
@@ -205,7 +210,7 @@
 
 
 
-            <div class="wbdv-mar-bottom-60 wbdv-pad-left-right wbdv-mar-top-25">
+            <div class="wbdv-mar-bottom-60  wbdv-mar-top-25">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
                         <a ng-click="model.purchase()" class="btn btn-success btn-block">ORDER</a>

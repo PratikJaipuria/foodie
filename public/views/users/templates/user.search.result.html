@@ -1,15 +1,15 @@
-<nav class="navbar navbar_container navbar-fixed-top ">
+<nav class="navbar navbar_container navbar-fixed-top webdev-margin-searchreslt ">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4 pull-left hidden-xs">
                 <div class="navbar-header navbar-link pull-left">
-                    <span class="navbar-brand wbdv-text-clr-white "> Resturants </span>
+                    <span class="navbar-brand wbdv-text-clr-white "> Restaurants </span>
                 </div>
             </div>
-            <div class="col-sm-4 col-xs-12 search-bar-pad">
+            <div class="col-sm-4 col-xs-6 search-bar-pad">
                 <input placeholder="Restaurant Name" type="text"  ng-model="model.search.name" class="form-control pull-left">
             </div>
-            <div class="col-sm-4 col-xs-12 search-bar-pad">
+            <div class="col-sm-4 col-xs-6 search-bar-pad">
 
                 <input list="addressList" placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
                        type=" "  ng-model="model.search.address"
@@ -29,16 +29,16 @@
 
 
 
-<div class="container pageBackground wbdv-mar-bottom-60" id="mainCOntainer" style=" display: none;">
+<div class="container searchResultPageBackground wbdv-mar-bottom-60" id="mainCOntainer" style=" display: none;">
     <div class="wbdv-mar-top-65 container">
-        <div class="row blackContainerList container" style=" background-color: black">
+        <div class="row  container" >
             <div ng-show="model.error" class="alert alert-danger" role="alert">
                 {{model.error}}
             </div>
 
-            <div ng-if="model.restaurantFound">
-                <div class="col-sm-4 hidden-xs contentContainer wbdv-mar-bottom-60" >
-                    <div class="menudiv">
+            <div ng-if="model.restaurantFound" >
+                <div class="col-sm-3 hidden-xs wbdv-mar-bottom-60"  >
+                    <div class="filtermenudiv">
                         <div class="hotelname" style="text-align: center">Filters</div>
                         <hr>
                         <div>
@@ -79,7 +79,7 @@
 
 
                         </div>
-                        <hr>
+
 
                     </div>
 
@@ -92,30 +92,36 @@
 
                 </div>
 
-                <div class="col-sm-8 col-xs-12 contentContainer">
+                <div class="col-sm-8 col-xs-12 wbdv-searchPageBlackContainer">
                     <div class="row "  >
                         <div ng-repeat="restaurant in model.restaurants" >
                             <div class="menudiv">
                                 <div class="row wbdv-rest-header">
-
-
-                                    <div class="col-sm-1 col-xs-1 pull-left wbdv-pad-0">
-                                        <a href="{{restaurant.url}}">
-                                            <img src="{{restaurant.logoUrl}}" class="wbdv-rest-logo pull-left" >
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-7 col-xs-7 hotelname pull-left wbdv-left-margin-52"   >
-                                        <a href="{{restaurant.url}}">{{restaurant.name}}
-                                        </a>
-                                    </div>
-
-                                    <div ng-if="restaurant.apiKey">
+                                    <div class="col-sm-4 col-xs-4 pull-right" style="padding-right: 0px;">
                                         <div ng-click="model.viewMenu(restaurant.apiKey,restaurant)"
-                                             class=" wbdv-rest-menu col-sm-4s col-xs-4 pull-right btn rating">
+                                             class=" wbdv-rest-menu  btn rating pull-right">
                                             <span class="wbdv-text-align-center">Menu</span>
 
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-1 col-xs-3 pull-left wbdv-pad-0">
+                                        <a href="{{restaurant.url}}">
+                                            <img src="{{restaurant.logoUrl}}" class="wbdv-rest-logo pull-left" >
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-5 pull-left" style="text-align: left">
+                                        <a class="hotelnamebrand" href="{{restaurant.url}}">{{restaurant.name}}
+                                        </a>
+                                    </div>
+
+                                    <!--<div class="col-sm-4 col-xs-4 pull-right" style="padding-right: 0px;">-->
+                                        <!--<div ng-click="model.viewMenu(restaurant.apiKey,restaurant)"-->
+                                             <!--class=" wbdv-rest-menu  btn rating pull-right">-->
+                                            <!--<span class="wbdv-text-align-center">Menu</span>-->
+
+                                        <!--</div>-->
+                                    <!--</div>-->
                                 </div>
 
                                 <div class="row wbdv-pad-left-right wbdv-mar-top-10">

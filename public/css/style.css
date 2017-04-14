@@ -34,7 +34,7 @@ input{
 
 .blackContainerList{
     margin-top: 30px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
 }
 .wbdv-speciality-remove{
     position: relative;
@@ -52,7 +52,7 @@ padding: 0px;
 }
 
 .wbdv-avail-true{
-    color: green !important;
+    color: white !important;
     font-weight: bolder;
 }
 
@@ -141,6 +141,9 @@ padding: 0px;
 }
 
 
+.webdev-margin-searchreslt{
+    padding-bottom:px;
+}
 
 
 .search-bar-margin{
@@ -150,6 +153,7 @@ padding: 0px;
 
 .search-bar-pad{
     padding-top: 9px;
+
 }
 
 
@@ -160,10 +164,21 @@ padding: 0px;
 /*}*/
 
 .rating{
-    margin-top: 1px;
-    margin-right: 18px;
+    /*margin-top: 1px;*/
+    /*margin-right: 18px;*/
     background-color:orange;
     font-weight: bold;
+
+}
+
+.filtermenudiv{
+    /*border-style: solid;*/
+    /*border-color: red;*/
+    border-style: groove;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    /*background-color: rgb();*/
+    background: rgba(0, 0, 0, 0.6);
 
 }
 
@@ -176,7 +191,17 @@ padding: 0px;
     border-radius: 10px;
 
 
+
 }
+
+.hotelnamebrand{
+    /*color: black;*/
+    color: orangered !important;
+    font-weight: bold;
+    font-family: Calibri;
+    font-size: x-large;
+}
+
 .hotelname{
     /*color: black;*/
     color: #ffffff;
@@ -191,7 +216,7 @@ padding: 0px;
     /*font-color: darkred;*/
     color: whitesmoke;
     font-weight: bold;
-    font-family: Calibri;
+
     /*font-size: x-large;*/
 }
 
@@ -199,16 +224,17 @@ padding: 0px;
 
 .filter-headings{
     color: grey;
-    font-family: "Californian FB";
+    /*font-family: "Californian FB";*/
     font-size: large;
     font-weight: bold;
     margin-left: 20px;
+    color: white;
 }
 
 .filter-items{
 
-    /*color: cornflowerblue;*/
-    font-family: "sans-serif";
+    color: white;
+    /*font-family: "sans-serif";*/
     margin:5px;
     margin-left: 40px;
 }
@@ -339,9 +365,39 @@ body {
     /*width: 50%;*/
 /*}*/
 
+.pageBackgroundlogin{
+    background: url("../images/8.jpeg");
+    background-size: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    /*margin-top: 50px;*/
+}
+.searchResultPageBackground {
+
+    background: url('../images/redBackground.gif');
+    /*background-size: cover;*/
+    position: absolute;
+    top:0;
+    left:0;
+    min-width: 100%;
+    min-height: 100%;
+    /*margin-top: 50px;*/
+    /*color: #ffffff;*/
+}
+
+.wbdv-searchPageBlackContainer{
+
+    margin-top: 0px;
+    background: rgba(0, 0, 0, 0.7);
+
+}
+
 .pageBackground {
 
-    background: url('../images/10.jpg');
+    background: url('../images/redBackground.gif');
     background-size: cover;
     position: absolute;
     top:0;
