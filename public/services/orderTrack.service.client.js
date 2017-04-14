@@ -13,7 +13,8 @@
         "assignDelivery":assignDelivery,
         "orderedDelivered":orderedDelivered,
         "findOrders":findOrders,
-        "deleteOrder":deleteOrder
+        "deleteOrder":deleteOrder,
+
     };
 
     return api;
@@ -41,6 +42,8 @@
         function deleteOrder(orderId) {
             return $http.delete('/api/order/'+orderId);
         }
+
+
 
     }
 

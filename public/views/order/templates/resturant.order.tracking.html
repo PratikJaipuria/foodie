@@ -58,24 +58,24 @@
 
 
 
-        <div id="mySidenav" class="sidenav">
-            <a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white"  ng-click="model.refresh()">All Orders</a>
-            <a data-target="#ordersPending" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Pending</a>
-            <a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Scheduled</a>
-            <a data-target="#ordersDelivered" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a>
-        </div>
+        <!--<div id="mySidenav" class="sidenav">-->
+            <!--<a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white"  ng-click="model.refresh()">All Orders</a>-->
+            <!--<a data-target="#ordersPending" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Pending</a>-->
+            <!--<a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Scheduled</a>-->
+            <!--<a data-target="#ordersDelivered" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a>-->
+        <!--</div>-->
 
+        <!--model.refresh()-->
 
-
-        <ul class="nav nav-pills nav-justified hidden-xs" style="color:white; background-color: black;">
-            <li><a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white" ng-click="model.refresh()">All Orders</a></li>
+        <ul id="mySidenav" class="nav nav-pills nav-justified  sidenav" style="color:white; background-color: black;">
+            <li><a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white" ng-click="model.getActiveTab()">All Orders</a></li>
             <li  class="active"> <a data-target="#ordersPending"  class="wbdv-text-clr-white"  data-toggle="tab" ng-click="model.refresh">Orders Pending</a></li>
             <li><a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white" ng-click="model.refresh()">Orders Scheduled</a></li>
             <li><a data-target="#ordersDelivered" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a></li>
         </ul>
 
         <div class="tab-content clearfix">
-            <div class="tab-pane" id="allOrders">
+            <div class  ="tab-pane" id="allOrders">
                 <div class="row  list-group wbdv-mar-top-15"  style="text-align: center">ALL ORDERS </div>
                 <div ng-repeat="order in model.orders" class=" prevent-overflow">
                     <div class="row">
@@ -85,8 +85,21 @@
                                 style="background-color: black; color: white" data-target="#{{order._id}}"
                                 data-parent="#menu">
                                 {{order.userFullName}}
-                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+
+                                <div ng-if="order.delivered" class="col-xs-4 pull-right">
+                                    <span class="glyphicon glyphicon-ok-circle pull-right deliveredGlyphicon"></span>
+                                </div>
+
+                                <div ng-if="order.delivered==false && order.scheduled==true" class="col-xs-4 pull-right">
+                                    <span class="glyphicon glyphicon-send pull-right sendGlyphicon"></span>
+                                </div>
+
+                                <div ng-if="order.scheduled==false && order.delivered==false" class="col-xs-4 pull-right">
+                                    <span class="glyphicon glyphicon-hourglass pull-right"  style="color: whitesmoke;font-size: 25px;"></span>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-xs-12 col-sm-12">
                             <div id="{{order._id}}" class="collapse wbdv-text-clr-white">
                                 <div class=" small"  style="background-color: black">
@@ -101,8 +114,8 @@
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
                                                 <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
-                                                <div class="col-xs-5 col-sm-3 rightinfotext"
-                                                     style="background-color: green;">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext amountEntry">
+                                                    <span class="glyphicon glyphicon-usd"></span> {{order.totalAmount}}</div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
                                                 <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
                                             </div>
@@ -133,7 +146,7 @@
 
                                                 </div>
 
-                                                <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                <div class="col-xs-12 col-sm-3 wbdv-mar-top-10">
                                                     <select
                                                             id="delBoy"
                                                             name="delBoy"
@@ -144,8 +157,8 @@
                                                     </select>
                                                 </div>
 
-                                                <div ng-show="order.delivered==false" class=" col-xs-12 col-sm-2 wbdv-mar-top-3">
-                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary">Assign</a>
+                                                <div ng-show="order.delivered==false" class="col-xs-12 col-sm-2 wbdv-mar-top-3">
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block wbdv-text-clr-white assignButton">Assign</a>
                                                 </div>
                                             </div>
 
@@ -173,7 +186,7 @@
                                      style="background-color: black; color: white" data-target="#pending{{order._id}}"
                                      data-parent="#menu">
                                     {{order.userFullName}}
-                                    <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                                    <span class="glyphicon glyphicon-hourglass pull-right"></span></div>
                             </div>
                         </div>
 
@@ -192,8 +205,8 @@
                                                     <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
                                                     <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
                                                     <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
-                                                    <div class="col-xs-5 col-sm-3 rightinfotext"
-                                                         style="background-color: green; color: black; font-size: 20px;">{{order.totalAmount}}</div>
+                                                    <div class="col-xs-5 col-sm-3 rightinfotext amountEntry">
+                                                        <span class="glyphicon glyphicon-usd"></span>{{order.totalAmount}}</div>
                                                     <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
                                                     <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
                                                 </div>
@@ -224,7 +237,7 @@
 
                                                     </div>
 
-                                                    <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                    <div class="col-xs-12 col-sm-3 wbdv-mar-top-10">
                                                         <select
                                                                 id="pendingdelBoy"
                                                                 name="delBoy"
@@ -236,7 +249,7 @@
                                                 </div>
 
                                                 <div ng-show="order.delivered==false" class=" col-xs-12 col-sm-2 wbdv-mar-top-3">
-                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary">Assign</a>
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block wbdv-text-clr-white assignButton">Assign</a>
                                                 </div>
 
 
@@ -260,7 +273,7 @@
                                  style="background-color: black; color: white" data-target="#scheduled{{order._id}}"
                                  data-parent="#menu">
                                 {{order.userFullName}}
-                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+                                <span class="glyphicon glyphicon-send pull-right sendGlyphicon"></span></div>
                         </div>
                     </div>
 
@@ -268,7 +281,7 @@
                         <div class="col-xs-12 col-sm-12">
                             <div id="{{'scheduled'+order._id}}" class="collapse wbdv-text-clr-white">
                                 <div class=" small"  style="background-color: black">
-                                    <div class="row">
+                                    <!--<div class="row">-->
 
                                         <div class="col-xs-12 col-sm-12 prevent-overflow">
                                             <div class="row form-group"  style="border-bottom: double">
@@ -279,17 +292,17 @@
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
                                                 <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
-                                                <div class="col-xs-5 col-sm-3 rightinfotext"
-                                                     style="background-color: green; color: black; font-size: 20px;">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext amountEntry">
+                                                    <span class="glyphicon glyphicon-usd">{{order.totalAmount}}</span></div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
                                                 <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
                                             </div>
 
-                                            <div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">
+                                            <!--<div class="row wbdv-mar-top-5 form-group prevent-overflow" style="background-color: #888888;">-->
                                                 <div class="col-xs-12 col-sm-12 leftinfotext">Orders :</div>
 
                                                 <div class="col-xs-12 col-sm-12 leftinfotext" ng-repeat="item in order.items">
-                                                    <div class="row" style="border-bottom: dotted; ">
+                                                    <!--<div class="row" >-->
                                                         <div class="col-xs-5 col-sm-2">
                                                             item:
                                                         </div>
@@ -309,10 +322,10 @@
                                                             {{item.totCount}}
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                <!--</div>-->
+                                            <!--</div>-->
                                             <div class="row wbdv-mar-top-5 wbdv-mar-bottom-10">
-                                                <div class="col-xs-12 col-sm-6 wbdv-mar-top-10">
+                                                <div class="col-xs-12 col-sm-3 wbdv-mar-top-10">
                                                     <select
                                                             id="scheduleddelBoy"
                                                             name="delBoy"
@@ -324,14 +337,14 @@
                                                 </div>
 
                                                 <div ng-show="order.delivered==false" class=" col-xs-12 col-sm-2 wbdv-mar-top-3">
-                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block btn-primary"> Assign</a>
+                                                    <a ng-click=" model.assignDelivery(order)" class="btn btn-block wbdv-text-clr-white assignButton"> Assign</a>
                                                 </div>
                                             </div>
 
 
                                         </div>
 
-                                    </div>
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
@@ -349,7 +362,14 @@
                                  style="background-color: black; color: white" data-target="#delivered{{order._id}}"
                                  data-parent="#menu">
                                 {{order.userFullName}}
-                                <span class="glyphicon glyphicon-envelope pull-right"></span></div>
+
+
+                                <span class="glyphicon glyphicon-ok-circle
+                                            pull-right
+                                            deliveredGlyphicon" ></span>
+
+                            </div>
+
                         </div>
                     </div>
 
@@ -368,8 +388,8 @@
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Phone :</div>
                                                 <div class="col-xs-7 col-sm-3 rightinfotext">{{order.customerPhone}}</div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Amount :</div>
-                                                <div class="col-xs-5 col-sm-3 rightinfotext"
-                                                     style="background-color: green; color: black; font-size: 20px;">{{order.totalAmount}}</div>
+                                                <div class="col-xs-5 col-sm-3 rightinfotext amountEntry">
+                                                    <span class="glyphicon glyphicon-usd"></span>{{order.totalAmount}}</div>
                                                 <div class="col-xs-5 col-sm-3 leftinfotext">Address :</div>
                                                 <div class="col-xs-7 col-sm-9 rightinfotext">{{order.deliverAddress}}</div>
                                             </div>

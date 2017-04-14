@@ -17,7 +17,8 @@
             "deleteRestaurant":deleteRestaurant,
             "createAPIResturantIfNotExist":createAPIResturantIfNotExist,
             "findAllPartnerResturantsInThisLocation":findAllPartnerResturantsInThisLocation,
-            "findRestaurant":findRestaurant
+            "findRestaurant":findRestaurant,
+            "deleteOrderFromConsole":deleteOrderFromConsole
 
         };
 
@@ -58,6 +59,9 @@
 
         function findRestaurant() {
             return $http.get('/api/restaurants');
+        }
+        function deleteOrderFromConsole(restaurantId, OrderId) {
+            return $http.put("/api/restaurants/"+restaurantId+"/order/"+OrderId);
         }
     }
 })();

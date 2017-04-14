@@ -64,14 +64,14 @@
 
 
                         <div ng-if="order.delivered" class="col-xs-6 pull-right">
-                            <span class="glyphicon glyphicon-ok-circle pull-right" style="color: green; font-size: 25px;"></span>
+                            <span class="glyphicon glyphicon-ok-circle pull-right deliveredGlyphicon"></span>
 
                         </div>
 
 
 
                         <div ng-if="order.delivered==false && order.scheduled==true" class="col-xs-6 pull-right">
-                            <span class="glyphicon glyphicon-send pull-right" style="color: red;font-size: 25px;"></span>
+                            <span class="glyphicon glyphicon-send pull-right sendGlyphicon"></span>
                         </div>
 
                         <div ng-if="order.scheduled==false && order.delivered==false" class="col-xs-6 pull-right">
@@ -151,7 +151,7 @@
 
 
                         <div ng-if="order.delivered" class="col-xs-6 pull-right">
-                            <span class="glyphicon glyphicon-ok-circle pull-right" style="color: green; font-size: 25px;"></span>
+                            <span class="glyphicon glyphicon-ok-circle pull-right deliveredGlyphicon"></span>
                         </div>
 
                     </div>
@@ -227,11 +227,11 @@
 
 
                         <div ng-if="order.scheduled==false && order.delivered==false " class="col-xs-2 pull-right">
-                             <i class="fa fa-spinner pull-right" aria-hidden="true" style="color: red;font-size: 25px;"></i>
+                             <i class="glyphicon glyphicon-hourglass pull-right" aria-hidden="true" style="font-size: 25px;"></i>
                         </div>
 
                         <div ng-if="order.scheduled==true && order.delivered==false" class="col-xs-2 pull-right">
-                            <span class="glyphicon glyphicon-send pull-right" style="color: red;font-size: 25px;"></span>
+                            <span class="glyphicon glyphicon-send pull-right sendGlyphicon"></span>
                         </div>
                     </div>
 

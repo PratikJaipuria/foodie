@@ -3,7 +3,7 @@
         .module("ProjectMaker")
         .controller("restaurantOrderTrackController", restaurantOrderTrackController);
 
-    function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
+    function restaurantOrderTrackController(orderTrackService,userService,restaurantService, $location, $routeParams, $timeout, viewport){
         var state=0;
         var vm =this;
         var userId //= $routeParams['uid'];
@@ -24,10 +24,14 @@
         vm.openNav=openNav;
         vm.closeNav=closeNav;
         vm.hamOpenNav=hamOpenNav;
+        vm.getActiveTab=getActiveTab;
+
 
         // vm.userId = userId;
         // vm.restaurantId = restaurantId;
         function init() {
+
+
 
             var dbNameAvail=[];
             vm.scheduled=[];
@@ -211,6 +215,13 @@
             document.getElementById("mySidenav").style.width = "0";
             state=0;
         }
+
+        function getActiveTab() {
+
+           console.log( $('.nav-tabs .active').text());
+        }
+
+
 
     }
 })();

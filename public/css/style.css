@@ -21,10 +21,31 @@
     padding-top: 60px;
 }
 
+.assignButton{
+  margin-bottom:10px;
+    background-color: steelblue;
+
+}
+
+.sendGlyphicon{
+    color: red;font-size: 25px;
+}
+
+.deliveredGlyphicon{
+    color: green;font-size: 25px;
+}
+
+.amountEntry{
+
+    background-color:rgb(79, 84, 40) ;
+    color: black;
+    font-size: 15px;
+}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 15px;
     color: white;
     display: block;
     transition: 0.3s;
@@ -43,7 +64,7 @@
 }
 
 .nav-pills li.active a, .nav-pills li.active a:focus, .nav-pills li.active a:hover{
-    background-color: orange;
+    background-color: steelblue;
 }
 
 .dropdown-menu li a{
