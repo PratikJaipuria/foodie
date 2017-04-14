@@ -30,6 +30,7 @@ module.exports=function(app,model){
     app.get("/api/getrest", getRestaurantId);
     app.put("/api/setdbid/:dbid",setDBId);
     app.get("/api/getdbid",getDBId);
+
     // app.put("/api/user/:uid/restaurants/")
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));

@@ -2,7 +2,7 @@
     angular
         .module("ProjectMaker")
         .controller("restaurantSearchMenuController", restaurantSearchMenuController);
-    function restaurantSearchMenuController(userService,restaurantService,restaurantSearchMenuService, menuService, sessionHolderService,$location, $routeParams, $timeout){
+    function restaurantSearchMenuController(userService,restaurantService,menuService, sessionHolderService,$location, $routeParams, $timeout){
 
 
         var vm = this;
@@ -104,15 +104,20 @@
         function searchMenuForThisRestaurant () {
             // var restDetails = sessionHolderService.getRestToGetMenu();
 
-            var promise = restaurantSearchMenuService.searchMenu(restaurantId);
-            promise
-                .success(function (response) {
-                    // console.log(response);
-                    vm.menu=response;
+            var promise = restaurantService.getRestaurantKeys()
+            promise.success(function (keys) {
 
-                }).error(function (err) {
+                var promise = restaurantService.searchMenu(keys,restaurantId);
+                promise
+                    .success(function (response) {
+                        // console.log(response);
+                        vm.menu=response;
 
+                    }).error(function (err) {
+
+                })
             })
+
         }
 
         function increaseItemCount( itemKey,   itemName, price) {

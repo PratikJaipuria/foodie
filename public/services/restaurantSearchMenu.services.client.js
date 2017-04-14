@@ -17,16 +17,18 @@
 
 
 
-
         function searchMenu(restaurantId) {
 
-            var token='6fb883f6655311b6';
+            // var token='6fb883f6655311b6';
             return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/'+restaurantId+'/menu/?access-token=6fb883f6655311b6');
 
 
-          //  https://api.eatstreet.com/publicapi/v1/restaurant/90fd4587554469b1f15b4f2e73e761809f4b4bcca52eedca/menu?includeCustomizations=false
+            //  https://api.eatstreet.com/publicapi/v1/restaurant/90fd4587554469b1f15b4f2e73e761809f4b4bcca52eedca/menu?includeCustomizations=false
 
         }
+
+
+
     }
 
 })();

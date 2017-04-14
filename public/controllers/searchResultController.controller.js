@@ -2,7 +2,7 @@
     angular
         .module("ProjectMaker")
         .controller("searchResultController", searchResultController);
-    function searchResultController(userService, menuService, SearchService,restaurantService,addressAPISearchService, $location, $routeParams, $timeout, $filter){
+    function searchResultController(userService,  restaurantService,addressAPISearchService, $location, $routeParams, $timeout, $filter){
 
 
         var vm = this;
@@ -76,20 +76,7 @@
         }
         init();
 
-        function loadAddressFromAPI(addressTextSoFar) {
 
-            var formattedSpace=vm.search.address.replace(/\s+/g,'+');
-            var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
-
-            var promise=addressAPISearchService.autoCompleteAddress(formatedSpaceAndPound);
-            promise.success(function (addr) {
-                vm.addressFromAPI=addr.suggestions;
-
-            }).error(function (err) {
-                vm.error=err;
-            })
-
-        }
 
 
 
@@ -199,15 +186,20 @@
         function searchAPIRestaurants(search) {
             if (search.address){
 
-                var promise = SearchService.searchRestaurant(search.name, search.address);
-                promise
-                    .success(function (response) {
+                var promise = restaurantService.getRestaurantKeys()
+                promise.success(function (keys) {
 
-                        formatData(response.restaurants);
+                    var promise = restaurantService.searchRestaurant(keys,search.name, search.address);
+                    promise
+                        .success(function (response) {
 
-                    }).error(function (err) {
+                            formatData(response.restaurants);
 
+                        }).error(function (err) {
+
+                    })
                 })
+
             }
             else{
                 throwError('Please enter location.');
@@ -393,6 +385,25 @@
             vm.restaurants=backupRetrievedResturants;
             vm.restaurants=$filter('filter')(vm.restaurants, {name: restObj});
             restaurantsFoundInSearch();
+        }
+
+        function loadAddressFromAPI(addressTextSoFar) {
+            var formattedSpace=vm.search.address.replace(/\s+/g,'+');
+            var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+
+            var promise = addressAPISearchService.getAuthkeys();
+            promise.success(function (keys) {
+
+                var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
+                promise.success(function (addr) {
+                    vm.addressFromAPI=addr.suggestions;
+
+                }).error(function (err) {
+                    vm.error=err;
+                })
+
+            });
+
         }
 
 

@@ -18,13 +18,54 @@
             "createAPIResturantIfNotExist":createAPIResturantIfNotExist,
             "findAllPartnerResturantsInThisLocation":findAllPartnerResturantsInThisLocation,
             "findRestaurant":findRestaurant,
-            "deleteOrderFromConsole":deleteOrderFromConsole
+            "deleteOrderFromConsole":deleteOrderFromConsole,
+            "searchMenu":searchMenu,
+            "getRestaurantKeys":getRestaurantKeys,
+            "searchRestaurant":searchRestaurant
 
         };
 
 
         return api;
 
+
+        function getRestaurantKeys() {
+
+            return $http.get('/api/getRestaurantKeys');
+        }
+
+
+
+        function searchRestaurant(keys,restName,restAdd) {
+
+            var token=keys.token;
+            var formattedRestAdd=restAdd.split(' ').join('+');
+
+            if (restName && restAdd){
+                var formattedRestName=restName.split(' ').join('+');
+
+                return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+token+'&method=both&search='+formattedRestName+'&street-address='+ formattedRestAdd);
+            }
+            else{
+
+                return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+token+'&method=both&street-address='+ formattedRestAdd);
+            }
+
+
+        }
+
+
+
+
+        function searchMenu(keys,restaurantId) {
+            var token=keys.token;
+
+            return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/'+restaurantId+'/menu/?access-token='+token);
+
+
+            //  https://api.eatstreet.com/publicapi/v1/restaurant/90fd4587554469b1f15b4f2e73e761809f4b4bcca52eedca/menu?includeCustomizations=false
+
+        }
 
         function deleteRestaurant(restaurantId) {
             return $http.delete('/api/restaurant/'+restaurantId);

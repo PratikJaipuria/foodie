@@ -13,6 +13,7 @@ module.exports=function(app,model) {
     app.get('/api/restaurants', findRestaurants);
     app.put('/api/restaurants/:restaurantId/order/:oId',deleteOrderFromResturant);
     app.get("/api/restaurant/:restaurantId/db" ,findDeliveryBoyForThisRestaurant);
+    app.get("/api/getRestaurantKeys",getRestaurantKeys);
 
 
 
@@ -26,6 +27,16 @@ module.exports=function(app,model) {
     var stateList=["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",];
     var allResturants=[];
 
+
+
+
+    function getRestaurantKeys(req,res) {
+        var eatStreetConfig = {
+            token : "6fb883f6655311b6"
+
+        };
+        res.json(eatStreetConfig);
+    }
 
 
     function deleteRestaurant(req,res) {
