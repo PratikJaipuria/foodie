@@ -35,6 +35,10 @@
     color: green;font-size: 25px;
 }
 
+.pendingGlyphicon{
+    color: yellow;font-size: 25px;
+}
+
 .amountEntry{
 
     background-color:rgb(79, 84, 40) ;
@@ -663,7 +667,7 @@ input[type="checkbox"]{
 
 .wbdv-pad-left-right{
     padding-right:35px;
-    padding-left:35px;
+    padding-left:15px;
 
 }
 

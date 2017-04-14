@@ -6,7 +6,13 @@
 
         var vm = this;
         var userId;
+        var state=0;
         vm.refresh=refresh;
+
+        vm.openNav=openNav;
+        vm.closeNav=closeNav;
+        vm.hamOpenNav=hamOpenNav;
+
 
         vm.logout = logout;
 
@@ -71,6 +77,7 @@
         function refresh() {
 
             init();
+            closeNav();
         }
 
         function throwError(errorMsg){
@@ -82,6 +89,33 @@
 
         function clearError() {
             vm.error='';
+        }
+
+
+        function hamOpenNav() {
+            if (state==0){
+                state = 1;
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            else {
+                state=0;
+                closeNav();
+
+            }
+
+        }
+
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            state=1;
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            state=0;
         }
 
 

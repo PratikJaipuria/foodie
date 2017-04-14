@@ -5,6 +5,7 @@
     
     function deliveryPersonnalOrderController (orderTrackService,userService, $location, $routeParams, $timeout) {
         var vm = this;
+        var state=0;
         var userId;//=$routeParams['uid'];
         var deliveredOrders=[];
         var unDeliveredOrders=[];
@@ -12,6 +13,9 @@
         vm.orderDelivered=orderDelivered;
         vm.enableButton=enableButton;
         vm.refresh=refresh;
+        vm.openNav=openNav;
+        vm.closeNav=closeNav;
+        vm.hamOpenNav=hamOpenNav;
         // vm.userId = userId;
 
         vm.logout = logout;
@@ -130,6 +134,7 @@
         function refresh() {
 
             init();
+            closeNav();
         }
 
         function throwError(errorMsg){
@@ -143,6 +148,31 @@
             vm.error='';
         }
 
+        function hamOpenNav() {
+            if (state==0){
+                state = 1;
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            else {
+                state=0;
+                closeNav();
+
+            }
+
+        }
+
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            state=1;
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            state=0;
+        }
 
         
     }
