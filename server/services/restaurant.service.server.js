@@ -26,13 +26,14 @@ module.exports=function(app,model) {
     var allResturants=[];
 
 
+    var eatStreetConfig = {
+        token : process.env.EATSTREET_TOKEN//"6fb883f6655311b6"
+
+    };
 
 
     function getRestaurantKeys(req,res) {
-        var eatStreetConfig = {
-            token : "6fb883f6655311b6"
 
-        };
         res.json(eatStreetConfig);
     }
 

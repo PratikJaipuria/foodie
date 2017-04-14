@@ -795,7 +795,7 @@ input[type="checkbox"]{
 }
 
 .wbdv-text-clr-white{
-    color: #ffffff;
+    color: #ffffff !important;
 
 }
 

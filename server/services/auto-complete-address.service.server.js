@@ -5,13 +5,14 @@ module.exports=function(app) {
 
 
 
+    var streetConfig = {
+        authId    : process.env.STREET_AUTH_ID,//"52f5833b-1da4-faba-c50e-867fcf8483ab",
+        authToken : process.env.STREET_AUTH_TOKEN //"OBIODzh3R8wnGKwblEFB"
+
+    };
 
     function getAuth(req,res) {
-        var streetConfig = {
-            authId    : "52f5833b-1da4-faba-c50e-867fcf8483ab",
-            authToken : "OBIODzh3R8wnGKwblEFB"
 
-        };
         res.json(streetConfig);
     }
 
