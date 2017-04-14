@@ -54,6 +54,7 @@
             var formattedSpace=vm.search.address.replace(/\s+/g,'+');
             var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
+            var promise = addressAPISearchService.getAuthkeys();
             promise.success(function (keys) {
 
                 var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
