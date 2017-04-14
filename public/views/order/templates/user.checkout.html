@@ -8,7 +8,7 @@
         </div>
 
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;"> CheckOut</span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font"> CheckOut</span>
         </div>
 
 
@@ -23,24 +23,23 @@
             </a>
         </div>
     </div>
-    </div>
 </nav>
 
 <div class="container pageBackground">
     <div class="blackContainer">
         <div class="contentContainer">
-            <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+            <div ng-show="model.message" class="alert alert-success wbdv-register-msg" role="alert" >
                 {{model.message}}
             </div>
 
-            <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+            <div ng-show="model.error" class="alert alert-danger wbdv-register-msg" role="alert">
                 {{model.error}}
             </div>
 
-            <div style="width: 100%;  top: 50%; left: 50%;" class=" wbdv-text-clr-white">
+            <div  class="wbdv-checkout-cont-format wbdv-text-clr-white">
 
-                <div class="row wbdv-text-clr-white" style="height: 60px; font-size: x-large; ">
-                    <div style="text-align: center;padding-top: 25px;">YOUR ORDER DETAILS</div>
+                <div class="row wbdv-text-clr-white wbdv-checkout-header">
+                    <div class="wbdv-text-align-center wbdv-pad-top-25">YOUR ORDER DETAILS</div>
                 </div>
 
 
@@ -59,12 +58,12 @@
                     </div>
 
                     <ul class="list-group wbdv-mar-top-15">
-                        <li class="list-group-item" style="background-color:rgb(189, 195, 199);color: black;">
+                        <li class="list-group-item wbdv-checkout-item-lst" >
                             <div class="row">
                                 <div class="col-xs-5">
                                     <span>Items</span>
                                 </div>
-                                <div class="col-xs-2" style="padding-left: 0px;">
+                                <div class="col-xs-2 wbdv-pad-left-0">
                                     <span>UnitPrice</span>
                                 </div>
                                 <div class="col-xs-2">
@@ -78,7 +77,7 @@
                     </ul>
 
                     <ul class="list-group" >
-                        <li class="list-group-item" style="background-color: black;" ng-repeat="item in model.cart.items">
+                        <li class="list-group-item wbdv-background-black" ng-repeat="item in model.cart.items">
                             <div class="row">
                                 <div class="col-xs-5">
                                     <span>{{item.name}}</span>
@@ -97,8 +96,8 @@
                     </ul>
 
 
-                    <div class="wbdv-mar-top-10 wbdv-mar-bottom-20" style="background-color:rgb(30, 139, 195);height: 60px;">
-                        <span style="padding-top: 25px;margin-left: auto;  margin-right: auto;  display: table;">
+                    <div class="wbdv-mar-top-10 wbdv-mar-bottom-20 wbdv-tot-bg">
+                        <span class="wbdv-tot-span">
                             <span>
                                <strong>Total:</strong>
                             </span>
@@ -111,7 +110,7 @@
                     </div>
 
                     <div class="wbdv-mar-top-10 wbdv-mar-bottom-20">
-                        <span style="font-weight: 900">Please select the Address or add a new one</span>
+                        <span class="wbdv-font-wt-900">Please select the Address or add a new one</span>
                         <form>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
@@ -120,8 +119,8 @@
                                                ng-model="model.address"
                                                name="address"
                                                value="Existing"
-                                               checked
-                                        style="margin-left:15px;"> Existing Delivery Address
+                                               class="wbdv-mar-left-15"
+                                               checked> Existing Delivery Address
                                     </div>
                                     <div class="row " ng-if="model.address=='Existing'">
                                         <div class="col-xs-12">
@@ -142,11 +141,10 @@
                                         <input  type="radio"
                                                 ng-model="model.address"
                                                 name="address"
-                                                value="New"
-                                                style="margin-left:15px;"> New Delivery Address
+                                                class="wbdv-mar-left-15"
+                                                value="New"> New Delivery Address
                                     </div>
                                     <div class="row wbdv-mar-top-5"  ng-if="model.address=='New'">
-                                        <!--<div class="col-sm-6 col-xs-12 ">-->
                                         <div class="row">
                                             <div class="form-group col-sm-6 col-xs-12">
                                                 <input    ng-model="model.newAddress"
@@ -169,19 +167,17 @@
                                                 <input ng-model="model.newCity"
                                                        id="newCity"
                                                        name="city"
-                                                       class="form-control" placeholder="City"
-                                                />
+                                                       class="form-control" placeholder="City"/>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="form-group col-sm-6 col-xs-12">
                                                 <select id="state"
-                                                        class="form-control"
+                                                        class="form-control wbdv-text-align-last-center"
                                                         ng-model="model.newState"
                                                         ng-init="model.newState = model.newState || model.states[0]"
-                                                        ng-options="option for option in model.states"
-                                                        style="text-align-last: center;">
+                                                        ng-options="option for option in model.states">
 
                                                 </select>
                                             </div>
@@ -190,17 +186,12 @@
                                                 <select ng-model="model.newCountry"
                                                         id="country"
                                                         name="country"
-                                                        class="form-control"
+                                                        class="form-control wbdv-text-align-last-center"
                                                         ng-init="model.newCountry = model.newCountry||model.countries[0]"
-                                                        ng-options="option for option in model.countries"
-                                                        style="text-align-last: center;">
+                                                        ng-options="option for option in model.countries">
                                                 </select>
                                             </div>
                                         </div>
-
-
-
-                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>

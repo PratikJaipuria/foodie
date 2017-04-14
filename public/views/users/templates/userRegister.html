@@ -9,11 +9,11 @@
         </div>
 
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0" ng-if="model.role==0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Register </span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font" >User Register </span>
         </div>
 
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0" ng-if="model.role==1">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Register </span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Owner Register </span>
         </div>
 
     </div>
@@ -21,11 +21,11 @@
 
 
 <div class="container pageBackground">
-    <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+    <div  ng-show="model.message" class="alert alert-success wbdv-register-msg" role="alert" >
         {{model.message}}
     </div>
 
-    <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+    <div ng-show="model.error" class="alert alert-danger wbdv-register-msg" role="alert">
         <div ng-repeat="e in model.error">
             {{e}}
         </div>
@@ -40,7 +40,6 @@
 
                 <div class="row">
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="username" class="wbdv-req-field">Username:</label>-->
                         <input ng-model="model.user.username"
                                type="text" class="form-control"
                                id="username"
@@ -50,7 +49,6 @@
                     </div>
 
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="firstName" class="wbdv-req-field">First Name:</label>-->
                         <input ng-model="model.user.firstName"
                                type="text" class="form-control"
                                id="firstName"
@@ -61,7 +59,6 @@
                     </div>
 
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="lastName"  class="wbdv-req-field">Last Name:</label>-->
                         <input ng-model="model.user.lastName"
                                type="text" class="form-control"
                                id="lastName"
@@ -75,7 +72,6 @@
 
                 <div class="row">
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="password"  class="wbdv-req-field">Password:</label>-->
                         <input ng-model="model.user.password"
                                type="password" class="form-control"
                                id="password"
@@ -86,7 +82,6 @@
                     </div>
 
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="password2"  class="wbdv-req-field">Verify Password:</label>-->
                         <input ng-model="model.user.password2"
                                type="password" class="form-control"
                                id="password2"
@@ -157,18 +152,16 @@
 
                     <div class="form-group col-sm-4 col-xs-12 ">
                         <select id="state"
-                                class="form-control"
+                                class="form-control wbdv-text-align-last-center"
                                 ng-model="model.user.state"
                                 ng-init="model.user.state = model.user.state || model.states[0]"
-                                ng-options="option for option in model.states"
-                        style="text-align-last: center;">
+                                ng-options="option for option in model.states">
 
                         </select>
 
                     </div>
 
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="pin"  class="wbdv-req-field">PIN:</label>-->
                         <input ng-model="model.user.pin"
                                type="text" class="form-control"
                                id="pin"
@@ -178,14 +171,12 @@
                     </div>
 
                     <div class="form-group col-sm-4 col-xs-12 ">
-                        <!--<label for="country"  class="wbdv-req-field">Country:</label>-->
                         <select ng-model="model.user.country"
                                 id="country"
                                 name="country"
-                                class="form-control"
+                                class="form-control wbdv-text-align-last-center"
                                 ng-init="model.user.country = model.user.country||model.countries[0]"
-                                ng-options="option for option in model.countries"
-                        style="text-align-last: center;">
+                                ng-options="option for option in model.countries">
                         </select>
                     </div>
 
@@ -197,7 +188,8 @@
             </form>
             <div class="row wbdv-mar-bottom-10">
                 <div class="col-sm-6 col-xs-12">
-                    <a ng-click="model.createUser(model.user)" class="btn btn-success btn-block form-control">Register</a>
+                    <a ng-click="model.createUser(model.user)"
+                       class="btn btn-success btn-block form-control">Register</a>
                 </div>
                 <div class="col-sm-6 col-xs-12">
                     <a href="#/login" class="btn btn-danger  btn-block">Cancel</a>

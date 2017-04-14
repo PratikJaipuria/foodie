@@ -5,10 +5,10 @@
 
         <!--<div class="navbar-header dropdown visible-xs">-->
         <div class="dropdown">
-            <div  class=" dropdown-toggle pull-right" data-toggle="dropdown"   style="margin-top: 15px; margin-right: 10px;">
+            <div  class=" dropdown-toggle pull-right wbdv-mar-top-15-right-10" data-toggle="dropdown">
                 <span class="fa fa-user-plus fa-lg"></span>
             </div>
-            <ul class="dropdown-menu pull-right" style="margin-top: 30px; background: rgba(123,55,44,0.1)">
+            <ul class="dropdown-menu pull-right wbdv-mar-top-30-rgba">
                 <li><a ng-click="model.registerUser(1)" class=" wbdv-text-clr-white" title="Register Owner">Register Owner</a></li>
                 <li><a ng-click="model.registerUser(0)" class=" wbdv-text-clr-white" title="Register User">Register User</a></li>
             </ul>
@@ -28,13 +28,13 @@
 
 
 
-        <div class="blackContainer  container contentContainer" style="margin-top: 60px;">
+        <div class="blackContainer  container contentContainer wbdv-mar-top-65">
 
-            <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+            <div  ng-show="model.message" class="alert alert-success wbdv-register-msg" role="alert" >
                 {{model.message}}
             </div>
 
-            <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+            <div ng-show="model.error" class="alert alert-danger wbdv-register-msg" role="alert">
                 <div ng-repeat="e in model.error">
                     {{e}}
                 </div>
@@ -61,9 +61,8 @@
 
 
             <div class="wbdv-mar-top-3">
-                <a style="margin-top: 5px;" ng-click="model.login(user)"
-                   class="btn btn-success
-           btn-block">Login</a>
+                <a ng-click="model.login(user)"
+                   class="btn btn-success btn-block wbdv-mar-top-5">Login</a>
 
                 <a href="auth/google" class="btn btn-danger btn-block">
                     <span class="fa fa-google-plus"></span>

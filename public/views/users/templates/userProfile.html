@@ -9,7 +9,7 @@
             </div>
 
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">User Profile </span>
             </div>
 
             <div  class="navbar-text navbar-link pull-right hidden-xs">
@@ -23,25 +23,27 @@
                 </a>
             </div>
 
-            <div  class="navbar-text navbar-link pull-right hidden-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right hidden-xs wbdv-pad-right-25">
                 <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
                 </a>
             </div>
-            <div  class="navbar-text navbar-link pull-right visible-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right visible-xs wbdv-pad-right-25" >
                 <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
                 </a>
             </div>
 
-            <div  class="navbar-text navbar-link pull-right hidden-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right hidden-xs wbdv-pad-right-25" >
                 <a href="#/user/orders">
                     <span class="wbdv-text-clr-white" title="Orders">Orders</span>
                 </a>
             </div>
-            <div  class="navbar-text navbar-link pull-right visible-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right visible-xs wbdv-pad-right-25" >
                 <a href="#/user/orders">
-                    <span class="wbdv-text-clr-white" title="Orders"><i class="fa fa-history" aria-hidden="true"></i></span>
+                    <span class="wbdv-text-clr-white" title="Orders">
+                        <i class="fa fa-history" aria-hidden="true"></i>
+                    </span>
                 </a>
             </div>
 
@@ -55,12 +57,12 @@
             </div>
 
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Owner Profile </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Owner Profile </span>
             </div>
 
             <div  class="navbar-text navbar-link pull-right hidden-xs">
 
-                <a href="#/user/restaurant" style="padding-right: 25px;">
+                <a href="#/user/restaurant" class="wbdv-pad-right-25">
                     <span class=" wbdv-text-clr-white" title="View Restaurant">View Restaurant </span>
                 </a>
 
@@ -72,7 +74,7 @@
 
             <div  class="navbar-text navbar-link pull-right visible-xs">
 
-                <a href="#/user/restaurant" style="padding-right: 25px;">
+                <a href="#/user/restaurant" class="wbdv-pad-right-25">
                     <span class="glyphicon glyphicon-cutlery wbdv-text-clr-white" title="View Restaurant"></span>
                 </a>
 
@@ -94,7 +96,7 @@
 
 
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Delivery Boy Profile </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Delivery Boy Profile </span>
             </div>
 
 
@@ -110,12 +112,12 @@
                 </a>
             </div>
 
-            <div  class="navbar-text navbar-link pull-right hidden-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right hidden-xs wbdv-pad-right-25">
                 <a href="#/user/dborders">
                     <span class="wbdv-text-clr-white" title="Update Profile">Orders</span>
                 </a>
             </div>
-            <div  class="navbar-text navbar-link pull-right visible-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right visible-xs wbdv-pad-right-25">
                 <a href="#/user/dborders">
                     <span class="glyphicon glyphicon-list-alt wbdv-text-clr-white" title="Orders"></span>
                 </a>
@@ -129,11 +131,11 @@
 <div class="container pageBackground">
     <div class="container blackContainer">
 
-        <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+        <div ng-show="model.message" class="alert alert-success wbdv-register-msg" role="alert" >
             {{model.message}}
         </div>
 
-        <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+        <div  ng-show="model.error" class="alert alert-danger wbdv-register-msg" role="alert">
             <div ng-repeat="e in model.error">
                 {{e}}
             </div>
@@ -150,7 +152,9 @@
                 <h1 class="pageHeading">Profile</h1>
             </div>
 
-            <div  class="wbdv-text-clr-white col-xs-4 col-sm-2"   ng-show="model.user.role=='DELIVERYBOY'" title="Availability" ng-click="model.available()">
+            <div  class="wbdv-text-clr-white col-xs-4 col-sm-2"
+                  ng-show="model.user.role=='DELIVERYBOY'"
+                  title="Availability" ng-click="model.available()">
 
                 <input id =  "delBoyAvail"
                        type="checkbox"
@@ -273,11 +277,10 @@
 
                         <div class="form-group col-sm-4 col-xs-12 ">
                             <select id="state"
-                                    class="form-control"
+                                    class="form-control wbdv-text-align-last-center"
                                     ng-model="model.user.state"
                                     ng-init="model.user.state = model.user.state || model.states[0]"
-                                    ng-options="option for option in model.states"
-                                    style="text-align-last: center;">
+                                    ng-options="option for option in model.states">
 
                             </select>
 
@@ -289,10 +292,9 @@
                             <select ng-model="model.user.country"
                                     id="country"
                                     name="country"
-                                    class="form-control"
+                                    class="form-control wbdv-text-align-last-center"
                                     ng-init="model.user.country = model.user.country||model.countries[0]"
-                                    ng-options="option for option in model.countries"
-                                    style="text-align-last: center;">
+                                    ng-options="option for option in model.countries">
                             </select>
                         </div>
 
@@ -315,13 +317,16 @@
                         </div>
                     </div>
 
-                    <div class="row wbdv-mar-bottom-30" ng-show="model.user.role=='USER' && model.deliverAddressLength &gt; 0">
+                    <div class="row wbdv-mar-bottom-30"
+                         ng-show="model.user.role=='USER' && model.deliverAddressLength &gt; 0">
 
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 wbdv-mar-top-5">
-                                <div style="background-color: black" data-target="#delAdd" data-toggle="collapse">
+                                <div  data-target="#delAdd" data-toggle="collapse" class="wbdv-background-black">
                                     <div class="col-xs-8 col-sm-4" >Manage Delivery Addresses</div>
-                                    <div class="col-xs-4 col-sm-2"><span class="glyphicon glyphicon-chevron-down "></span></div>
+                                    <div class="col-xs-4 col-sm-2">
+                                        <span class="glyphicon glyphicon-chevron-down "></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -330,11 +335,12 @@
                             <div class="col-xs-12 col-sm-4 wbdv-mar-top-5">
 
                                 <ul id="delAdd" class="list-group collapse" >
-                                    <li class="list-group-item wbdv-mar-left-5"  style="background-color: black; margin-left: 3px;"  ng-repeat="add in model.user.deliverAddress">
+                                    <li class="list-group-item wbdv-mar-left-5 wbdv-background-black wbdv-mar-left-3"
+                                        ng-repeat="add in model.user.deliverAddress">
                                         <div class="row">
                                             <span>{{add}}</span>
                                             <a ng-click="model.removeAddFromDelAddressList(add)" class="pull-right">
-                                                <span class="glyphicon glyphicon-remove" style="font-size: larger;color: red"></span>
+                                                <span class="glyphicon glyphicon-remove wbdv-remove-font"></span>
                                             </a>
                                         </div>
                                     </li>
@@ -350,7 +356,8 @@
 
                 <div class="row wbdv-mar-bottom-30 wbdv-mar-top-5">
                     <div class="col-sm-6 col-xs-12">
-                        <a ng-click="model.updateUser(model.user._id,model.user)" class="btn btn-success btn-block form-control">Update</a>
+                        <a ng-click="model.updateUser(model.user._id,model.user)"
+                           class="btn btn-success btn-block form-control">Update</a>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <a ng-click="model.logOutUser(model.user)" class="btn btn-danger  btn-block">Logout</a>

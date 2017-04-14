@@ -7,11 +7,13 @@
                 </div>
             </div>
             <div class="col-sm-4 col-xs-6 search-bar-pad">
-                <input placeholder="Restaurant Name" type="text"  ng-model="model.search.name" class="form-control pull-left">
+                <input placeholder="Restaurant Name" type="text"
+                       ng-model="model.search.name" class="form-control pull-left">
             </div>
             <div class="col-sm-4 col-xs-6 search-bar-pad">
 
-                <input list="addressList" placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
+                <input list="addressList"
+                       placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
                        type=" "  ng-model="model.search.address"
                        ng-change="model.loadAddressFromAPI()" class="form-control pull-left">
                 <datalist id="addressList">
@@ -29,9 +31,9 @@
 
 
 
-<div class="container searchResultPageBackground wbdv-mar-bottom-60" id="mainCOntainer" style=" display: none;">
+<div class="container searchResultPageBackground wbdv-mar-bottom-60 wbdv-display-none" id="mainCOntainer" >
     <div class="wbdv-mar-top-65 container">
-        <div class="row  container" >
+        <div class="row " >
             <div ng-show="model.error" class="alert alert-danger" role="alert">
                 {{model.error}}
             </div>
@@ -39,13 +41,17 @@
             <div ng-if="model.restaurantFound" >
                 <div class="col-sm-3 hidden-xs wbdv-mar-bottom-60"  >
                     <div class="filtermenudiv">
-                        <div class="hotelname" style="text-align: center">Filters</div>
+                        <div class="hotelname wbdv-text-align-center">Filters</div>
                         <hr>
                         <div>
 
                             <div><div class="filter-headings" >Sort by</div></div>
-                            <a ng-click="model.sortAtoZ(false)"><div class="filter-items"><span>Name <span> A to Z</span></span></div></a>
-                            <a ng-click="model.sortAtoZ(true)"><div class="filter-items"><span>Name <span> Z to A</span></span></div></a>
+                            <a ng-click="model.sortAtoZ(false)">
+                                <div class="filter-items"><span>Name <span> A to Z</span></span></div>
+                            </a>
+                            <a ng-click="model.sortAtoZ(true)">
+                                <div class="filter-items"><span>Name <span> Z to A</span></span></div>
+                            </a>
                         </div>
 
                         <hr>
@@ -53,18 +59,23 @@
 
                         <div>
                             <div class="filter-headings">Filter</div>
-                            <a  ng-click="model.searchOpenRestaurant(true)"><div class="filter-items"><span>Open</span></div></a>
-                            <a  ng-click="model.searchOpenRestaurant(false)"><div class="filter-items"><span>Closed</span></div></a>
-                            <a  ng-click="model.searchRestaurantsOfferingPickup(true)"><div class="filter-items"><span>Offers Pickup</span></div></a>
-                            <a  ng-click="model.searchRestaurantsOfferingDelivery(true)"><div class="filter-items"><span>Offers Delivery</span></div></a>
+                            <a  ng-click="model.searchOpenRestaurant(true)">
+                                <div class="filter-items"><span>Open</span></div>
+                            </a>
+                            <a  ng-click="model.searchOpenRestaurant(false)">
+                                <div class="filter-items"><span>Closed</span></div>
+                            </a>
+                            <a  ng-click="model.searchRestaurantsOfferingPickup(true)">
+                                <div class="filter-items"><span>Offers Pickup</span></div>
+                            </a>
+                            <a  ng-click="model.searchRestaurantsOfferingDelivery(true)">
+                                <div class="filter-items"><span>Offers Delivery</span></div>
+                            </a>
 
 
                         </div>
 
                         <hr>
-
-
-
 
                         <div>
                             <div class="filter-headings">Search in retrieved Restaurants</div>
@@ -72,12 +83,10 @@
                                    type="text"
                                    id="restaurantsAutoComplete"
                                    ng-model="model.searchFromRetrieved.name"
-                                   class="ui-widget filter-items"
+                                   class="ui-widget filter-items wbdv-bgWhite-clrBlack"
                                    ng-change="model.autocompleteSearchRestaurants()"
                                    ng-keyup="$event.keyCode == 13 ? model.displaySearchedRestaurantFromAutoCompleteList(model.searchFromRetrieved.name) : null"
-                                   style="background-color: white; color:black;">
-
-
+                                   >
                         </div>
 
 
@@ -86,7 +95,7 @@
                     <div class="menudiv" ng-if="model.ordersLength &gt; 0">
 
                         <div class="row" ng-repeat="r in model.orders">
-                            <img src="{{r.restLogo}}" style="width: 50px;"/>
+                            <img src="{{r.restLogo}}" class="wbdv-width-50"/>
                         </div>
                     </div>
 
@@ -97,7 +106,7 @@
                         <div ng-repeat="restaurant in model.restaurants" >
                             <div class="menudiv">
                                 <div class="row wbdv-rest-header">
-                                    <div class="col-sm-4 col-xs-4 pull-right" style="padding-right: 0px;">
+                                    <div class="col-sm-4 col-xs-4 pull-right wbdv-pad-right-0">
                                         <div ng-click="model.viewMenu(restaurant.apiKey,restaurant)"
                                              class=" wbdv-rest-menu  btn rating pull-right">
                                             <span class="wbdv-text-align-center">Menu</span>
@@ -110,18 +119,10 @@
                                             <img src="{{restaurant.logoUrl}}" class="wbdv-rest-logo pull-left" >
                                         </a>
                                     </div>
-                                    <div class="col-sm-7 col-xs-5 pull-left" style="text-align: left">
+                                    <div class="col-sm-7 col-xs-5 pull-left wbdv-text-algn-left">
                                         <a class="hotelnamebrand" href="{{restaurant.url}}">{{restaurant.name}}
                                         </a>
                                     </div>
-
-                                    <!--<div class="col-sm-4 col-xs-4 pull-right" style="padding-right: 0px;">-->
-                                        <!--<div ng-click="model.viewMenu(restaurant.apiKey,restaurant)"-->
-                                             <!--class=" wbdv-rest-menu  btn rating pull-right">-->
-                                            <!--<span class="wbdv-text-align-center">Menu</span>-->
-
-                                        <!--</div>-->
-                                    <!--</div>-->
                                 </div>
 
                                 <div class="row wbdv-pad-left-right wbdv-mar-top-10">
@@ -158,16 +159,19 @@
                                         <span class="col-xs-9 rightinfotext">{{restaurant.phone}}</span>
                                     </div>
 
-                                    <div class="row" data-toggle="collapse"   data-target="#{{'hours-'+ restaurant.apiKey}}">
+                                    <div class="row" data-toggle="collapse"
+                                         data-target="#{{'hours-'+ restaurant.apiKey}}">
 
                                         <span class="leftinfotext col-xs-3 wbdv-pad-left-30" >HOURS:</span>
 
-                                        <span class="glyphicon glyphicon-chevron-down wbdv-text-clr-white pull-right wbdv-expand">
+                                        <span class="glyphicon glyphicon-chevron-down
+                                                     wbdv-text-clr-white pull-right wbdv-expand">
 
                                         </span>
 
 
-                                        <span class="col-xs-9 rightinfotext collapse"  id="{{'hours-'+ restaurant.apiKey}}">
+                                        <span class="col-xs-9 rightinfotext collapse"
+                                              id="{{'hours-'+ restaurant.apiKey}}">
                                     <div ng-repeat="(key, time) in restaurant.hours">
                                         <div class="row" ng-if="time.length > 0">
 
@@ -219,8 +223,8 @@
             </div>
 
             <div ng-if="model.restaurantFound == false">
-                <div style="color: red;  height: 150px; width: 100%;text-align: center;">
-                <span style=" padding-top:40px;font-size: larger; vertical-align: middle; display: inline-block">
+                <div class="wbdv-alert-no-rest-found">
+                <span class="wbdv-format-no-rest-found">
                     NO RESTAURANTS FOUND FOR YOUR SEARCH.</span>
                 </div>
             </div>
@@ -235,7 +239,8 @@
 
     <div class="navbar-text pull-left">
         <a href="#/user/orders">
-            <span  class=" wbdv-text-clr-white" style="margin-left:5px;font-size: larger"><i class="fa fa-history" aria-hidden="true"></i></span>
+            <span  class=" wbdv-text-clr-white wbdv-history-glyph" >
+                <i class="fa fa-history" aria-hidden="true"></i></span>
         </a>
     </div>
 

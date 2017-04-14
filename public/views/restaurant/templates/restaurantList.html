@@ -1,26 +1,22 @@
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
-        <!--<div  class="navbar-text navbar-link pull-left">-->
-            <!--<a href="#/owner/123">-->
-                <!--<span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white" title="Back"></span>-->
-            <!--</a>-->
-        <!--</div>-->
+
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Restaurants</span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Restaurants</span>
         </div>
         <div  class="navbar-text navbar-link pull-right visible-xs">
             <a ng-click="model.logout()">
                 <span class="glyphicon glyphicon-log-out wbdv-text-clr-white" title="Log Out"></span>
             </a>
         </div>
-        <div  class="navbar-text navbar-link pull-right visible-xs"  style="padding-right: 25px;">
+        <div  class="navbar-text navbar-link pull-right visible-xs wbdv-pad-right-25">
             <a href="#/user/profile">
                 <span class=" glyphicon glyphicon-user wbdv-text-clr-white" title="Profile"></span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a href="#/user/restaurant/new" style="padding-right: 25px;">
+            <a href="#/user/restaurant/new" class="wbdv-pad-right-25">
                 <span class="wbdv-text-clr-white glyphicon glyphicon-plus-sign" title="Add Restaurant"></span>
             </a>
 
@@ -35,12 +31,12 @@
         </div>
         <div  class="navbar-text navbar-link pull-right hidden-xs">
             <a href="#/user/profile">
-                <span class="wbdv-text-clr-white glyphicon glyphicon-user" title="Profile" style="padding-right: 25px;"></span>
+                <span class="wbdv-text-clr-white glyphicon glyphicon-user wbdv-pad-right-25" title="Profile"></span>
             </a>
         </div>
 
         <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a href="#/user/restaurant/new" style="padding-right: 25px;">
+            <a href="#/user/restaurant/new" class="wbdv-pad-right-25">
                 <span class="wbdv-text-clr-white" title="Add Restaurant">Add Restaurant</span>
             </a>
 
@@ -49,13 +45,13 @@
 </nav>
 
 <div class="container pageBackground">
-<!--<div class="container ">-->
+
     <div class="blackContainer">
         <div class="contentContainer prevent-overflow">
 
         <ul id="ownerRestaurantsRegistered" class="list-group">
-            <!--background-color: lightslategray-->
-            <li class="list-group-item"  style="color: black; background-color:rgb(118,151,204) ">
+
+            <li class="list-group-item wbdv-clr-black wbdv-rest-list-header">
                 <div class="row">
                     <div class="col-xs-6 col-sm-7 pull-left">
                         Restaurants
@@ -72,14 +68,14 @@
 
                 </div>
             </li>
-            <li ng-repeat="restaurant in model.restaurants" class="list-group-item" style="background-color: black">
+            <li ng-repeat="restaurant in model.restaurants" class="list-group-item wbdv-background-black">
                 <div class="row">
                     <a ng-click="model.gotoOrder(restaurant._id)">
                         <div class="col-xs-6 pull-left prevent-overflow wbdv-text-clr-white">
                             <span>{{restaurant.name}}</span>
                         </div>
                     </a>
-                    <!--href="#/user/restaurant/edit-->
+
                     <div class="col-xs-6 pull-left ">
                         <div class="row">
                             <div class="col-xs-6 col-sm-3 pull-right ">
@@ -91,7 +87,8 @@
 
                             <div class="col-xs-1 col-sm-3 pull-left">
                                 <a  ng-click="model.gotoMenu(restaurant._id)">
-                                    <span class="glyphicon glyphicon-pencil pull-right wbdv-text-clr-white" title="Customer Review"></span>
+                                    <span class="glyphicon glyphicon-pencil pull-right wbdv-text-clr-white"
+                                          title="Customer Review"></span>
                                 </a>
                             </div>
 
@@ -99,10 +96,9 @@
 
                             <div class="col-xs-1 col-sm-2 pull-right">
                                 <a ng-click="model.gotoDeliveryBoy(restaurant._id)">
-                                    <!--<span class="  pull-right wbdv-text-clr-white">-->
-                                    <i class="fa fa-motorcycle wbdv-text-clr-white " style="padding-right: 25px;" title="Delivery Boys" aria-hidden="true"></i>
-                                    <!--</span>-->
 
+                                    <i class="fa fa-motorcycle wbdv-text-clr-white wbdv-pad-right-25"
+                                       title="Delivery Boys" aria-hidden="true"></i>
 
                                 </a>
                             </div>
@@ -115,9 +111,6 @@
         </ul>
         </div>
     </div>
-
-<!--</div>-->
-
 </div>
 
 

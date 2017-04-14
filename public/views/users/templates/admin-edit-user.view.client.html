@@ -9,16 +9,16 @@
             </div>
 
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">User Profile </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">User Profile </span>
             </div>
 
 
-            <div  class="navbar-text navbar-link pull-right hidden-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right hidden-xs wbdv-pad-right-25">
                 <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="wbdv-text-clr-white" title="Update Profile">Update Profile</span>
                 </a>
             </div>
-            <div  class="navbar-text navbar-link pull-right visible-xs" style="padding-right: 25px;">
+            <div  class="navbar-text navbar-link pull-right visible-xs wbdv-pad-right-25">
                 <a ng-click="model.updateUser(model.user._id,model.user)">
                     <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>
                 </a>
@@ -38,11 +38,11 @@
 <div class="container pageBackground">
             <div class="container blackContainer">
 
-                <div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >
+                <div  ng-show="model.message" class="alert alert-success wbdv-register-msg" role="alert" >
                     {{model.message}}
                 </div>
 
-                <div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">
+                <div ng-show="model.error" class="alert alert-danger wbdv-register-msg" role="alert">
                     <div ng-repeat="e in model.error">
                         {{e}}
                     </div>
@@ -157,11 +157,10 @@
 
                                 <div class="form-group col-sm-4 col-xs-12 ">
                                     <select id="state"
-                                            class="form-control"
+                                            class="form-control wbdv-text-align-last-center"
                                             ng-model="model.user.state"
                                             ng-init="model.user.state = model.user.state || model.states[0]"
-                                            ng-options="option for option in model.states"
-                                            style="text-align-last: center;">
+                                            ng-options="option for option in model.states">
 
                                     </select>
 
@@ -173,10 +172,9 @@
                                     <select ng-model="model.user.country"
                                             id="country"
                                             name="country"
-                                            class="form-control"
+                                            class="form-control wbdv-text-align-last-center"
                                             ng-init="model.user.country = model.user.country||model.countries[0]"
-                                            ng-options="option for option in model.countries"
-                                            style="text-align-last: center;">
+                                            ng-options="option for option in model.countries">
                                     </select>
                                 </div>
 
@@ -198,20 +196,15 @@
                                            name="dateCreated"/>
                                 </div>
 
-
-
-
-
                             </div>
 
                             <div class="form-group">
                                 <select
-                                        class="form-control"
+                                        class="form-control wbdv-text-align-last-center"
                                         ng-model="model.user.role"
-                                        ng-options="option for option in model.updaterole"
-                                        style="text-align-last: center;">
+                                        ng-options="option for option in model.updaterole">
                                 </select>
-                                <!--ng-init="model.user.role = model.user.role || model.roles[0]"-->
+
                             </div>
 
                         </form>

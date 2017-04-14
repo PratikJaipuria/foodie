@@ -7,7 +7,7 @@
         </div>
         <div>
             <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Delivery Boy Profile </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Delivery Boy Profile </span>
             </div>
             <div  class="navbar-text navbar-link pull-right hidden-xs">
                 <a ng-click="model.updateUser(model.user._id,model.user)">
@@ -22,32 +22,12 @@
         </div>
 
         </div>
-
-        <!--<div  class="navbar-text navbar-link pull-right visible-xs">-->
-            <!--<a ng-click="model.updateUser(model.user._id,model.user)">-->
-                <!--<span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Profile"></span>-->
-            <!--</a>-->
-        <!--</div>-->
 </nav>
 
 
 
 
 <div class="container pageBackground">
-
-
-
-
-    <!--<div style= "position: fixed;" ng-show="model.message" class="alert alert-success " role="alert" >-->
-        <!--{{model.message}}-->
-    <!--</div>-->
-
-    <!--<div style= "position: fixed; z-index:10" ng-show="model.error" class="alert alert-danger " role="alert">-->
-        <!--<div ng-repeat="e in model.error">-->
-            <!--{{e}}-->
-        <!--</div>-->
-
-    <!--</div>-->
 
     <div class="container blackContainer">
 
@@ -154,11 +134,10 @@
 
                         <div class="form-group col-sm-4 col-xs-12">
                             <select id="state"
-                                    class="form-control"
+                                    class="form-control wbdv-text-align-last-center"
                                     ng-model="model.user.state"
                                     ng-init="model.user.state = model.user.state || model.states[0]"
-                                    ng-options="option for option in model.states"
-                                    style="text-align-last: center;">
+                                    ng-options="option for option in model.states">
 
                             </select>
                         </div>
@@ -171,10 +150,9 @@
                             <select ng-model="model.user.country"
                                     id="country"
                                     name="country"
-                                    class="form-control"
+                                    class="form-control wbdv-text-align-last-center"
                                     ng-init="model.user.country = model.user.country||model.countries[0]"
-                                    ng-options="option for option in model.countries"
-                                    style="text-align-last: center;">
+                                    ng-options="option for option in model.countries">
                             </select>
                         </div>
 
@@ -203,7 +181,8 @@
                 </form>
                 <div class="row wbdv-mar-bottom-30 wbdv-mar-top-5">
                     <div class="col-sm-6 col-xs-12">
-                        <a ng-click="model.updateUser(model.user._id,model.user)" class="btn btn-success btn-block form-control">Update</a>
+                        <a ng-click="model.updateUser(model.user._id,model.user)"
+                           class="btn btn-success btn-block form-control">Update</a>
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <a ng-click="model.logout()" class="btn btn-danger  btn-block">Logout</a>

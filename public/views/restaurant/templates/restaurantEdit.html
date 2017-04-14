@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Edit Restaurant</span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Edit Restaurant</span>
         </div>
 
 
@@ -19,20 +19,23 @@
 
         <div class="navbar-text pull-right hidden-xs">
             <a href="#/user/restaurant/db">
-                <span class="wbdv-text-clr-white" title="Manage delivery personnal" style="padding-right: 25px;">Delivery Personnals</span>
+                <span class="wbdv-text-clr-white wbdv-pad-right-25"
+                      title="Manage delivery personnal">Delivery Personnals</span>
             </a>
         </div>
 
 
         <div  class="navbar-text navbar-link pull-right visible-xs">
             <a href="#/user/restaurant">
-                <span class="glyphicon glyphicon-ok wbdv-text-clr-white" title="Update Restaurant"></span>
+                <span class="glyphicon glyphicon-ok wbdv-text-clr-white"
+                      title="Update Restaurant"></span>
             </a>
         </div>
 
         <div class="navbar-text pull-right visible-xs">
             <a href="#/user/restaurant/db">
-                <span class="fa fa-motorcycle wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Personnals"></span>
+                <span class="fa fa-motorcycle wbdv-text-clr-white wbdv-pad-right-25"
+                      title="Delivery Personnals"></span>
             </a>
         </div>
 
@@ -124,44 +127,38 @@
 
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="city" class="wbdv-req-field" style="color: white;">City:</label>
+                                    <label for="city" class="wbdv-req-field wbdv-text-clr-white">City:</label>
                                     <input id="city"
                                            type="text"
                                            name="city"
-                                           class="form-control"
+                                           class="form-control wbdv-display-block"
                                            placeholder="Restaurant City"
                                            ng-model="model.restaurant.city"
-                                           style="display: block;"
                                            required/>
                                 </div>
                             </div>
 
 
                             <div class="col-sm-4 col-xs-12">
-                                <label for="state" class="wbdv-req-field" style="color: white;">State:</label>
+                                <label for="state" class="wbdv-req-field wbdv-text-clr-white">State:</label>
                                 <select id="state"
                                         name="state"
-                                        class="form-control"
+                                        class="form-control wbdv-text-align-last-center"
                                         ng-model="model.restaurant.state"
                                         ng-init="model.restaurant.state = model.restaurant.state || model.states[0]"
-                                        ng-options="option for option in model.states"
-                                        style="text-align-last: center">
+                                        ng-options="option for option in model.states">
                                 </select>
                             </div>
 
                             <div class="col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <label for="country" class="wbdv-req-field" style="color: white;">Country:</label>
+                                    <label for="country" class="wbdv-req-field wbdv-text-clr-white">Country:</label>
                                     <select ng-model="model.restaurant.country"
                                             id="country"
                                             name="country"
-                                            class="form-control"
+                                            class="form-control wbdv-text-align-last-center"
                                             ng-init="model.restaurant.country=model.restaurant.country||model.country[0]"
-                                            ng-options="option for option in model.country"
-                                            style="text-align-last: center">
-
-
-
+                                            ng-options="option for option in model.country">
                                     </select>
                                 </div>
                             </div>
@@ -175,12 +172,11 @@
 
                         <div class="col-sm-4 col-xs-12 ">
                             <div class="form-group">
-                                <label for="del" class="wbdv-req-field" style="color: white;">Delivery Available</label>
+                                <label for="del" class="wbdv-req-field wbdv-text-clr-white">Delivery Available</label>
                                 <select ng-model="model.restaurant.offersDelivery"
                                         id="del"
                                         name="del"
-                                        class="form-control"
-                                        style="display: block;text-align-last: center"
+                                        class="form-control wbdv-text-align-last-center wbdv-display-block"
                                         ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
                                         ng-options="option for option in model.booleanVal">
 
@@ -190,12 +186,11 @@
 
                         <div class="col-sm-4 col-xs-12">
                             <div class="form-group">
-                                <label for="del" class="wbdv-req-field" style="color: white;">Pickup Available</label>
+                                <label for="del" class="wbdv-req-field wbdv-text-clr-white">Pickup Available</label>
                                 <select ng-model="model.restaurant.offersPickup"
                                         id="pickup"
                                         name="pickup"
-                                        class="form-control"
-                                        style="display: block;text-align-last: center"
+                                        class="form-control wbdv-text-align-last-center wbdv-display-block"
                                         ng-init="model.restaurant.offersPickup=model.restaurant.offersPickup||model.booleanVal[0]"
                                         ng-options="option for option in model.booleanVal">
                                 </select>
@@ -205,7 +200,10 @@
                         <div class="col-sm-4 col-xs-12">
                             <div class="form-group">
                                 <label for="restURL">Restaurant URL</label>
-                                <input ng-model="model.restaurant.url" id="restURL" type="url" class="form-control" placeholder="Restaurant URL">
+                                <input ng-model="model.restaurant.url"
+                                       id="restURL" type="url"
+                                       class="form-control"
+                                       placeholder="Restaurant URL">
                             </div>
                         </div>
                     </div>
@@ -218,11 +216,14 @@
                         <div class="form-group">
 
                             <div ng-if="model.file">
-                                <img style="width: 100px; height: 100px;" ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
+                                <img class="wbdv-img-wid100-hgt100"
+                                     ngf-thumbnail="model.file || '../../../../../resources/thumb.jpg'"/>
                             </div>
 
                             <label for="uploadFile">Logo</label>
-                            <input type="url" placeholder="URL for logo image" class="form-control" ng-model="model.restaurant.logoUrl"/>
+                            <input type="url" placeholder="URL for logo image"
+                                   class="form-control"
+                                   ng-model="model.restaurant.logoUrl"/>
                             <input
                                     id="uploadFile"
                                     type="file"
@@ -248,7 +249,7 @@
 
                 <div data-toggle="collapse" data-target="#workingDays">
                     <div class="form-group">
-                        <label for="workingDays" class="wbdv-mar-top-15" style="font-size: larger">
+                        <label for="workingDays" class="wbdv-mar-top-15 wbdv-font-lg">
                             <i><u>Click ME to update Working Days</u></i></label>
                     </div>
                 </div>
@@ -256,7 +257,7 @@
                 <div class="wbdv-mar-top-5 collapse"  id="workingDays">
                     <div class="form-group">
                         <ul class="list-group">
-                            <li class="list-group-item" style=" background-color: black">
+                            <li class="list-group-item wbdv-background-black">
                                 <div class="row">
 
                                             <div class="col-xs-12 col-sm-6">
@@ -272,18 +273,20 @@
                             </li>
 
                             <li ng-repeat="(key, d) in model.restaurant.hours">
-                                <div style="color: white;">{{key}}</div>
+                                <div class="wbdv-text-clr-white">{{key}}</div>
                                 <div class="row">
 
                                     <div class="col-xs-6 col-sm-3">
                                         <select ng-model="d[1]"
                                                 id="stH"
                                                 name="stH"
-                                                style="display: block;padding-left: 10px; text-align-last: center; color: black"
                                                 ng-init="d[1] = d[1]||model.hours[0]"
                                                 ng-options="option for option in model.hours"
-                                                class="form-control"
-                                                style="text-align-last: center">
+                                                class="form-control
+                                                        wbdv-text-align-last-center
+                                                         wbdv-clr-black
+                                                          wbdv-display-block
+                                                            wbdv-pad-left-10">
                                         </select>
                                     </div>
                                     <div class="col-sm-3 col-xs-6">
@@ -291,11 +294,13 @@
                                                 id="stM"
                                                 name="stM"
                                                 ng-model="d[2]"
-                                                style="display: block;padding-left: 10px; color: black;text-align-last: center;"
                                                 ng-init="d[2]= d[2]||model.mins[0]"
                                                 ng-options="option for option in model.mins"
-                                                class="form-control"
-                                                style="text-align-last: center">
+                                                class="form-control
+                                                 wbdv-text-align-last-center
+                                                 wbdv-clr-black
+                                                 wbdv-display-block
+                                                  wbdv-pad-left-10">
                                         </select>
 
                                     </div>
@@ -303,11 +308,13 @@
                                         <select ng-model="d[3]"
                                                 id="etH"
                                                 name="etH"
-                                                style="display: block;padding-left: 10px; color: black;text-align-last: center;"
                                                 ng-init="d[3] = d[3]||model.hours[0]"
                                                 ng-options="option for option in model.hours"
-                                                class="form-control"
-                                                style="text-align-last: center">
+                                                class="form-control
+                                                wbdv-text-align-last-center
+                                                wbdv-clr-black
+                                                wbdv-display-block
+                                                 wbdv-pad-left-10">
                                         </select>
                                     </div>
                                     <div class="col-sm-3 col-xs-6">
@@ -315,11 +322,13 @@
                                                 id="etM"
                                                 name="etM"
                                                 ng-model="d[4] "
-                                                style="display: block;padding-left: 10px;color: black;text-align-last: center;"
                                                 ng-init="d[4] = d[4]||model.mins[0]"
                                                 ng-options="option for option in model.mins"
-                                                class="form-control"
-                                                style="text-align-last: center">
+                                                class="form-control
+                                                wbdv-text-align-last-center
+                                                wbdv-clr-black
+                                                wbdv-display-block
+                                                 wbdv-pad-left-10">
                                         </select>
                                     </div>
                                 </div>
@@ -329,21 +338,14 @@
                 </div>
 
 
-
-                <!--<div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">-->
-                <!--<div class="col-sm-12 col-xs-12">-->
-                <!--<a class="btn btn-block btn-primary add_field_button">Add Speciality</a>-->
-                <!--</div>-->
-                <!--</div>-->
-
                 <div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">
                 </div>
 
                 <div class="row wbdv-mar-top-15" >
 
                     <a  ng-click="model.addNewSpeciality()">
-                        <div  class=" col-sm-12 col-xs-12" style="color: white">
-                            <label for="specialities" class="  wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
+                        <div  class=" col-sm-12 col-xs-12 wbdv-text-clr-white">
+                            <label for="specialities" class="  wbdv-mar-top-15 wbdv-req-field wbdv-font-lg">
                                 <i class="">
                                     <u>Edit Specialities</u>
                                 </i>
@@ -355,11 +357,18 @@
 
                 </div>
 
-                <div class="row" id="specialities" style="margin-left:5px;">
+                <div class="row wbdv-mar-left-5" id="specialities">
                     <div class="pull-left"  ng-repeat="special in model.speciality">
-                        <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px; text-align: center" ng-model="special.value"/>
+                        <input class="wbdv-mar-top-3
+                                         wbdv-text-align-center
+                                         wbdv-clr-black
+                                          wbdv-height-35"
+                               type="text"
+                               ng-model="special.value"/>
                         <a ng-click="model.deleteSpeciality(special)">
-                            <span class="glyphicon glyphicon-remove-sign wbdv-speciality-remove" style="color: red"></span>
+                            <span class="glyphicon glyphicon-remove-sign
+                                         wbdv-speciality-remove
+                                         wbdv-clr-red"></span>
                         </a>
                     </div>
                 </div>
@@ -373,7 +382,8 @@
                     <div class="col-sm-4 col-xs-12">
 
 
-                        <a ng-click="model.updateRestaurant(model.restaurant)" class="btn btn-success btn-block form-control">Update</a>
+                        <a ng-click="model.updateRestaurant(model.restaurant)"
+                           class="btn btn-success btn-block form-control">Update</a>
                     </div>
                     <div class="col-sm-4 col-xs-12">
                         <a href="#/user/restaurant" class="btn btn-primary  btn-block">Cancel</a>

@@ -23,7 +23,7 @@
         </div>
 
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Menu Section </span>
+            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Menu Section </span>
         </div>
     </div>
 </nav>
@@ -32,7 +32,7 @@
     <div class="blackContainer">
         <div class="contentContainer prevent-overflow">
             <ul id="ownerRestaurantsRegistered" class="list-group">
-                <li class="list-group-item"  style="color: black; background-color: lightslategray; margin-bottom: 5px;">
+                <li class="list-group-item wbdv-clr-black wbdv-bgclrLighSlateGrey wbdv-mar-bottom-5">
                     <div class="row">
                         <div class="col-xs-6 pull-left">
                             CUISINES
@@ -46,19 +46,23 @@
                 </li>
 
                 <!--{{model.result}}-->
-                <li ng-repeat ="category in model.result" class="list-group-item wbdv-text-clr-white" style="background-color: black; " >
+                <li ng-repeat ="category in model.result"
+                    class="list-group-item wbdv-text-clr-white wbdv-background-black" >
                     <div class="row">
                         <div class="col-xs-6 pull-left" data-toggle="collapse" data-target="#{{category.group}}">
                             {{category.group}}
                         </div>
                         <div class="col-xs-6 pull-left">
                             <div class="row">
-                                <div class="col-xs-9 pull-left"  data-toggle="collapse" data-target="#{{category.group}}">
+                                <div class="col-xs-9 pull-left"
+                                     data-toggle="collapse"
+                                     data-target="#{{category.group}}">
                                     {{category.entry.length}}
                                 </div>
                                 <div class="col-xs-3 pull-right">
                                     <a href="#/user/restaurant//menu/category/{{category.group}}">
-                                        <span class="glyphicon glyphicon-folder-open wbdv-text-clr-white pull-right "></span>
+                                        <span class="glyphicon glyphicon-folder-open
+                                        wbdv-text-clr-white pull-right "></span>
                                     </a>
                                 </div>
                             </div>
@@ -68,7 +72,8 @@
                     </div>
                     <div id="{{category.group}}" class="collapse">
                         <ul class="list-group">
-                            <li ng-repeat="entries in category.entry" class="list-group-item" style="color: black; background-color: gray">
+                            <li ng-repeat="entries in category.entry" class="list-group-item
+                                wbdv-clr-black wbdv-bgClrGray">
                                 <div class="row">
                                     <div class="col-xs-6 pull-left">
                                         <span>{{entries[0]}}</span>
@@ -81,7 +86,8 @@
                                             </div>
                                             <div class="col-xs-3">
                                                 <a ng-click="model.gotoItemEdit(entries[2])">
-                                                    <span class="glyphicon glyphicon-cog  pull-right wbdv-text-clr-white"></span>
+                                                    <span class="glyphicon glyphicon-cog
+                                                    pull-right wbdv-text-clr-white"></span>
                                                 </a>
                                             </div>
                                         </div>

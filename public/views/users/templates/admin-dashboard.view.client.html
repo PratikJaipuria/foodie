@@ -2,7 +2,7 @@
     <div class="container-fluid" >
         <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
             <a  ng-click="model.adminDashBoard()">
-                <span class="navbar-brand wbdv-text-clr-white " style="font-size: 20px; font-weight: bold;">Admin Dashboard </span>
+                <span class="navbar-brand wbdv-text-clr-white wbdv-register-font">Admin Dashboard </span>
             </a>
         </div>
 
@@ -21,23 +21,23 @@
 
             <div class="row" >
                 <div class="col-sm-4 hidden-xs pull-left" id="categories">
-                    <ul class="list-group" style="color: black;">
+                    <ul class="list-group wbdv-clr-black" >
 
 
                         <div>
                             <div ng-click="model.findUsers('ALLUSERS')">
-                                <li class="list-group-item active" data-target="#usersContent" data-toggle="collapse"  >
+                                <li class="list-group-item active" data-target="#usersContent" data-toggle="collapse">
                                     ALL USERS
                                     <a>
-                                        <span class="glyphicon glyphicon-menu-down pull-right" style="color: black"></span>
+                                        <span class="glyphicon glyphicon-menu-down pull-right wbdv-clr-black"></span>
                                     </a>
                                 </li>
                             </div>
 
 
-                                <ul id="usersContent" class="list-group collapse" style="margin-bottom: 0">
+                                <ul id="usersContent" class="list-group collapse wbdv-margin-bottom">
                                     <div ng-click="model.findUsers('USER')">
-                                        <li class="list-group-item" style="color: black">
+                                        <li class="list-group-item wbdv-clr-black">
                                             Consumers
                                             <a>
                                                 <span class="glyphicon glyphicon-menu-right pull-right"></span>
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div ng-click="model.findUsers('OWNER')">
-                                        <li class="list-group-item" style="color: black">
+                                        <li class="list-group-item wbdv-clr-black">
                                             Restaurant Owners
                                             <a>
                                                 <span class="glyphicon glyphicon-menu-right pull-right"></span>
@@ -55,7 +55,7 @@
                                     </div>
 
                                     <div ng-click="model.findUsers('DELIVERYBOY')">
-                                        <li class="list-group-item" style="color: black">
+                                        <li class="list-group-item wbdv-clr-black">
                                             Delivery Boys
                                             <a>
                                                 <span class="glyphicon glyphicon-menu-right pull-right"></span>
@@ -88,18 +88,11 @@
                     </ul>
                 </div>
 
-
-                <!--<div ng-if="model.mode=='console'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60">-->
-                    <!--&lt;!&ndash;{{model.mode}}&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div id="chartContainer" style="height: 300px; width: 100%;">&ndash;&gt;-->
-
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--</div>-->
-                <div ng-if="model.mode != 'ALL'" class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60" style="color: black;">
+                <div ng-if="model.mode != 'ALL'"
+                     class="col-sm-8 col-xs-12 pull-right wbdv-mar-bottom-60 wbdv-clr-black">
                     <div ng-if="model.mode=='users'">
                         <ul class="list-group">
-                            <li class="list-group-item " style="background-color: black; color: white">
+                            <li class="list-group-item wbdv-background-black wbdv-text-clr-white">
                                 <div class="row wbdv-pad-left-15 ">
                                     <div class="col-xs-4 pull-left" >
                                         Full Name
@@ -146,7 +139,7 @@
 
                     <div ng-if="model.mode=='restaurants'">
                         <ul class="list-group">
-                            <li class="list-group-item " style="background-color: black;color: white">
+                            <li class="list-group-item wbdv-background-black wbdv-text-clr-white">
                                 <div class="row wbdv-pad-left-15">
                                     <div class="col-xs-3" >
                                         Resturant Name
@@ -193,7 +186,7 @@
 
                     <div ng-if="model.mode=='orders'">
                         <ul class="list-group">
-                            <li class="list-group-item " style="background-color: black;color: white">
+                            <li class="list-group-item wbdv-background-black wbdv-text-clr-white">
                                 <div class="row wbdv-pad-left-15">
                                     <div class="col-xs-3" >
                                         OrderId
@@ -227,12 +220,6 @@
                                             <span class="glyphicon glyphicon-remove-sign pull-right"></span>
                                         </a>
                                     </div>
-
-                                    <!--<div class="col-xs-1 pull-right">-->
-                                        <!--<a ng-click="model.updateUser(u._id)">-->
-                                            <!--<span class="glyphicon glyphicon-edit pull-right "></span>-->
-                                        <!--</a>-->
-                                    <!--</div>-->
                                 </div>
 
                             </li>
