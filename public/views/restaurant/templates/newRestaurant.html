@@ -126,7 +126,8 @@
                                     class="form-control"
                                     ng-model="model.restaurant.state"
                                     ng-init="model.restaurant.state = model.restaurant.state || model.states[0]"
-                                    ng-options="option for option in model.states">
+                                    ng-options="option for option in model.states"
+                            style="text-align-last: center">
                             </select>
                             </div>
 
@@ -138,7 +139,8 @@
                                             name="country"
                                             class="form-control"
                                             ng-init="model.restaurant.country=model.restaurant.country||model.country[0]"
-                                            ng-options="option for option in model.country">
+                                            ng-options="option for option in model.country"
+                                            style="text-align-last: center">
 
                                     </select>
                                 </div>
@@ -168,7 +170,7 @@
                                         id="del"
                                         name="del"
                                         class="form-control"
-
+                                        style="text-align-last: center"
                                         ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
                                         ng-options="option for option in model.booleanVal">
 
@@ -225,14 +227,14 @@
                 <div data-toggle="collapse" data-target="#workingDays">
                     <div class="form-group">
                         <label for="workingDays" class="wbdv-mar-top-15 " style="font-size: larger">
-                            <i><u>Click ME to update Working Days</u></i></label>
+                            <i><u>Update Working Days</u></i></label>
                     </div>
                 </div>
 
                 <div class="wbdv-mar-top-5 collapse"  id="workingDays">
                     <div class="form-group">
                         <ul class="list-group" style="margin-right: 10px;">
-                            <li class="list-group-item" style="padding-right: 0px; padding-left: 2px; background-color: black">
+                            <li class="list-group-item hidden-xs" style="padding-right: 0px; padding-left: 2px; background-color: black;">
                                 <div class="row">
 
                                             <div class="col-xs-12 col-sm-6">
@@ -307,18 +309,20 @@
 
                         <a  ng-click="model.addNewSpeciality()">
                             <div  class=" col-sm-12 col-xs-12" style="color: white">
-                               <label for="specialities" class=" glyphicon glyphicon-remove-sign wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
-                                   <i class="glyphicon glyphicon-remove-sign">
-                                       <u>Click ME to Add your restaurant specialities</u></i>
+                               <label for="specialities" class="  wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
+                                   <i class="">
+                                       <u>Add Specialities</u>
+                                  </i>
                                </label>
+                                <span class="fa fa-plus-circle fa-2x"  aria-hidden="true"></span>
                             </div>
                         </a>
 
 
                 </div>
 
-                <div class="row" id="specialities">
-                    <div class="pull-left" style="margin-right:5px;" ng-repeat="special in model.speciality">
+                <div class="row" id="specialities" style="margin-left:5px;">
+                    <div class="pull-left"  ng-repeat="special in model.speciality">
                         <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px;text-align: center" ng-model="special.value" required/>
                         <a ng-click="model.deleteSpeciality(special)">
                             <span class="glyphicon glyphicon-remove-sign wbdv-speciality-remove" style="color: red"></span>
@@ -330,6 +334,7 @@
 
 
             </form>
+
             <div  class="wbdv-mar-bottom-60  wbdv-mar-top-25">
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">

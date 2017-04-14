@@ -4,6 +4,7 @@
         .controller("restaurantOrderTrackController", restaurantOrderTrackController);
 
     function restaurantOrderTrackController(orderTrackService,userService, $location, $routeParams, $timeout){
+        var state=0;
         var vm =this;
         var userId //= $routeParams['uid'];
         // var restaurantId=$routeParams['rst'];
@@ -20,6 +21,9 @@
         vm.refresh=refresh;
         vm.assignDelivery=assignDelivery;
         vm.gotoDeliveryBoy = gotoDeliveryBoy;
+        vm.openNav=openNav;
+        vm.closeNav=closeNav;
+        vm.hamOpenNav=hamOpenNav;
 
         // vm.userId = userId;
         // vm.restaurantId = restaurantId;
@@ -149,6 +153,9 @@
             }
 
 
+
+
+
         }
 
         function getScheduled() {
@@ -176,6 +183,33 @@
 
         function refresh() {
             init();
+            closeNav();
+        }
+
+        function hamOpenNav() {
+            if (state==0){
+                state = 1;
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            else {
+                state=0;
+                closeNav();
+
+            }
+
+        }
+
+        function openNav() {
+
+                document.getElementById("mySidenav").style.width = "250px";
+                state=1;
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            state=0;
         }
 
     }

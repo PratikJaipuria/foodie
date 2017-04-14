@@ -7,6 +7,45 @@
     /*z-index: 9999;*/
     /*background: url('../images/10.jpg') 50% 50% no-repeat rgb(249,249,249);*/
 /*}*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.nav-pills li.active a, .nav-pills li.active a:focus, .nav-pills li.active a:hover{
+    background-color: orange;
+}
+
 .dropdown-menu li a{
     color: white !important;
 }
@@ -15,11 +54,6 @@
 .dropdown-menu li a:hover{
     color: black !important;
 }
-
-
-
-
-
 
 input{
     text-align: center;
@@ -50,7 +84,7 @@ input{
 }
 .wbdv-speciality-remove{
     position: relative;
-    right: 30px;
+    right: 35px;
     font-size: 30px;
     top: 10px;
 }
@@ -98,12 +132,12 @@ padding: 0px;
     margin-left: 1px;
 }
 
-.contentContainer{
-    padding-right:35px;
-    padding-left:35px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-}
+/*.contentContainer{*/
+    /*padding-right:35px;*/
+    /*padding-left:35px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 20px;*/
+/*}*/
 
 .pageHeading{
     color: #ffffff;

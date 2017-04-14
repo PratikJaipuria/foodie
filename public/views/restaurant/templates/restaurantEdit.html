@@ -32,7 +32,7 @@
 
         <div class="navbar-text pull-right visible-xs">
             <a href="#/user/restaurant/db">
-                <span class="glyphicon glyphicon-plane wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Personnals"></span>
+                <span class="fa fa-motorcycle wbdv-text-clr-white" style="padding-right: 25px;" title="Delivery Personnals"></span>
             </a>
         </div>
 
@@ -180,10 +180,9 @@
                                         id="del"
                                         name="del"
                                         class="form-control"
-                                        style="display: block;"
+                                        style="display: block;text-align-last: center"
                                         ng-init="model.restaurant.offersDelivery=model.restaurant.offersDelivery||model.booleanVal[0]"
-                                        ng-options="option for option in model.booleanVal"
-                                        style="text-align-last: center">
+                                        ng-options="option for option in model.booleanVal">
 
                                 </select>
                             </div>
@@ -196,10 +195,9 @@
                                         id="pickup"
                                         name="pickup"
                                         class="form-control"
-                                        style="display: block"
+                                        style="display: block;text-align-last: center"
                                         ng-init="model.restaurant.offersPickup=model.restaurant.offersPickup||model.booleanVal[0]"
-                                        ng-options="option for option in model.booleanVal"
-                                        style="text-align-last: center">
+                                        ng-options="option for option in model.booleanVal">
                                 </select>
                             </div>
                         </div>
@@ -332,11 +330,11 @@
 
 
 
-                <div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">
-                <div class="col-sm-12 col-xs-12">
-                <a class="btn btn-block btn-primary add_field_button">Add Speciality</a>
-                </div>
-                </div>
+                <!--<div class="row wbdv-mar-top-15" style="width:100%; margin: auto;">-->
+                <!--<div class="col-sm-12 col-xs-12">-->
+                <!--<a class="btn btn-block btn-primary add_field_button">Add Speciality</a>-->
+                <!--</div>-->
+                <!--</div>-->
 
                 <div class="input_fields_wrap wbdv-mar-top-5 row wbdv-pad-left-right ">
                 </div>
@@ -344,18 +342,21 @@
                 <div class="row wbdv-mar-top-15" >
 
                     <a  ng-click="model.addNewSpeciality()">
-                        <div class="col-sm-12 col-xs-12" style="color: white">
-                            <i><u>Edit Specilaities</u></i>
-                            <label for="specialities" class="glyphicon glyphicon-plus-sign wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
+                        <div  class=" col-sm-12 col-xs-12" style="color: white">
+                            <label for="specialities" class="  wbdv-mar-top-15 wbdv-req-field" style="font-size: larger">
+                                <i class="">
+                                    <u>Edit Specialities</u>
+                                </i>
                             </label>
+                            <span class="fa fa-plus-circle fa-2x"  aria-hidden="true"></span>
                         </div>
                     </a>
 
 
                 </div>
 
-                <div class="row" id="specialities">
-                    <div class="pull-left" style="margin-right:5px;" ng-repeat="special in model.speciality">
+                <div class="row" id="specialities" style="margin-left:5px;">
+                    <div class="pull-left"  ng-repeat="special in model.speciality">
                         <input class="wbdv-mar-top-3" type="text" style="color:black; height: 35px; text-align: center" ng-model="special.value"/>
                         <a ng-click="model.deleteSpeciality(special)">
                             <span class="glyphicon glyphicon-remove-sign wbdv-speciality-remove" style="color: red"></span>
