@@ -29,6 +29,6 @@ module.exports=function(){
 
 
     }, {collection: 'userdb'});
-    // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
+
     return UserSchema;
 };

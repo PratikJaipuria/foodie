@@ -63,7 +63,7 @@ module.exports = function () {
             if (err){
                 deferred.reject();
             }else{
-                // console.log("MODEL delivery boy",listUser);
+
                 deferred.resolve(listUser);
 
             }
@@ -199,11 +199,11 @@ module.exports = function () {
         var deferred=q.defer();
         UserModel.update({_id: userId},{$push: {OrderId: oId}}, function (err,res) {
             if(err){
-                console.log(err);
+
                 deferred.reject();
             }
             else {
-                console.log(res);
+
                 deferred.resolve(res);
 
             }

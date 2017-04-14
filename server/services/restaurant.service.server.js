@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 3/30/2017.
- */
+
 module.exports=function(app,model) {
 
     app.post("/api/user/:userId/restaurant", createRestaurant);
@@ -92,10 +90,9 @@ module.exports=function(app,model) {
     }
 
     function updateRestaurant(req,res) {
-        // var restaurantId = req.params.restaurantId;
+
         var restaurant = req.body;
-        // console.log(restaurant.hours[Monday]);
-        // console.log(restaurant.hours.Monday);
+
 
         RestaurantModel
             .updateRestaurant(restaurant)
@@ -182,12 +179,7 @@ module.exports=function(app,model) {
         RestaurantModel.findRestaurantById(resturantDetails._id)
             .then(function (resturantObj) {
                 if(resturantObj){
-                    // RestaurantModel.updateRestaurant(resturantObj._id,resturantDetails)
-                    //     .then(function (response) {
-                    //         res.sendStatus(200);
-                    //     },function (err) {
-                    //         res.sendStatus(404);
-                    //     })
+
                     res.sendStatus(200);
                 }
                 else{

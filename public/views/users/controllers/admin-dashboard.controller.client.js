@@ -21,7 +21,7 @@
 
 
             findUsers('ALLUSERS');
-            // adminDashBoard();
+
 
 
         }init();
@@ -47,7 +47,7 @@
 
                 vm.data=users;
             }).error(function (err) {
-                console.log(err);
+
             })
         }
 
@@ -59,7 +59,7 @@
             promise.success(function (restaurants) {
                 vm.data=restaurants;
             }).error(function (err) {
-                console.log(err);
+
             })
         }
 
@@ -69,7 +69,7 @@
             promise.success(function (orders) {
                 vm.data=orders;
             }).error(function (err) {
-                console.log(err);
+
             })
         }
 
@@ -80,8 +80,8 @@
 
             vm.mode='console';
 
-            console.log(vm.mode);
-            // window.onload = function () {
+
+
             var chart = new CanvasJS.Chart("chartContainer",
                 {
                     title: {
@@ -107,13 +107,11 @@
 
             chart.render();
 
-
-        // }
     }
 
 
         function updateUser(userId){
-            console.log(userId);
+
             $location.url("/admin/edit/"+userId);
         }
 

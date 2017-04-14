@@ -5,8 +5,6 @@
 
     function userService ($http) {
 
-        // var vm = this;
-
 
 
         var api = {
@@ -49,14 +47,12 @@
 
 
         function setRestaurantId(restId) {
-            console.log(restId);
-            return $http.put('/api/setrest/'+restId);
-            // userService.restaurantId = restId;
 
-            // console.log("CLient rest IID",vm.restId);
+            return $http.put('/api/setrest/'+restId);
         }
+
         function getRestaurantId() {
-            // return vm.restId;
+
             return $http.get('/api/getrest');
         }
 
@@ -96,7 +92,7 @@
 
 
         function findDeliveryBoyByRestaurant(restaurantId) {
-            // console.log("CLIENT",restaurantId);
+
             return $http.get('/api/users/'+ restaurantId);
         }
 

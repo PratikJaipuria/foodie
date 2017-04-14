@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 4/1/2017.
- */
+
 (function (){
     angular
         .module("ProjectMaker")
@@ -15,7 +13,6 @@
             "updateMenuItem":updateMenuItem,
             "updateMenuCategory":updateMenuCategory,
             "findMenuById":findMenuById,
-            // "deleteMenuItem":deleteMenuItem
             "deleteMenuById":deleteMenuById,
             "deleteMenuCategory":deleteMenuCategory,
             "setMenuId" : setMenuId,
@@ -28,9 +25,9 @@
 
 
         function deleteMenuCategory(menu,restaurantId) {
-            // console.log("client",menu);
+
             var cat = menu.catname;
-            console.log("client",cat);
+
             return $http.delete('/api/menucategory/'+cat);
 
         }

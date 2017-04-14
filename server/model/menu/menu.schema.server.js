@@ -14,6 +14,6 @@ module.exports=function(){
         dateCreated: {type: Date, default: Date.now}
 
     }, {collection: 'menudb'});
-    // UserSchema.index( { "email": 1, "username": 1 }, { unique: true } );
+
     return MenuSchema;
 };

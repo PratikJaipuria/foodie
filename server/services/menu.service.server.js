@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 4/1/2017.
- */
+
 module.exports=function(app,model){
     app.post("/api/menu", createMenu);
     app.get("/api/menu/:rst",findMenuByRestaurantId);
@@ -31,8 +29,8 @@ module.exports=function(app,model){
 
     function deleteMenuCategory(req,res) {
         var catname = req.params['cat'];
-        // var menu = req.body;
-         console.log("SEVER",catname);
+
+
         MenuModel
             .deleteMenuCategory(catname)
             .then(function (response) {
@@ -109,18 +107,18 @@ module.exports=function(app,model){
 
     function createMenu(req,res) {
         var menu = req.body;
-        console.log(menu);
+
         MenuModel
             .createMenu(menu)
             .then(function (response) {
                 MenuModel
                     .findMenu(menu)
                     .then(function (menui) {
-                        console.log("find MENU",menui);
+
                         RestaurantModel
                             .insertMenuId(menui)
                             .then(function (result) {
-                                console.log("create server res",response);
+
                                 res.json(response);
                             },function (err) {
                                 res.json(err);

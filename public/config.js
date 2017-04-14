@@ -10,26 +10,26 @@
 
         $routeProvider
             .when("/",{
-                templateUrl: "views/home.html",
+                templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
                 controllerAs:'model'
 
             })
             .when("default",{
-                templateUrl: "views/home.html",
+                templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
                 controllerAs:'model'
             })
 
             .when("/home",{
-                templateUrl: "views/home.html",
+                templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
                 controllerAs:'model'
             })
 
 
             .when("/admin",{
-                templateUrl: "views/users/templates/admin-dashboard.view.client.html",
+                templateUrl: "views/users/templates/admin-dashboard.view.html",
                 controller:'adminDashboardController',
                 controllerAs:'model',
                 resolve: {
@@ -41,7 +41,7 @@
 
             .when("/admin/edit/:uid",{
 
-                templateUrl: "views/users/templates/admin-edit-user.view.client.html",
+                templateUrl: "views/users/templates/admin-edit.view.html",
                 controller: "adminEditController",
                 controllerAs: "model",
                 resolve: {
@@ -52,24 +52,24 @@
 
 
             .when("/login",{
-                templateUrl: "views/users/templates/login.html",
+                templateUrl: "views/users/templates/login.view.html",
                 controller: "userLoginController",
                 controllerAs: "model"})
 
             .when("/searchResult/name/:rn/address/:add",{
-                templateUrl: "views/users/templates/user.search.result.html",
+                templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
                 controllerAs: "model"})
 
 
             .when("/searchResult/address/:add",{
-                templateUrl: "views/users/templates/user.search.result.html",
+                templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
                 controllerAs: "model"})
 
 
             .when("/user/searchResult/name/:rn/address/:add",{
-                templateUrl: "views/users/templates/user.search.result.html",
+                templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
                 controllerAs: "model",
                 resolve: {
@@ -78,7 +78,7 @@
 
 
             .when("/user/searchResult/address/:add",{
-                templateUrl: "views/users/templates/user.search.result.html",
+                templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
                 controllerAs: "model",
                 resolve: {
@@ -87,7 +87,7 @@
 
 
             .when("/user/searchResult",{
-                templateUrl: "views/home.html",
+                templateUrl: "views/users/templates/home.view.html",
                 controller: "homeController",
                 controllerAs: "model",
                 resolve: {
@@ -97,19 +97,19 @@
 
 
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl: "views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl: "views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
 
             .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
 
             .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl: "views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl: "views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -118,7 +118,7 @@
 
 
             .when("/user/searchResult/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -128,18 +128,18 @@
 
 
             .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
-                templateUrl:"views/restaurant/templates/user.restaurant.menu.html",
+                templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
                 controllerAs: "model"})
 
 
             .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
-                templateUrl:"views/order/templates/user.checkout.html",
+                templateUrl:"views/order/templates/user-create-order.view.html",
                 controller: "checkOutController",
                 controllerAs: "model",
                 resolve: {
@@ -147,7 +147,7 @@
                 }})
 
             .when("/user/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
-                templateUrl:"views/order/templates/user.checkout.html",
+                templateUrl:"views/order/templates/user-create-order.view.html",
                 controller: "checkOutController",
                 controllerAs: "model",
                 resolve: {
@@ -156,7 +156,7 @@
 
 
             .when("/user/restaurant/order",{
-                templateUrl: "views/order/templates/resturant.order.tracking.html",
+                templateUrl: "views/order/templates/resturant-order-list.view.html",
                 controller: 'restaurantOrderTrackController',
                 controllerAs: 'model',
                 resolve: {
@@ -165,7 +165,7 @@
 
 
             .when("/register/:role",{
-                templateUrl: "views/users/templates/userRegister.html",
+                templateUrl: "views/users/templates/user-register.view.html",
                 controller: "userRegisterController",
                 controllerAs:'model'
             })
@@ -177,7 +177,7 @@
 
 
             .when("/user/profile",{
-                templateUrl: "views/users/templates/userProfile.html",
+                templateUrl: "views/users/templates/user-profile.view.html",
                 controller: "userProfileController",
                 controllerAs: "model",
                 resolve: {
@@ -186,7 +186,7 @@
             })
 
             .when("/user/restaurant",{
-                templateUrl: "views/restaurant/templates/restaurantList.html",
+                templateUrl: "views/restaurant/templates/restaurant-list.view.html",
                 controller: "restaurantListController",
                 controllerAs:"model",
                 resolve: {
@@ -195,7 +195,7 @@
             })
 
             .when("/user/restaurant/new",{
-                templateUrl: "views/restaurant/templates/newRestaurant.html",
+                templateUrl: "views/restaurant/templates/restaurant-new.view.html",
                 controller: "restaurantNewController",
                 controllerAs:"model",
                 resolve: {
@@ -204,17 +204,17 @@
             })
 
             .when("/user/restaurant/edit",{
-                templateUrl: "views/restaurant/templates/restaurantEdit.html",
+                templateUrl: "views/restaurant/templates/restaurant-edit.view.html",
                 controller: "restaurantEditController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
-                    // currentRestaurant:checkRestaurant
+
                 }
             })
 
             .when("/user/restaurant/menu/item",{
-                templateUrl: "views/restaurant/templates/menuItemEdit.html",
+                templateUrl: "views/restaurant/templates/menu-item-edit.view.html",
                 controller: "editMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -223,7 +223,7 @@
             })
 
             .when("/user/restaurant/menu/category/:catname",{
-                templateUrl: "views/restaurant/templates/menuCategoryEdit.html",
+                templateUrl: "views/restaurant/templates/menu-category-edit.view.html",
                 controller: "editMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -232,7 +232,7 @@
             })
 
             .when("/user/restaurant/menu",{
-                templateUrl: "views/restaurant/templates/restaurantMenu.html",
+                templateUrl: "views/restaurant/templates/restaurant-menu-list.view.html",
                 controller: "restaurantMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -241,7 +241,7 @@
             })
 
             .when("/user/restaurant/menu/new",{
-                templateUrl: "views/restaurant/templates/newMenu.html",
+                templateUrl: "views/restaurant/templates/menu-new.view.html",
                 controller: "newMenuController",
                 controllerAs: "model",
                 resolve: {
@@ -250,7 +250,7 @@
             })
 
             .when("/user/restaurant/db",{
-                templateUrl: "views/users/templates/deliveryPersonnalList.html",
+                templateUrl: "views/users/templates/db-list.view.html",
                 controller: "deliveryBoyListController",
                 controllerAs: "model",
                 resolve: {
@@ -259,7 +259,7 @@
             })
 
             .when("/user/restaurant/db/:role",{
-                templateUrl: "views/users/templates/userRegister.html",
+                templateUrl: "views/users/templates/user-register.view.html",
                 controller: "deliveryBoyRegisterController",
                 controllerAs: "model",
                 resolve: {
@@ -267,10 +267,10 @@
                 }
             })
 
-            //change this to profile standard path
+
             .when("/user/restaurant/editdb",{
-                ///deliveryPersonnal/:db
-                templateUrl: "views/users/templates/dbProfileforOwner.html",
+
+                templateUrl: "views/users/templates/db-profile-owner.view.html",
                 controller: "deliveryBoyProfileController",
                 controllerAs: "model",
                 resolve: {
@@ -280,7 +280,7 @@
 
             .when("/user/orders",{
 
-                templateUrl: "views/users/templates/user.order.view.html",
+                templateUrl: "views/order/templates/user-order-list.view.html",
                 controller: "userOrderController",
                 controllerAs: "model",
                 resolve: {
@@ -292,7 +292,7 @@
 
             .when("/user/dborders",{
 
-                templateUrl: "views/order/templates/deliveryPersonnalOrder.html",
+                templateUrl: "views/order/templates/db-order-list.view.html",
                 controller: "deliveryPersonnalOrderController",
                 controllerAs: "model",
                 resolve: {
@@ -319,27 +319,24 @@
 
     function checkRestaurant($q,userService,restaurantService,$location) {
         var deferred = $q.defer();
-        // userService
         var restaurantId = this.location.href.split('/')[this.location.href.split('/').length -1];
-        // var restaurantId = $routeParams['rst'];
-        // console.log("REST ID in config",restaurantId);
-        // console.log("USER ID in config",user);
+
         restaurantService
             .findRestaurantById(restaurantId)
             .success(function (restaurant) {
-                // console.log("REST obje ct",restaurant);
+
                 userService
                     .loggedin()
                     .then(function (user) {
-                        // console.log("USER object",user);
+
                         if(user._id == restaurant.ownerId) {
                             deferred.resolve();
 
                         } else {
-                            // deferred.resolve(restaurant);
+
                             deferred.reject();
                             $location.url('/login');
-                            // $location.url('/user/restaurant/'+restaurantId);
+
 
                         }
                     });

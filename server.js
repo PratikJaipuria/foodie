@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var passport      = require('passport');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
-// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 
 app.use(session({
     secret: 'this is the secret', // process.env.SESSION_SECRET
@@ -23,14 +23,11 @@ app.use(passport.session());
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
-// require ("./test/app.js")(app);
-//
+
 require ("./server/app.js")(app);
-//
-// require("./assignment/app.js")(app);
 
 
-// require("./public/app.js")(app);
+
 var port = process.env.PORT || 3001;
 
 app.listen(port);

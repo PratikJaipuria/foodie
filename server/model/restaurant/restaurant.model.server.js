@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 3/30/2017.
- */
+
 module.exports = function () {
     var q = require('q');
 
@@ -28,7 +26,7 @@ module.exports = function () {
         findRestaurants:findRestaurants,
         deleteOrderFromResturant:deleteOrderFromResturant,
         removeDeliveryBoyFromRestaurant:removeDeliveryBoyFromRestaurant,
-        // findDeliveryBoyForThisRestaurant:findDeliveryBoyForThisRestaurant
+
 
 
 
@@ -105,16 +103,6 @@ module.exports = function () {
     function updateRestaurant(restaurant) {
         var deferred = q.defer();
 
-        console.log(
-            restaurant.hours.Monday,
-               restaurant.hours.Tuesday,
-                restaurant.hours.Wednesday,
-                restaurant.hours.Thursday,
-                 restaurant.hours.Friday,
-               restaurant.hours.Saturday,
-                restaurant.hours.Sunday
-
-        );
 
         RestaurantModel
             .update({_id:restaurant._id},{
@@ -410,22 +398,6 @@ module.exports = function () {
             });
             return deferred.promise;
         }
-
-        // function findDeliveryBoyForThisRestaurant(resId) {
-        //     var deferred = q.defer();
-        //     RestaurantModel.find({_id: resId})
-        //         .populate('deliveryBoysId')
-        //         .exec(function (err, resturantDetails) {
-        //             if(err){
-        //                 deferred.reject(err);
-        //             }
-        //             else {
-        //                 deferred.resolve(resturantDetails);
-        //             }
-        //         })
-        //     return deferred.promise;
-        // }
-
 
     }
 

@@ -12,7 +12,7 @@ module.exports=function(app,model){
     app.post('/api/login', passport.authenticate('local'), login);
     app.post('/api/loggedin', loggedin);
     app.post('/api/logout', logout);
-    // app.post('/api/register', createUser);
+
     app.post("/api/user", createUser);
     app.put("/api/user/:uid", updateUser);
     app.delete("/api/user/:uid", deleteUser);
@@ -31,7 +31,7 @@ module.exports=function(app,model){
     app.put("/api/setdbid/:dbid",setDBId);
     app.get("/api/getdbid",getDBId);
 
-    // app.put("/api/user/:uid/restaurants/")
+
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/google/callback',
@@ -48,10 +48,7 @@ module.exports=function(app,model){
 
 
     function localStrategy(username, password, done) {
-        // bcrypt.compareSync(password, user.password)
-        console.log("PASSWORD in LOCAL Strategy",password);
-        // password = bcrypt.hashSync(password);
-        // console.log("PASSWORD in LOCAL Strategy after encrpt",password);
+
         UserModel
             .findUserByUsername(username)
             .then(
@@ -71,12 +68,12 @@ module.exports=function(app,model){
     var restId;
     function setRestaurantId(req,res) {
         restId = req.params['rid'];
-        console.log("SERVER",restId);
+
         res.json(restId);
     }
 
     function getRestaurantId(req,res) {
-        console.log("RESPONSE",restId);
+
         res.json(restId);
     }
 
@@ -91,9 +88,6 @@ module.exports=function(app,model){
         res.json(restId);
     }
 
-    // function isAdmin(req, res) {
-    //     res.send(req.isAuthenticated() && req.user.role == 'ADMIN' ? req.user : '0');
-    // }
 
 
 
@@ -222,7 +216,7 @@ module.exports=function(app,model){
     function findUserByCredentials(req,res) {
         var username = req.query.username;
         var password = req.query.password;
-        console.log("PASSWORD server ",password);
+
 
         UserModel
             .findUserByCredentials(username,password)
@@ -247,9 +241,9 @@ module.exports=function(app,model){
 
     function createUser(req, res){
         var user=req.body;
-        console.log("BEFORE encrpty",user.password);
+
         user.password = bcrypt.hashSync(user.password);
-        // return userModel.createUser(user);
+
 
         if(user.role=="DELIVERYBOY"){
             UserModel
@@ -277,12 +271,12 @@ module.exports=function(app,model){
                                 if(err) {
                                     res.status(400).send(err);
                                 } else {
-                                    // console.log("AFTER req LOGIN",user);
+
                                     res.json(user);
                                 }
                             });
 
-                            // res.json(user);
+
                         }, function (err) {
 
                             res.sendStatus(err.code);
@@ -363,7 +357,7 @@ module.exports=function(app,model){
                                                 .then(function (response) {
 
                                                 }, function (err) {
-                                                    console.log(err);
+
                                                     res.sendStatus(404);
                                                 })
                                         })

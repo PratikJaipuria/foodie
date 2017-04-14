@@ -1,17 +1,4 @@
-/*.loader {*/
-    /*position: fixed;*/
-    /*left: 0px;*/
-    /*top: 0px;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*z-index: 9999;*/
-    /*background: url('../images/10.jpg') 50% 50% no-repeat rgb(249,249,249);*/
-/*}*/
-
-
-
-
-.sidenav {
+.wbdv-sidenav {
     height: 100%;
     width: 0;
     position: fixed;
@@ -69,21 +56,21 @@
     background-color: gray;
 }
 
-.assignButton{
+.wbdv-assign-button{
   margin-bottom:10px;
     background-color: steelblue;
 
 }
 
-.sendGlyphicon{
+.wbdv-sendGlyphicon{
     color: red;font-size: 25px;
 }
 
-.deliveredGlyphicon{
+.wbdv-deliveredGlyphicon{
     color: green;font-size: 25px;
 }
 
-.pendingGlyphicon{
+.wbdv-pendingGlyphicon{
     color: yellow;font-size: 25px;
 }
 
@@ -105,7 +92,7 @@
 }
 
 
-.amountEntry{
+.wbdv-amountEntry{
 
     background-color:rgb(79, 84, 40) ;
     color: black;
@@ -116,7 +103,7 @@
     background-color:rgb(118,151,204);
 }
 
-.sidenav a {
+.wbdv-sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 15px;
@@ -125,11 +112,11 @@
     transition: 0.3s;
 }
 
-.sidenav a:hover, .offcanvas a:focus{
+.wbdv-sidenav a:hover, .offcanvas a:focus{
     color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+.wbdv-sidenav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
@@ -164,7 +151,7 @@ input{
 
 }
 
-.blackContainerForTabs{
+.wbdv-blackContainerForTabs{
     height: auto;
     width: 100%;
 
@@ -173,7 +160,7 @@ input{
 
 }
 
-.blackContainerList{
+.wbdv-blackContainerList{
     margin-top: 30px;
     background: rgba(0, 0, 0, 0.7);
 }
@@ -300,12 +287,12 @@ padding: 0px;
     /*padding-bottom: 20px;*/
 /*}*/
 
-.pageHeading{
+.wbdv-pageHeading{
     color: #ffffff;
     text-align: center;
 }
 
-.button-centre{
+.wbdv-button-centre{
     margin-left:75px;
 }
 
@@ -364,7 +351,7 @@ padding: 0px;
     /*background-color: whitesmoke;*/
 /*}*/
 
-.rating{
+.wbdv-rating{
     /*margin-top: 1px;*/
     /*margin-right: 18px;*/
     background-color:orange;
@@ -372,7 +359,7 @@ padding: 0px;
 
 }
 
-.filtermenudiv{
+.wbdv-filtermenudiv{
     /*border-style: solid;*/
     /*border-color: red;*/
     border-style: groove;
@@ -384,7 +371,7 @@ padding: 0px;
 }
 
 
-.menudiv{
+.wbdv-menudiv{
     /*border-style: solid;*/
     /*border-color: red;*/
     border-style: groove;
@@ -395,7 +382,7 @@ padding: 0px;
 
 }
 
-.hotelnamebrand{
+.wbdv-hotelnamebrand{
     /*color: black;*/
     color: orangered !important;
     font-weight: bold;
@@ -403,7 +390,7 @@ padding: 0px;
     font-size: x-large;
 }
 
-.hotelname{
+.wbdv-hotelname{
     /*color: black;*/
     color: #ffffff;
     font-weight: bold;
@@ -412,7 +399,7 @@ padding: 0px;
 }
 
 
-.tagline{
+.wbdv-tagline{
     /*color: black;*/
     /*font-color: darkred;*/
     color: whitesmoke;
@@ -423,7 +410,7 @@ padding: 0px;
 
 
 
-.filter-headings{
+.wbdv-filter-headings{
     color: grey;
     /*font-family: "Californian FB";*/
     font-size: large;
@@ -432,7 +419,7 @@ padding: 0px;
     color: white;
 }
 
-.filter-items{
+.wbdv-filter-items{
 
     color: white;
     /*font-family: "sans-serif";*/
@@ -440,7 +427,7 @@ padding: 0px;
     margin-left: 40px;
 }
 
-.viewmenu
+.wbdv-viewmenu
 {
     text-align: center;
     font-size: large;
@@ -478,12 +465,12 @@ padding: 0px;
     border-bottom: double;
 }
 
-.leftinfotext{
+.wbdv-leftinfotext{
     /*color: grey;*/
     color: #ffffff;
     font-size: small;
 }
-.rightinfotext{
+.wbdv-rightinfotext{
     /*color: black;*/
     color: #ffffff;
     font-size: small;
@@ -491,13 +478,13 @@ padding: 0px;
 /*--------------------------------------------------------------------------------------------*/
 /*Pratik*/
 
-.prevent-overflow{
+.wbdv-prevent-overflow{
     word-wrap: break-word;
 }
 
-.mySlides {display:none;}
+.wbdv-mySlides {display:none;}
 
-.landscape {
+.wbdv-landscape {
     /*height: 30px;*/
     /*width: 80px;*/
 
@@ -618,7 +605,7 @@ body {
     /*width: 50%;*/
 /*}*/
 
-.pageBackgroundlogin{
+.wbdv-pageBackgroundlogin{
     background: url("../images/8.jpeg");
     background-size: cover;
     position: absolute;
@@ -628,7 +615,7 @@ body {
     min-height: 100%;
     /*margin-top: 50px;*/
 }
-.searchResultPageBackground {
+.wbdv-searchResultPageBackground {
 
     background: url('../images/redBackground.gif');
     /*background-size: cover;*/
@@ -648,7 +635,7 @@ body {
 
 }
 
-.pageBackground {
+.wbdv-pageBackground {
 
     background: url('../images/redBackground.gif');
     background-size: cover;
@@ -661,7 +648,7 @@ body {
     color: #ffffff;
 }
 
-.adminPageBackground{
+.wbdv-adminPageBackground{
     background-color: black;
     position: absolute;
     top:0;
@@ -936,9 +923,6 @@ input[type="checkbox"]{
     padding-top: 25px;
     margin-bottom: 50px;
     margin-right: 50px;
-
-    /*border-right: 4px solid lightgrey;*/
-    /*overflow-y: auto;*/
 }
 
 .wbdv-two-third-col{

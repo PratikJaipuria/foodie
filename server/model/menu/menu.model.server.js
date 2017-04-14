@@ -28,7 +28,7 @@ module.exports = function () {
 
         var deferred = q.defer();
         MenuModel
-            // .remove({restaurantId:restaurantId , $in: {category:menu.catname}}
+
             .remove({category:catname}
             ,function (err,response) {
                     if(err){

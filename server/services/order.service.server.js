@@ -1,5 +1,5 @@
 module.exports=function(app,model){
-    // app.get("/api/user", findUser);
+
     app.post("/api/restaurant/checkout", createOrder);
     app.get('/api/restaurant/:rst/orders', getOrdersForThisRestaurant);
     app.put('/api/restaurant/:rst/orders/delivery', assignDelivery);
@@ -27,7 +27,7 @@ module.exports=function(app,model){
         UserModel
             .findUserById(userId)
             .then(function (user) {
-                // order.deliverAddress=user.address+' '+user.city+' '+user.state;
+
                 order.customerPhone=user.phone;
 
 

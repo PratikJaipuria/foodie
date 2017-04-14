@@ -1,6 +1,4 @@
-/**
- * Created by Pratik on 4/8/2017.
- */
+
 (function () {
     angular.module('ProjectMaker')
         .controller('adminEditController', adminEditController);
@@ -19,7 +17,7 @@
             var promise = userService.findUserByID(userId);
                 promise.success(function (user) {
                     vm.user = user;
-                    console.log("RESULT",vm.user);
+
                 }).error(function (err) {
                     vm.error = err;
                 })
@@ -64,7 +62,7 @@
             }
 
             if(errors.length == 0){
-                console.log("USER to be updated",user);
+
                 var promise=userService.updateUser(userId,user);
                 promise.success(function (user) {
                     vm.user=user;
