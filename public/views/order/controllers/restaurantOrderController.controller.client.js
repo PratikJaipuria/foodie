@@ -24,14 +24,11 @@
         vm.openNav=openNav;
         vm.closeNav=closeNav;
         vm.hamOpenNav=hamOpenNav;
-        vm.getActiveTab=getActiveTab;
 
 
         // vm.userId = userId;
         // vm.restaurantId = restaurantId;
         function init() {
-
-
 
             var dbNameAvail=[];
             vm.scheduled=[];
@@ -214,11 +211,6 @@
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
             state=0;
-        }
-
-        function getActiveTab() {
-
-           console.log( $('.nav-tabs .active').text());
         }
 
 

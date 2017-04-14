@@ -58,17 +58,17 @@
 
 
 
-        <!--<div id="mySidenav" class="sidenav">-->
-            <!--<a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white"  ng-click="model.refresh()">All Orders</a>-->
-            <!--<a data-target="#ordersPending" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Pending</a>-->
-            <!--<a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Scheduled</a>-->
-            <!--<a data-target="#ordersDelivered" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a>-->
-        <!--</div>-->
+        <div id="mySidenav" class="sidenav">
+            <a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white"  ng-click="model.refresh()">All Orders</a>
+            <a data-target="#ordersPending" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Pending</a>
+            <a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Scheduled</a>
+            <a data-target="#ordersDelivered" data-toggle="tab"   class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a>
+        </div>
 
-        <!--model.refresh()-->
 
-        <ul id="mySidenav" class="nav nav-pills nav-justified  sidenav" style="color:white; background-color: black;">
-            <li><a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white" ng-click="model.getActiveTab()">All Orders</a></li>
+
+        <ul class="nav nav-pills nav-justified hidden-xs" style="color:white; background-color: black;">
+            <li><a data-target="#allOrders" data-toggle="tab" class="wbdv-text-clr-white" ng-click="model.refresh()">All Orders</a></li>
             <li  class="active"> <a data-target="#ordersPending"  class="wbdv-text-clr-white"  data-toggle="tab" ng-click="model.refresh">Orders Pending</a></li>
             <li><a data-target="#ordersScheduled" data-toggle="tab"  class="wbdv-text-clr-white" ng-click="model.refresh()">Orders Scheduled</a></li>
             <li><a data-target="#ordersDelivered" data-toggle="tab"  class="wbdv-text-clr-white"  ng-click="model.refresh()">Orders Delivered</a></li>
