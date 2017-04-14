@@ -7,6 +7,18 @@
     /*z-index: 9999;*/
     /*background: url('../images/10.jpg') 50% 50% no-repeat rgb(249,249,249);*/
 /*}*/
+.dropdown-menu li a{
+    color: white !important;
+}
+
+
+.dropdown-menu li a:hover{
+    color: black !important;
+}
+
+
+
+
 
 
 input{

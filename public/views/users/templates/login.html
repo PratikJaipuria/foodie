@@ -1,32 +1,57 @@
 
 <nav class="navbar  navbar-fixed-top bg-primary">
     <div class="container-fluid" >
-        <div  class="navbar-text navbar-link pull-left">
-            <a href="#/home">
-                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
-            </a>
+
+
+        <!--<div class="navbar-header dropdown visible-xs">-->
+        <div class="dropdown">
+            <div  class=" dropdown-toggle pull-right" data-toggle="dropdown"   style="margin-top: 15px; margin-right: 10px;rg">
+                <span class="fa fa-user-plus fa-lg"></span>
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            </div>
+            <ul class="dropdown-menu pull-right" style="margin-top: 30px; background: rgba(123,55,44,0.1)">
+                <li><a ng-click="model.registerUser(1)" class=" wbdv-text-clr-white" title="Register Owner">Register Owner</a></li>
+                <li><a ng-click="model.registerUser(0)" class=" wbdv-text-clr-white" title="Register User">Register User</a></li>
+            </ul>
+
+
         </div>
 
-        <div  class="navbar-text navbar-link pull-right visible-xs">
-            <a ng-click="model.registerUser(0)">
-                <i class="fa fa-user-plus fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register User"></i>
-            </a>
-        </div>
-        <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a ng-click="model.registerUser(0)">
-                <span class=" wbdv-text-clr-white" title="Register User">Register User</span>
-            </a>
-        </div>
-        <!--<div  class="navbar-text navbar-link pull-right visible-xs">-->
-            <!--<a ng-click="model.registerUser(1)">-->
-                <!--<i class="fa fa-registered fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register Owner"></i>-->
+
+
+
+
+        <!--<div  class="navbar-text navbar-link pull-left">-->
+            <!--<a href="#/home">-->
+                <!--<span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>-->
             <!--</a>-->
         <!--</div>-->
-        <div  class="navbar-text navbar-link pull-right hidden-xs">
-            <a ng-click="model.registerUser(1)">
-                <span class=" wbdv-text-clr-white" title="Register Owner">Register Owner</span>
-            </a>
-        </div>
+
+        <!--<div  class="navbar-text navbar-link pull-right visible-xs">-->
+            <!--<a ng-click="model.registerUser(0)">-->
+                <!--<i class="fa fa-user-plus fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register User"></i>-->
+            <!--</a>-->
+        <!--</div>-->
+
+
+
+        <!--<div  class="navbar-text navbar-link pull-right hidden-xs">-->
+            <!--<a ng-click="model.registerUser(0)">-->
+                <!--<span class=" wbdv-text-clr-white" title="Register User">Register User</span>-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div  class="navbar-text navbar-link pull-right visible-xs">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a ng-click="model.registerUser(1)">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="fa fa-registered fa-lg wbdv-text-clr-white" aria-hidden="true" title="Register Owner"></i>&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div  class="navbar-text navbar-link pull-right hidden-xs">-->
+            <!--<a ng-click="model.registerUser(1)">-->
+                <!--<span class=" wbdv-text-clr-white" title="Register Owner">Register Owner</span>-->
+            <!--</a>-->
+        <!--</div>-->
     </div>
 </nav>
 
@@ -46,7 +71,7 @@
     </div>
     <div  class="container">
 
-        <div class="blackContainer  container contentContainer">
+        <div class="blackContainer  container contentContainer" style="margin-top: 60px;">
             <h1 class="pageHeading" >Login</h1>
             <div class="form-group">
                 <input ng-model="user.username" type="text"
