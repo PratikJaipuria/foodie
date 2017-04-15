@@ -1,34 +1,24 @@
-<nav class="navbar navbar_container navbar-fixed-top ">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-12 " >
+            <div class="navbar-brand pull-left">
+                <a ng-click="model.navigateBack()" class = "wbdv-text-clr-white">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-brand pull-right ">
+                <a ng-click="model.checkOut()">
+                    <span class="glyphicon  glyphicon-shopping-cart wbdv-text-clr-white"></span>
+                </a>
+            </div>
 
-        <div class=" navbar-text pull-left wbdv-mar-left-0 ">
-            <a ng-click="model.navigateBack()">
-                <span class="glyphicon glyphicon-chevron-left wbdv-text-clr-white"></span>
-            </a>
-        </div>
+            <div class="navbar-header ">
 
-        <div class="navbar-header navbar-link pull-left wbdv-mar-left-0">
-            <span class="navbar-brand wbdv-text-clr-white wbdv-register-font"> {{model.restaurantName}}
-            </span>
-        </div>
-
-
-        <div class="navbar-text navbar-link pull-right visible-xs">
-            <a ng-click="model.checkOut()">
-                <span class="glyphicon glyphicon-shopping-cart wbdv-text-clr-white"
-                      title="Proceed to payment">
-                </span>
-            </a>
-        </div>
-
-        <div class="navbar-text navbar-link pull-right hidden-xs">
-            <a ng-click="model.checkOut()">
-                <span class=" wbdv-text-clr-white" title="checkOut">Proceed to Payment</span>
-            </a>
+                <a class="navbar-brand wbdv-text-clr-white wbdv-prevent-overflow">{{model.restaurantName}}</a>
+            </div>
         </div>
 
     </div>
-
 </nav>
 
 
