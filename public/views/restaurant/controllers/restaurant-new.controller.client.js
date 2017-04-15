@@ -106,7 +106,7 @@
                 var formattedSpace=vm.restaurant.streetAddress.replace(/\s+/g,'+');
                 var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-                var promise = addressAPISearchService.getAuthkeys()
+                var promise = addressAPISearchService.getAuthkeys();
                 promise.success(function (keys) {
 
                     var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);

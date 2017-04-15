@@ -19,6 +19,7 @@
         vm.newAddress='';
         vm.newCity='';
         vm.newState='';
+        vm.address='';
 
 
 
@@ -84,14 +85,18 @@
                 var formattedSpace=vm.newAddress.replace(/\s+/g,'+');
                 var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-                var promise=addressAPISearchService.autoCompleteAddress(formatedSpaceAndPound);
-                promise.success(function (addr) {
-                    vm.addressFromAPI=addr.suggestions;
+                var promise = addressAPISearchService.getAuthkeys();
+                promise.success(function (keys) {
 
+                    var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
+                    promise.success(function (addr) {
+                        vm.addressFromAPI=addr.suggestions;
 
-                }).error(function (err) {
-                    vm.error=err;
-                })
+                    }).error(function (err) {
+                        vm.error=err;
+                    })
+
+                });
             }
 
         }
@@ -116,47 +121,57 @@
 
         function purchase() {
 
-            cart.restaurantId=vm.cart.rId;
-            cart.userId=vm.cart.userId;
-            cart.totalAmount=parseInt(vm.cart.amount);
-            cart.restName=restaurantName;
-            cart.items=[];
-            cart.restName=vm.cart.rName;
-            cart.items=vm.cart.items;
-            cart.userFullName=vm.user.firstName+' '+vm.user.lastName;
-
-            if(vm.address == "Existing"){
-                cart.deliverAddress=vm.selectedAddress;
-
-
+            if(vm.address==''){
+                outputMsg("ERROR", "Please select an address to deliver the order");
             }
-            else if (vm.address == "New"){
-                vm.deliveryAddresses.splice(0,1);
-                vm.deliveryAddresses.push(vm.newAddress+' '+vm.newCity+' '+vm.newState);
-                cart.deliverAddress=vm.newAddress+' '+vm.newCity+' '+vm.newState;
-                userService.updateDeliveryAddresses(vm.userId,vm.deliveryAddresses)
-                    .success(function () {
 
-                    }).error(function () {
+            else if(vm.address == "Existing" && vm.selectedAddress=='undefined undefined undefined'){
+                outputMsg("ERROR", "Please select a valid address or enter a new address");
+            }
+
+            else {
+                cart.restaurantId = vm.cart.rId;
+                cart.userId = vm.cart.userId;
+                cart.totalAmount = parseInt(vm.cart.amount);
+                cart.restName = restaurantName;
+                cart.items = [];
+                cart.restName = vm.cart.rName;
+                cart.items = vm.cart.items;
+                cart.userFullName = vm.user.firstName + ' ' + vm.user.lastName;
+
+                if (vm.address == "Existing") {
+                    cart.deliverAddress = vm.selectedAddress;
+
+
+                }
+                else if (vm.address == "New") {
+                    vm.deliveryAddresses.splice(0, 1);
+                    vm.deliveryAddresses.push(vm.newAddress + ' ' + vm.newCity + ' ' + vm.newState);
+                    cart.deliverAddress = vm.newAddress + ' ' + vm.newCity + ' ' + vm.newState;
+                    userService.updateDeliveryAddresses(vm.userId, vm.deliveryAddresses)
+                        .success(function () {
+
+                        }).error(function () {
+
+                    })
+
+                }
+                else {
+                    cart.deliverAddress = vm.deliveryAddresses[0];
+                }
+
+
+                var promise = checkOutService.createOrder(cart);
+                promise.success(function (order) {
+                    outputMsg('SUCCESS', 'Your order has been successfully placed');
+
+                    navigateToUserOrderPage();
+                }).error(function (err) {
+                    outputMsg("ERROR", "We are unable to process your Order currently, sorry for inconvenience");
+                    navigateToUserOrderPage();
 
                 })
-
             }
-            else{
-                cart.deliverAddress=vm.deliveryAddresses[0];
-            }
-
-
-            var promise=checkOutService.createOrder(cart);
-            promise.success(function (order) {
-                outputMsg('SUCCESS','Your order has been successfully placed');
-
-                navigateToUserOrderPage();
-            }).error(function (err) {
-                outputMsg("ERROR","We are unable to process your Order currently, sorry for inconvenience");
-                navigateToUserOrderPage();
-
-            })
 
         }
 
