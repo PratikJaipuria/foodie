@@ -6,6 +6,7 @@
         var vm = this;
         vm.currActivePaneIfUser='';
         var test=10;
+        var state=0;
         vm.mode='console';
         vm.findUsers=findUsers;
         vm.findRestaurants=findRestaurants;
@@ -16,11 +17,16 @@
         vm.deleteUser=deleteUser;
         vm.updateUser = updateUser;
         vm.logout = logout;
+        vm.hamOpenNav=hamOpenNav;
+        vm.closeNav=closeNav;
+        vm.openNav=openNav;
+        // vm.refresh  = refresh;
 
         function init() {
 
 
             findUsers('ALLUSERS');
+
 
 
 
@@ -49,9 +55,20 @@
             }).error(function (err) {
 
             })
+            if(role=='ALLUSERS'){
+
+            }else {
+                closeNav();
+            }
+
+
         }
 
 
+        // function refresh() {
+        //     init();
+        //     closeNav();
+        // }
 
         function findRestaurants() {
             vm.mode='restaurants';
@@ -61,6 +78,7 @@
             }).error(function (err) {
 
             })
+            closeNav();
         }
 
         function findOrders() {
@@ -71,6 +89,7 @@
             }).error(function (err) {
 
             })
+            closeNav();
         }
 
 
@@ -140,6 +159,32 @@
             }).error(function (err) {
                 vm.error='Unable to delete the order';
             })
+        }
+
+        function hamOpenNav() {
+            if (state==0){
+                state = 1;
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            else {
+                state=0;
+                closeNav();
+
+            }
+
+        }
+
+        function openNav() {
+
+            document.getElementById("mySidenav").style.width = "250px";
+            state=1;
+
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            state=0;
         }
 
 
