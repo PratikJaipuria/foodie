@@ -127,6 +127,7 @@
             var error='';
 
 
+
             if(restaurant){
 
                 restaurant=formatTiming(restaurant);
@@ -180,13 +181,21 @@
                     restaurant.city=restaurant.city.toUpperCase();
 
 
-                    restaurantService
-                        .updateRestaurant(restaurantId,restaurant)
-                        .success(function (restaurant) {
-                           $location.url("/user/restaurant")
+                    userService
+                        .getRestaurantId()
+                        .success(function (restaurantId) {
+
+                            restaurantId=restaurantId.replace(/"/g,'');
+
+
+                            restaurantService
+                                .updateRestaurant(restaurantId,restaurant)
+                                .success(function (restaurant) {
+                                    vm.restaurant = restaurant;
+                                    $location.url("/user/restaurant")
 
                         })
-                }
+                })}
                 else {
                     throwError(errors);
                 }
@@ -208,17 +217,26 @@
 
         function deleteRestaurant () {
 
-                var r = confirm("You really want to delete this restaurant. This cannot be undone.");
-                if (r == true) {
-                    restaurantService
-                        .deleteRestaurant(restaurantId)
-                        .success(function (response) {
-                            $location.url("/user/restaurant");
-                        }).error(function (err) {
-                        throwError("unable to delete the restaurant");
-                    });
 
-                }
+            userService
+                .getRestaurantId()
+                .success(function (restaurantId) {
+
+                    restaurantId=restaurantId.replace(/"/g,'');
+                    var r = confirm("You really want to delete this restaurant. This cannot be undone.");
+                    if (r == true) {
+
+                        restaurantService
+                            .deleteRestaurant(restaurantId)
+                            .success(function (response) {
+                                $location.url("/user/restaurant");
+                            }).error(function (err) {
+                            throwError("unable to delete the restaurant");
+                        });
+
+                    }
+                })
+
 
 
 
