@@ -130,9 +130,9 @@ module.exports=function(app,model){
 
 
     var googleConfig = {
-        clientID     : '946348091524-mgqqt3en3reih78vt9ev7n3l1rg2ijd5.apps.googleusercontent.com',//process.env.GOOGLE_CLIENT_ID,
-        clientSecret : '8m8sYHATVoB6VDCroDM8PBaW',//process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : process.env.GOOGLE_CALLBACK_URL //"http://localhost:3001/google/callback"//_SPRING_2017
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));

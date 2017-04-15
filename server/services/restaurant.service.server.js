@@ -27,7 +27,7 @@ module.exports=function(app,model) {
 
 
     var eatStreetConfig = {
-        token : process.env.EATSTREET_TOKEN//"6fb883f6655311b6"
+        token : process.env.EATSTREET_TOKEN
 
     };
 
