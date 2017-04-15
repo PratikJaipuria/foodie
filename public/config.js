@@ -12,19 +12,28 @@
             .when("/",{
                 templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
-                controllerAs:'model'
+                controllerAs:'model',
+                data:{
+                    pageTitle:'Home'
+                }
 
             })
             .when("default",{
                 templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
-                controllerAs:'model'
+                controllerAs:'model',
+                data:{
+                    pageTitle:'Home'
+                }
             })
 
             .when("/home",{
                 templateUrl: "views/users/templates/home.view.html",
                 controller:'homeController',
-                controllerAs:'model'
+                controllerAs:'model',
+                data:{
+                    pageTitle:'Home'
+                }
             })
 
 
@@ -34,6 +43,9 @@
                 controllerAs:'model',
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Dashboard'
                 }
 
             })
@@ -46,6 +58,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'EditUser'
                 }
             })
 
@@ -54,18 +69,27 @@
             .when("/login",{
                 templateUrl: "views/users/templates/login.view.html",
                 controller: "userLoginController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Login'
+                }})
 
             .when("/searchResult/name/:rn/address/:add",{
                 templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Restaurants'
+                }})
 
 
             .when("/searchResult/address/:add",{
                 templateUrl: "views/users/templates/user-search-restaurant.view.html",
                 controller: "searchResultController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Restaurants'
+                }})
 
 
             .when("/user/searchResult/name/:rn/address/:add",{
@@ -74,6 +98,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Restaurants'
                 }})
 
 
@@ -83,6 +110,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Restaurants'
                 }})
 
 
@@ -90,6 +120,10 @@
                 templateUrl: "views/users/templates/home.view.html",
                 controller: "homeController",
                 controllerAs: "model",
+                data:{
+                    pageTitle:'Home'
+                },
+
                 resolve: {
                     currentUser: checkLogin
                 }
@@ -99,13 +133,19 @@
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl: "views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Menu'
+                }})
 
 
             .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Menu'
+                }})
 
 
             .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
@@ -114,6 +154,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Menu'
                 }})
 
 
@@ -123,6 +166,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Menu'
                 }})
 
 
@@ -130,12 +176,18 @@
             .when("/searchResult/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Menu'
+                }})
 
             .when("/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu",{
                 templateUrl:"views/restaurant/templates/user-search-restaurant-menu.view.html",
                 controller: "restaurantSearchMenuController",
-                controllerAs: "model"})
+                controllerAs: "model",
+                data:{
+                    pageTitle:'Menu'
+                }})
 
 
             .when("/user/searchResult/name/:rn/address/:add/restaurant/:rid/:rname/menu/cart",{
@@ -144,6 +196,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'CheckOut'
                 }})
 
             .when("/user/searchResult/address/:add/restaurant/:rid/:rname/menu/cart",{
@@ -152,6 +207,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'CheckOut'
                 }})
 
 
@@ -161,19 +219,21 @@
                 controllerAs: 'model',
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Orders'
                 }})
 
 
             .when("/register/:role",{
                 templateUrl: "views/users/templates/user-register.view.html",
                 controller: "userRegisterController",
-                controllerAs:'model'
+                controllerAs:'model',
+                data:{
+                    pageTitle:'UserRegister'
+                }
             })
 
-            .when("/register-owner",{
-                templateUrl: "views/owner/templates/ownerRegister.html",
-                controller: "ownerRegisterController"
-            })
 
 
             .when("/user/profile",{
@@ -182,6 +242,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Profile'
                 }
             })
 
@@ -191,6 +254,9 @@
                 controllerAs:"model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Restaurants'
                 }
             })
 
@@ -200,6 +266,9 @@
                 controllerAs:"model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'NewRestaurant'
                 }
             })
 
@@ -210,6 +279,9 @@
                 resolve: {
                     currentUser: checkLogin
 
+                },
+                data:{
+                    pageTitle:'EditRestaurant'
                 }
             })
 
@@ -219,6 +291,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'EditMenu'
                 }
             })
 
@@ -228,6 +303,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'EditCategory'
                 }
             })
 
@@ -237,6 +315,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Menus'
                 }
             })
 
@@ -246,6 +327,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'NewMenu'
                 }
             })
 
@@ -255,6 +339,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'DeliveryBoys'
                 }
             })
 
@@ -264,6 +351,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'DeliveryBoyRegister'
                 }
             })
 
@@ -275,6 +365,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'DeliveryBoyProfile'
                 }
             })
 
@@ -285,6 +378,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Orders'
                 }
             })
 
@@ -297,6 +393,9 @@
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLogin
+                },
+                data:{
+                    pageTitle:'Orders'
                 }
             });
 

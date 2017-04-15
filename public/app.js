@@ -1,5 +1,5 @@
 (function () {
     angular
-        .module("ProjectMaker", ["ngRoute","ngFileUpload","textAngular",'ui.bootstrap']);
+        .module("ProjectMaker", ["ngRoute","ngFileUpload","textAngular",'ui.bootstrap',"ngPageTitle"]);
 })();
 //,
