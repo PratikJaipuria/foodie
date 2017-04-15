@@ -152,6 +152,7 @@ module.exports=function(app,model){
                             firstName: profile.name.givenName,
                             lastName:  profile.name.familyName,
                             email:     email,
+                            role: "USER",
                             google: {
                                 id:    profile.id,
                                 token: token
