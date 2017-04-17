@@ -18,7 +18,6 @@
             "findRestaurant":findRestaurant,
             "deleteOrderFromConsole":deleteOrderFromConsole,
             "searchMenu":searchMenu,
-            "getRestaurantKeys":getRestaurantKeys,
             "searchRestaurant":searchRestaurant
 
         };
@@ -27,26 +26,32 @@
         return api;
 
 
-        function getRestaurantKeys() {
-
-            return $http.get('/api/getRestaurantKeys');
-        }
 
 
 
-        function searchRestaurant(keys,restName,restAdd) {
 
-            var token=keys.token;
-            var formattedRestAdd=restAdd.split(' ').join('+');
+        function searchRestaurant(restName,restAdd) {
+
+
 
             if (restName && restAdd){
                 var formattedRestName=restName.split(' ').join('+');
+                formattedRestName=restName.replace(/\#/g,'%23');
+                formattedRestName=formattedRestName.replace(/[\/]/g,'^');
 
-                return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+token+'&method=both&search='+formattedRestName+'&street-address='+ formattedRestAdd);
+                var formattedRestAdd=restAdd.split(' ').join('+');
+                formattedRestAdd=formattedRestAdd.replace(/[\/]/g,'^');
+                formattedRestAdd=formattedRestAdd.replace(/\#/g,'%23');
+
+                return $http.get('/api/getAPIRestaurantFromName/'+formattedRestName+'/AndProvidedAddress/'+formattedRestAdd);
             }
             else{
 
-                return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+token+'&method=both&street-address='+ formattedRestAdd);
+                var formattedRestAdd=restAdd.split(' ').join('+');
+                formattedRestAdd=formattedRestAdd.replace(/[\/]/g,'^');
+                formattedRestAdd=formattedRestAdd.replace(/\#/g,'%23');
+
+                    return $http.get('/api/getAPIRestaurantFromProvidedAddress/'+ formattedRestAdd);
             }
 
 
@@ -55,10 +60,9 @@
 
 
 
-        function searchMenu(keys,restaurantId) {
-            var token=keys.token;
+        function searchMenu(restaurantId) {
 
-            return $http.get('https://api.eatstreet.com/publicapi/v1/restaurant/'+restaurantId+'/menu/?access-token='+token);
+            return $http.get('/api/getAPIRestaurantMenu/'+restaurantId);
 
         }
 
@@ -89,8 +93,20 @@
         }
 
         function findAllPartnerResturantsInThisLocation(search) {
+            if(search.name){
+                search.name=search.name.replace(/\#/g,'%23');
+                search.name=search.name.replace(/\s+/g,'+');
+                search.name=search.name.replace(/[\/]/g,'^');
 
-            return $http.get('/api/partnerRestaurant?name='+search.name+'&address='+search.address);
+            }
+
+            if(search.address){
+                search.address=search.address.replace(/\#/g,'%23');
+                search.address=search.address.replace(/[\/]/g,'^');
+                search.address=search.address.replace(/\s+/g,'+');
+            }
+
+          return $http.get('/api/partnerRestaurant?name='+search.name+'&address='+search.address);
         }
 
         function findRestaurant() {

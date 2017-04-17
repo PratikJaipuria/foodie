@@ -15,7 +15,8 @@
                 <input list="addressList"
                        placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
                        type=" "  ng-model="model.search.address"
-                       ng-change="model.loadAddressFromAPI()" class="form-control pull-left">
+                       ng-change="model.loadAddressFromAPI()" class="form-control pull-left"
+                       ng-keyup="$event.keyCode == 13 ? model.searchRestaurant(model.search) : null">>
                 <datalist id="addressList">
                     <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
                 </datalist>
@@ -38,7 +39,7 @@
                 {{model.error}}
             </div>
 
-            <div ng-if="model.restaurantFound" >
+            <div ng-if="model.restaurantFound" class="wbdv-mar-top-15">
                 <div class="col-sm-3 hidden-xs wbdv-mar-bottom-60"  >
                     <div class="wbdv-filtermenudiv">
                         <div class="wbdv-hotelname wbdv-text-align-center">Filters</div>
@@ -92,12 +93,12 @@
 
                     </div>
 
-                    <div class="wbdv-menudiv" ng-if="model.ordersLength &gt; 0">
+                    <!--<div class="wbdv-menudiv" ng-if="model.ordersLength &gt; 0">-->
 
-                        <div class="row" ng-repeat="r in model.orders">
-                            <img src="{{r.restLogo}}" class="wbdv-width-50"/>
-                        </div>
-                    </div>
+                        <!--<div class="row" ng-repeat="r in model.orders">-->
+                            <!--<img src="{{r.restLogo}}" class="wbdv-width-50"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                 </div>
 

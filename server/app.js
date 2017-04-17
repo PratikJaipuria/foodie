@@ -20,7 +20,6 @@ module.exports = function(app)
     require('./services/order.service.server.js')(app, model);
     require("./services/image-upload.service.server.js")(app);
     require("./services/menu.service.server.js")(app, model);
-    require("./services/auto-complete-address.service.server.js")(app);
 
 
 

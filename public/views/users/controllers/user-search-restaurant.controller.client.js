@@ -23,6 +23,14 @@
         weekday[5] = "Friday";
         weekday[6] = "Saturday";
 
+        if(name){
+            name=name.replace(/\%23/g,'#');
+        }
+
+        if(address){
+            address=address.replace(/\^/g,'/');
+            address=address.replace(/\%23/g,'#');
+        }
 
         vm.search={
             name: name,
@@ -83,11 +91,18 @@
 
         function searchRestaurant(searchRestaurants){
 
+
+            searchRestaurants.address=searchRestaurants.address.replace(/[\/]/g,'^');
+            searchRestaurants.address=searchRestaurants.address.replace(/\#/g,'%23');
+
+
+
             if(searchRestaurants.address){
                 var refToNewResturant=[];
                 var tokensWithoutNamereference=$location.url().split('/name/');
                 if(tokensWithoutNamereference.length>1){
                     if (searchRestaurants.name){
+                        searchRestaurants.name=searchRestaurants.name.replace(/\#/g,'%23');
                         refToNewResturant=tokensWithoutNamereference[0]+'/name/'+searchRestaurants.name+'/address/'+searchRestaurants.address;
                     }
                     else{
@@ -98,6 +113,7 @@
                 else{
                     var tokensWithoutAddressreference= $location.url().split('/address/');
                     if (searchRestaurants.name){
+                        searchRestaurants.name=searchRestaurants.name.replace(/\#/g,'%23');
                         refToNewResturant=tokensWithoutAddressreference[0]+'/name/'+searchRestaurants.name+'/address/'+searchRestaurants.address;
                     }
                     else{
@@ -120,6 +136,19 @@
 
 
         function fetchPartnerResturants(search) {
+
+            if (search.address){
+                search.address=search.address.replace(/\^/g,'/');
+                search.address=search.address.replace(/\+/g,' ');
+                search.address=search.address.replace(/\%23/g,'#');
+            }
+
+            if (search.name){
+                search.name=search.name.replace(/\%23/g,'#');
+                search.name=search.name.replace(/\+/g,' ');
+                search.name=search.name.replace(/\^/g,'/');
+            }
+
 
             var promise=restaurantService.findAllPartnerResturantsInThisLocation(search);
             promise.success(function (partnerResturantsList) {
@@ -185,25 +214,30 @@
 
         function searchAPIRestaurants(search) {
             if (search.address){
+                search.address=search.address.replace(/\^/g,'/');
+                search.address=search.address.replace(/\+/g,' ');
+                search.address=search.address.replace(/\%23/g,'#');
 
-                var promise = restaurantService.getRestaurantKeys()
-                promise.success(function (keys) {
+                if (search.name){
+                    search.name=search.name.replace(/\%23/g,'#');
+                    search.name=search.name.replace(/\+/g,' ');
+                    search.name=search.name.replace(/\^/g,'/');
+                }
 
-                    var promise = restaurantService.searchRestaurant(keys,search.name, search.address);
-                    promise
-                        .success(function (response) {
+                var promise = restaurantService.searchRestaurant(search.name, search.address);
+                promise
+                    .success(function (response) {
 
-                            formatData(response.restaurants);
+                        formatData(response.restaurants);
 
-                        }).error(function (err) {
+                    }).error(function (err) {
 
-                    })
                 })
 
             }
             else{
                 throwError('Please enter location.');
-                // $location.url("/");
+
             }
         }
 
@@ -241,7 +275,7 @@
         }
 
         function viewMenu (apiKey, resturantObject) {
-            var restaurantName=resturantObject.name.replace(/#/g,'-');
+            var restaurantName=resturantObject.name.replace(/\#/g,'-');
 
             var resturantDetails={
                 _id:apiKey,
@@ -257,12 +291,23 @@
 
             };
 
+            if(name){
+                name=name.replace(/\#/g,'%23');
+                name=name.replace(/\s+/g,'+');
+                name=name.replace(/[\/]/g,'^');
+            }
 
+            if(address){
+                address=address.replace(/\#/g,'%23');
+                address=address.replace(/\s+/g,'+');
+                address=address.replace(/[\/]/g,'^');
+            }
 
 
 
             if(resturantObject.partner){
                 if(userId && name){
+
                     $location.url('/user/searchResult/name/'+name+'/address/'+address+'/restaurant/'+apiKey+'/'+restaurantName+'/menu');
                 }
                 else if(userId){
@@ -389,20 +434,15 @@
 
         function loadAddressFromAPI(addressTextSoFar) {
             var formattedSpace=vm.search.address.replace(/\s+/g,'+');
-            var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+            var formattedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-            var promise = addressAPISearchService.getAuthkeys();
-            promise.success(function (keys) {
+            var promise=addressAPISearchService.autoCompleteAddress(formattedSpaceAndPound);
+            promise.success(function (addr) {
+                vm.addressFromAPI=addr.suggestions;
 
-                var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
-                promise.success(function (addr) {
-                    vm.addressFromAPI=addr.suggestions;
-
-                }).error(function (err) {
-                    vm.error=err;
-                })
-
-            });
+            }).error(function (err) {
+                vm.error=err;
+            })
 
         }
 

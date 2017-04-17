@@ -102,10 +102,8 @@
         function searchMenuForThisRestaurant () {
 
 
-            var promise = restaurantService.getRestaurantKeys()
-            promise.success(function (keys) {
 
-                var promise = restaurantService.searchMenu(keys,restaurantId);
+                var promise = restaurantService.searchMenu(restaurantId);
                 promise
                     .success(function (response) {
 
@@ -114,7 +112,6 @@
                     }).error(function (err) {
 
                 })
-            })
 
         }
 
@@ -228,6 +225,18 @@
         }
 
         function navigationPreffix() {
+            if(name){
+                name=name.replace(/\#/g,'%23');
+                name=name.replace(/\s+/g,'+');
+                name=name.replace(/[\/]/g,'^');
+            }
+
+            if(address){
+                address=address.replace(/\#/g,'%23');
+                address=address.replace(/\s+/g,'+');
+                address=address.replace(/[\/]/g,'^');
+            }
+
             if(userId){
 
                 if(name){

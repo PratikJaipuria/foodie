@@ -233,7 +233,7 @@
                             </li>
                             <li class="list-group-item" ng-repeat="u in model.data">
                                 <div class="row wbdv-pad-left-15">
-                                    <div class="col-xs-5 col-sm-5" >
+                                    <div class="col-xs-5 col-sm-4" >
                                         {{u.name}}
                                     </div>
 
@@ -241,10 +241,10 @@
                                         {{u.city}}
                                     </div>
 
-                                    <div class="col-sm-3 hidden-xs" >
+                                    <div class="col-sm-1 hidden-xs" >
                                         {{u.state}}
                                     </div>
-                                    <div class="col-xs-2 pull-right">
+                                    <div class="col-xs-2 col-sm-3 pull-right">
                                         <a ng-click="model.deleteRestaurant(u._id)">
                                             <span class="glyphicon glyphicon-remove-sign pull-right"></span>
                                         </a>

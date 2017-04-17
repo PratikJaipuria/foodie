@@ -25,7 +25,8 @@ module.exports = function () {
         deleteOrderFromUser:deleteOrderFromUser,
         removeRestaurentFromOwner:removeRestaurentFromOwner,
         findUsers:findUsers,
-        findUserByGoogleId: findUserByGoogleId
+        findUserByGoogleId: findUserByGoogleId,
+        removeAddFromDelAddressList:removeAddFromDelAddressList
 
 
 
@@ -34,8 +35,8 @@ module.exports = function () {
     return api;
 
 
-    function findUserByGoogleId(googleId) {
-        return UserModel.findOne({'google.id': googleId});
+    function findUserByGoogleId(googleEmailId) {
+        return UserModel.findOne({'email': googleEmailId});
     }
 
 
@@ -340,7 +341,21 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function removeAddFromDelAddressList(userId, address) {
+        var deferred=q.defer();
+        UserModel.update({_id: userId},{$pull: {deliverAddress: address}}, function (err,res) {
+            if(err){
 
+                deferred.reject();
+            }
+            else {
+
+                deferred.resolve(res);
+
+            }
+        });
+        return deferred.promise;
+    }
 
 
 };

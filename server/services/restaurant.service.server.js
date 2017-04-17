@@ -11,11 +11,11 @@ module.exports=function(app,model) {
     app.get('/api/restaurants', findRestaurants);
     app.put('/api/restaurants/:restaurantId/order/:oId',deleteOrderFromResturant);
     app.get("/api/restaurant/:restaurantId/db" ,findDeliveryBoyForThisRestaurant);
-    app.get("/api/getRestaurantKeys",getRestaurantKeys);
+    app.get("/api/getAPIRestaurantFromProvidedAddress/:address", getAPIRestaurantFromProvidedAddress);
+    app.get("/api/getAPIRestaurantFromName/:name/AndProvidedAddress/:address", getAPIRestaurantFromNameAndProvidedAddress);
+    app.get("/api/getAPIRestaurantMenu/:restId", getAPIRestaurantMenu);
 
-
-
-
+    var request=require('request');
 
     var RestaurantModel = model.RestaurantModel;
     var UserModel = model.UserModel;
@@ -32,10 +32,6 @@ module.exports=function(app,model) {
     };
 
 
-    function getRestaurantKeys(req,res) {
-
-        res.json(eatStreetConfig);
-    }
 
 
     function deleteRestaurant(req,res) {
@@ -202,6 +198,19 @@ module.exports=function(app,model) {
     function findAllPartnerResturantsInThisLocation(req, res) {
          var name = req.query.name;
          var address=req.query.address;
+
+         if(name){
+
+             name=name.replace(/\+/g,' ');
+             name=name.replace(/\%23/g,'#');
+             name=name.replace(/\^/g,'/');
+         }
+
+         if(address){
+             address=address.replace(/\^/g,'/');
+             address=address.replace(/\+/g,' ');
+             address=address.replace(/\%23/g,'#');
+         }
 
 
          var restaurants={
@@ -373,6 +382,70 @@ module.exports=function(app,model) {
             }, function (err) {
                 res.sendStatus(404);
             });
+    }
+
+
+    function getAPIRestaurantFromProvidedAddress(req, res) {
+
+        var address=req.params['address'];
+        var formattedRestAdd=address.replace(/\^/g,'/');
+        formattedRestAdd=formattedRestAdd.replace(/\+/g,' ');
+        formattedRestAdd=formattedRestAdd.replace(/\%23/g,'#');
+
+        request.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+eatStreetConfig.token+'&method=both&street-address='+ formattedRestAdd, function (error, response, body) {
+           if(error){
+               res.sendStatus(404);
+           }
+           else{
+
+               res.send(body);
+           }
+        });
+
+    }
+
+    function getAPIRestaurantFromNameAndProvidedAddress(req, res) {
+
+        var address=req.params['address'];
+        var name=req.params['name'];
+
+        var formattedRestAdd=address.replace(/\^/g,'%2F');
+        // formattedRestAdd=formattedRestAdd.replace(/\+/g,' ');
+        formattedRestAdd=formattedRestAdd.replace(/\%23/g,'#');
+
+        var formattedRestName=name.replace(/\s+/g,'+');
+        formattedRestName=formattedRestName.replace(/#/g,'%23');
+        formattedRestName=formattedRestName.replace(/\^/g,'%2F');
+
+
+
+        request.get('https://api.eatstreet.com/publicapi/v1/restaurant/search?access-token='+eatStreetConfig.token+'&method=both&search='+formattedRestName+'&street-address='+ formattedRestAdd, function (error, response, body) {
+            if(error){
+                res.sendStatus(404);
+            }
+            else{
+
+                res.send(body);
+            }
+        });
+
+    }
+
+    function getAPIRestaurantMenu(req, res) {
+
+        var restaurantId=req.params['restId'];
+
+
+        request.get('https://api.eatstreet.com/publicapi/v1/restaurant/'+restaurantId+'/menu/?access-token='+eatStreetConfig.token, function (error, response, body) {
+            if(error){
+                res.sendStatus(404);
+            }
+            else{
+
+                res.send(body);
+            }
+        });
+
     }
 
 

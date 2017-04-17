@@ -50,20 +50,16 @@
 
         function loadAddressFromAPI(addressTextSoFar) {
             var formattedSpace=vm.search.address.replace(/\s+/g,'+');
-            var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+            var formattedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-            var promise = addressAPISearchService.getAuthkeys();
-            promise.success(function (keys) {
 
-                var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
-                promise.success(function (addr) {
-                    vm.addressFromAPI=addr.suggestions;
+            var promise=addressAPISearchService.autoCompleteAddress(formattedSpaceAndPound);
+            promise.success(function (addr) {
+                vm.addressFromAPI=addr.suggestions;
 
-                }).error(function (err) {
-                    vm.error=err;
-                })
-
-            });
+            }).error(function (err) {
+                vm.error=err;
+            })
 
         }
 
@@ -81,13 +77,20 @@
         function findRestaurant (restaurant) {
             if(restaurant) {
 
+                restaurant.address=restaurant.address.replace(/[\/]/g, '^');
+
+
+
+
 
                 if (userId && restaurant.name && restaurant.city && restaurant.address) {
-                    restaurant.address += restaurant.city
+                    restaurant.address += restaurant.city;
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
                     $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
                 }
 
                 else if (userId && restaurant.city && restaurant.name) {
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
                     $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.city);
 
                 }
@@ -98,6 +101,7 @@
                 }
 
                 else if (userId && restaurant.address && restaurant.name) {
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
                     $location.url('/user/searchResult/name/' + restaurant.name + '/address/' + restaurant.address);
                 }
 
@@ -108,16 +112,20 @@
 
 
                 else if (restaurant.name && restaurant.city && restaurant.address){
-                    restaurant.address+=restaurant.city
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
+                    restaurant.address+=restaurant.city;
                     $location.url('/searchResult/name/'+restaurant.name+'/address/'+restaurant.address);
                 }
 
                 else if (restaurant.city && restaurant.name){
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
                     $location.url('/searchResult/name/'+restaurant.name+'/address/'+restaurant.city);
 
                 }
 
                 else if(restaurant.address && restaurant.name){
+                    restaurant.name=restaurant.name.replace(/\#/g,'%23');
+
                     $location.url('/searchResult/name/'+restaurant.name+'/address/'+restaurant.address);
                 }
 

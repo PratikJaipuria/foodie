@@ -83,19 +83,14 @@
 
             if(vm.newAddress){
                 var formattedSpace=vm.newAddress.replace(/\s+/g,'+');
-                var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+                var formattedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-                var promise = addressAPISearchService.getAuthkeys();
-                promise.success(function (keys) {
+                var promise=addressAPISearchService.autoCompleteAddress(formattedSpaceAndPound);
+                promise.success(function (addr) {
+                    vm.addressFromAPI=addr.suggestions;
 
-                    var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
-                    promise.success(function (addr) {
-                        vm.addressFromAPI=addr.suggestions;
-
-                    }).error(function (err) {
-                        vm.error=err;
-                    })
-
+                }).error(function (err) {
+                    vm.error=err;
                 });
             }
 

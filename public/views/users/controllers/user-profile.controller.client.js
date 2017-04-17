@@ -20,6 +20,9 @@
         vm.logOutUser = logOutUser;
         vm.removeAddFromDelAddressList=removeAddFromDelAddressList;
 
+        var errors=[];
+        var error='';
+
         function init () {
             var promise=userService.findCurrentUser();
             promise.success(function (user) {
@@ -74,19 +77,14 @@
 
             if(vm.user.address){
                 var formattedSpace=vm.user.address.replace(/\s+/g,'+');
-                var formatedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
+                var formattedSpaceAndPound=formattedSpace.replace(/#/g, '%23');
 
-                var promise = addressAPISearchService.getAuthkeys();
-                promise.success(function (keys) {
+                var promise=addressAPISearchService.autoCompleteAddress(formattedSpaceAndPound);
+                promise.success(function (addr) {
+                    vm.addressFromAPI=addr.suggestions;
 
-                    var promise=addressAPISearchService.autoCompleteAddress(keys,formatedSpaceAndPound);
-                    promise.success(function (addr) {
-                        vm.addressFromAPI=addr.suggestions;
-
-                    }).error(function (err) {
-                        vm.error=err;
-                    })
-
+                }).error(function (err) {
+                    vm.error=err;
                 });
             }
 
@@ -171,8 +169,7 @@
 
 
         function updateUser(userId, user) {
-            var errors=[];
-            var error='';
+
 
             if(!user.firstName){
                 error="FirstName is invalid";
@@ -228,7 +225,9 @@
             promise.success(function (response) {
                $location.url("/login");
             }).error(function (err) {
-                vm.error("unable to delete User");
+                var error="unable to delete User";
+                errors.push(error);
+                outputMsg("ERROR",errors);
             })
         }
 
@@ -237,7 +236,14 @@
                 if(vm.user.deliverAddress[a]==add){
                     var indx=vm.user.deliverAddress.indexOf(add);
                     vm.user.deliverAddress.splice(indx,1);
+                    var promise=userService.removeAddFromDelAddressList(userId,add);
+                        promise.success(function (resp) {
 
+                        }).error(function (err) {
+                           error="Unable to remove selected delivery address from your profile";
+                           errors.push(error);
+                           outputMsg("ERROR",errors);
+                        })
                 }
             }
         }

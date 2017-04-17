@@ -27,7 +27,8 @@
             "setRestaurantId" : setRestaurantId,
             "getRestaurantId" : getRestaurantId,
             "setDBId" : setDBId,
-            "getDBId" : getDBId
+            "getDBId" : getDBId,
+            "removeAddFromDelAddressList":removeAddFromDelAddressList
 
             // restaurantId : String
         };
@@ -134,6 +135,13 @@
         }
         function findUsers(role) {
             return $http.get("/api/users?role="+role);
+        }
+
+        function removeAddFromDelAddressList(userId,delAdd) {
+            var addObj={
+              address: delAdd
+            };
+            return $http.put("/api/user/"+userId+"/removeDeliveryAddress",addObj);
         }
 
     }

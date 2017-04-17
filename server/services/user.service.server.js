@@ -30,6 +30,7 @@ module.exports=function(app,model){
     app.get("/api/getrest", getRestaurantId);
     app.put("/api/setdbid/:dbid",setDBId);
     app.get("/api/getdbid",getDBId);
+    app.put("/api/user/:uid/removeDeliveryAddress",removeAddFromDelAddressList);
 
 
 
@@ -139,10 +140,11 @@ module.exports=function(app,model){
 
     function googleStrategy(token, refreshToken, profile, done) {
         UserModel
-            .findUserByGoogleId(profile.id)
+            .findUserByGoogleId(profile.emails[0].value)
             .then(
                 function(user) {
                     if(user) {
+
                         return done(null, user);
                     } else {
                         var email = profile.emails[0].value;
@@ -497,6 +499,20 @@ module.exports=function(app,model){
                 }, function (err) {
                     res.send(404);
                 })
+        }
+
+        function removeAddFromDelAddressList(req, res) {
+            var userId=req.params['uid'];
+            var addressObj=req.body;
+            UserModel.removeAddFromDelAddressList(userId, addressObj.address)
+                .then(function (res) {
+
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.send(404);
+                })
+
+
         }
 
 
