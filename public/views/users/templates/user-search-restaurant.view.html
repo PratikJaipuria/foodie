@@ -16,7 +16,7 @@
                        placeholder="Free form street Address (eg. 123 Main Rd, Abbot ME)"
                        type=" "  ng-model="model.search.address"
                        ng-change="model.loadAddressFromAPI()" class="form-control pull-left"
-                       ng-keyup="$event.keyCode == 13 ? model.searchRestaurant(model.search) : null">>
+                       ng-keyup="$event.keyCode == 13 ? model.searchRestaurant(model.search) : null">
                 <datalist id="addressList">
                     <option ng-repeat="adr in model.addressFromAPI" value="{{adr.text}}">
                 </datalist>
