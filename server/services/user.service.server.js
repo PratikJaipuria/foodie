@@ -306,7 +306,11 @@ module.exports=function(app,model){
 
     function updateUser (req, res) {
         var userId = req.params['uid'];
+
         var user=req.body;
+
+        user.password = bcrypt.hashSync(user.password);
+
         UserModel.updateUser(userId, user)
             .then(function (user) {
 
